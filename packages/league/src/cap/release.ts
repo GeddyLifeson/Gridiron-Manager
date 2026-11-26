@@ -61,6 +61,7 @@ function accelerate(c: CapContract, leagueYear: number, deferred: boolean, rules
 }
 
 export function releaseCharges(c: CapContract, r: ReleaseInput, rules: RuleSet): ReleaseResult {
+  for (const v of [r.basePaidCents, r.earnedThisYearCents]) if (!Number.isSafeInteger(v) || v < 0) return { ok: false, reason: 'amounts paid must be whole non-negative cents' };
   if (r.june1Designation) {
     if (r.timing !== 'on_or_before_june1') return { ok: false, reason: 'A June 1 designation applies only to releases made on or before June 1.' };
     if (r.designationsUsed >= rules.num('cap.june1_designations')) return { ok: false, reason: 'league rule: the club has used its June 1 designations this league year' };

@@ -933,6 +933,25 @@
     "league (G-10 data)"
    ],
    "unit": "gpa"
+  },
+  {
+   "key": "cfp.champion_auto_bids",
+   "type": "number",
+   "meaning": "Automatic places for the highest-ranked conference champions of any conference; 0 off",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league/postseason"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "cfp.byes_champions_only",
+   "type": "boolean",
+   "meaning": "Bye seeds go only to the highest-ranked conference champions",
+   "ownerLeaf": "T3.5.1",
+   "readBy": [
+    "league/postseason"
+   ]
   }
  ]
 }

@@ -17,12 +17,12 @@ export {
   STRUCTURE_STEPS, STREAM_STRUCTURE, blockedTermHits, buildStructures, structureProblems,
   type StructureStep, type ResourceBand, type PlaceRecord, type BuiltStructures, type StructureOptions,
 } from './structures.ts';
-export { STREAM_FOUNDING, STREAM_CULTURE, scaleMix, curveAge, triangularAge, foundPeople, foundingProblems, type FoundingResult, type OffLadderSeat } from './founding.ts';
+export { STREAM_FOUNDING, STREAM_CULTURE, scaleMix, curveAge, triangularAge, foundPeople, programStrength, foundingProblems, type FoundingResult, type OffLadderSeat } from './founding.ts';
 export {
   PLACEMENT_ORDER, FREE_AGENT_POOL, COACH_POOL, nameCollisions, placeImported, placeUser,
   type PlacementKind, type Placement, type PlacementPorts, type PlacementReport, type BackgroundFact, type UserPlacement,
 } from './placement.ts';
 export {
-  CONTENT_VERSION, RULE_KEYS, levelNumbers, rosterTierShares, makeNameSource, makeHomeRegionSource, defaultContent,
+  CONTENT_VERSION, RULE_KEYS, levelNumbers, rosterTierShares, tierFromProgram, makeNameSource, makeHomeRegionSource, defaultContent,
   type RuleLookup, type DefaultContentInput, type RawContent,
 } from './default-content.ts';

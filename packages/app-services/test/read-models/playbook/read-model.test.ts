@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { ReadModelRegistry, buildReadModel, crawlReadModels, crawlPassed, observerFor, tablesOf, PUBLIC_OBSERVER } from '../../../src/observer/index.ts';
 import { playbookSpec, PLAYBOOK_MODEL, type PlaybookSource, type PlaybookView } from '../../../src/read-models/playbook/index.ts';
 import { fixtureTables, HOME, AWAY, USER, ASSISTANT, AWAY_COACH } from '../../observer/fixture-world.ts';
-import { PlaybookData } from './data-schema.ts';
+import { PlaybookData } from '@gm/schema';
 import { starter } from './fixture.ts';
 
 const s = starter();

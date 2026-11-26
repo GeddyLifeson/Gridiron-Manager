@@ -39,7 +39,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   k('roster.elevations_max_per_game', 'number', 'count', 'Practice squad elevations per club per game.', 'C5.3.2'),
   k('roster.elevations_max_per_player_season', 'number', 'count', 'Elevations per player per regular season.', 'C5.3.2'),
   k('roster.elevations_postseason_unlimited', 'boolean', undefined, 'No per-player elevation limit in the postseason (NEW: C5.3.2 edge case, Verified, true).', 'C5.3.2'),
-  k('roster.practice_squad_protections_per_week', 'number', 'count', 'Practice squad players a club may protect per week (NEW: C5.3.3 rule 2, 4, 2 of 3).', 'C5.3.3'),
+  k('roster.practice_squad_protections_per_week', 'number', 'count', 'Practice squad players a club may protect per week (C5.3.3 rule 2; 0 in 2026, the 2020 to 2022 protections ended).', 'C5.3.3'),
   k('roster.practice_squad_poach_pay_weeks', 'number', 'weeks', 'Weeks of pay owed to a player signed off another practice squad (NEW: C5.3.3 rule 3, 3, 1 of 3).', 'C5.3.3'),
   k('roster.practice_squad_next_opponent_days', 'number', 'days', 'From this many days before the game a practice squad player may not sign with his club\'s next opponent (NEW: C5.3.3 rule 4, 6, 1 of 3).', 'C5.3.3'),
   // Reserve lists (C5.4).
