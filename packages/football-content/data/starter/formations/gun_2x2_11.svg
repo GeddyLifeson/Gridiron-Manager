@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 220" width="480" height="220" role="img" aria-label="Gun Doubles (2x2), 11 personnel">
+<rect width="480" height="220" fill="#f4f1e8"/>
+<line x1="0" y1="70" x2="480" y2="70" stroke="#2b4a2b" stroke-width="2"/>
+<circle cx="216" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="216" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">LT</text>
+<circle cx="228" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="228" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">LG</text>
+<rect x="232" y="62" width="16" height="16" fill="#fff" stroke="#111"/>
+<text x="240" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">C</text>
+<circle cx="252" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="252" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">RG</text>
+<circle cx="264" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="264" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">RT</text>
+<circle cx="240" cy="124" r="8" fill="#fff" stroke="#111"/>
+<text x="240" y="127.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">Q</text>
+<circle cx="266.4" cy="124" r="8" fill="#fff" stroke="#111"/>
+<text x="266.4" y="127.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">R</text>
+<circle cx="36" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="36" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">X</text>
+<circle cx="150" cy="82" r="8" fill="#fff" stroke="#111"/>
+<text x="150" y="85.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">H</text>
+<circle cx="330" cy="82" r="8" fill="#fff" stroke="#111"/>
+<text x="330" y="85.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">Y</text>
+<circle cx="444" cy="70" r="8" fill="#fff" stroke="#111"/>
+<text x="444" y="73.5" font-family="sans-serif" font-size="9" text-anchor="middle" fill="#111">Z</text>
+<text x="8" y="212" font-family="sans-serif" font-size="11" fill="#333">Gun Doubles (2x2), 11 personnel (11, 2x2)</text>
+</svg>
