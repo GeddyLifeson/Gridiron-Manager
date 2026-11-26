@@ -20,9 +20,15 @@
      "value": 94
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "USA Today database page blocked to the fetcher; count read through FootballScoop only."
   },
   {
@@ -53,9 +59,15 @@
      "value": 9
     }
    ],
-   "status": "Unverified",
+   "status": "2 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0003",
@@ -76,9 +88,15 @@
      "value": 5940000
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0004",
@@ -99,9 +117,15 @@
      "value": 450000
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0005",
@@ -131,9 +155,15 @@
      "value": 2500000
     }
    ],
-   "status": "Unverified",
+   "status": "2 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "2 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0006",
@@ -154,9 +184,15 @@
      "value": 1500000
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0007",
@@ -195,9 +231,15 @@
      "value": 1500000
     }
    ],
-   "status": "Unverified",
+   "status": "Verified",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "Verified",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "Three groups per the research file; the AOL item is a USA Today syndication and may not be independent of the On3 summary of the same list."
   },
   {
@@ -219,9 +261,15 @@
      "value": 325008
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0009",
@@ -242,9 +290,15 @@
      "value": "800-1500"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": []
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ]
   },
   {
    "id": "F-collegeprog-0010",
@@ -265,9 +319,15 @@
      "value": "45-70;70-100"
     }
    ],
-   "status": "Unverified",
+   "status": "1 of 3",
    "usedBy": [],
-   "statusHistory": [],
+   "statusHistory": [
+    {
+     "date": "2026-11-26",
+     "status": "1 of 3",
+     "reason": "Release gate cleanup: stored word \"Unverified\" did not match the status computed from the sources (Q6.1.2)."
+    }
+   ],
    "notes": "Low quality; the bible marks it 1 of 3."
   }
  ]

@@ -82,7 +82,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   k(KEY.secondAfterHcChange, 'boolean', undefined, 'A second official visit to the same school is allowed after a head coach change (true).', 'T4.5.1'),
   k(KEY.visitMaxHours, 'number', 'hours', 'Longest official visit (48).', 'T4.5.1'),
   k(KEY.paidCompanions, 'number', 'count', 'Family members or companions the school may pay for on an official visit (2; 4 if the October 2026 proposal is adopted).', 'T4.5.1'),
-  k(KEY.schoolCap, 'number', 'count', 'Official visits a school may host per recruiting year (70 in the 2022-23 and 2023-24 FBS rule years; none from April 2024).', 'T4.5.1'),
+  k(KEY.schoolCap, 'number', 'count', 'Official visits a school may host per recruiting year (70 in the 2022-23 and 2023-24 rule years of the top college subdivision; none from April 2024).', 'T4.5.1'),
   k(KEY.iawpWindowYears, 'number', 'years', 'A person associated with a prospect may not be hired from this many years before to this many after he enrols (2).', 'T4.4.2'),
   k(KEY.coreCourses, 'number', 'count', 'Core courses needed to qualify (16).', 'T4.5.3'),
   k(KEY.coreGpa, 'number', 'gpa', 'Lowest core grade average to qualify (2.3).', 'T4.5.3'),

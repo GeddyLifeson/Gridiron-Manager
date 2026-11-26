@@ -240,7 +240,7 @@ function tampa2(): DefenseDef {
     ],
     basis: [
       { claim: 'Tampa 2: the middle linebacker drops to the deep middle like a third safety, splitting the downfield coverage into thirds', status: 'Verified', sources: ['schalter-cover2', 'haddad-cover2', '33rd-coverage', 'steelersdepot-coverages'] },
-      { claim: 'Origin: Bud Carson\'s Steelers (Jack Lambert), refined by Dungy and Kiffin with a one-gap 4-3 under', status: '1 of 3', sources: ['schalter-cover2'] },
+      { claim: 'Origin: Bud Carson\'s 1970s zone defenses, refined by Dungy and Kiffin with a one-gap 4-3 under', status: '1 of 3', sources: ['schalter-cover2'] },
       { claim: 'The Mike\'s drop depth (18 yd) is a design value; no source states it', status: 'Assumption', sources: [] },
       NOBODY_HELPS,
     ],
