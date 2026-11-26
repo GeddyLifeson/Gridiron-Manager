@@ -4,11 +4,12 @@ import { gunzipSync } from 'node:zlib';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { PlayByPlayRow } from '@gm/schema';
-import { isCarry, isKneel, isSpike, isAttempt, isPassPlay, isCountedScrimmage } from '../calibration/measures.ts';
+import { isCarry, isKneel, isSpike, isAttempt, isPassPlay, isCountedScrimmage, isDropback, isPassOrRun } from '../calibration/measures.ts';
 import { readCsv } from './csv.ts';
 import { rowFromPublic, PUBLIC_COLUMNS_READ } from './public-row.ts';
+import { applyChart, playKey, type ChartSeason } from './charting.ts';
 import { measureCells } from './cells.ts';
-import type { AdapterCheck, BaselineSource, RealBaseline, Tolerances } from './baseline.ts';
+import type { AdapterCheck, BaselineSource, CellGroup, ChartCheck, RealBaseline, Tolerances } from './baseline.ts';
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), 'data');
 
@@ -20,23 +21,46 @@ export function readBaseline(ruleSetId: string): RealBaseline | null {
   return existsSync(p) ? (JSON.parse(readFileSync(p, 'utf8')) as RealBaseline) : null;
 }
 
-export interface SeasonRows { readonly season: number; readonly games: number; readonly rows: PlayByPlayRow[] }
+export interface SeasonRows { readonly season: number; readonly games: number; readonly rows: PlayByPlayRow[]; readonly chart?: ChartSeason; readonly chartCheck?: ChartCheck }
 
 /** Reads one season file of public play-by-play (plain or gzip), regular season only, as rows in file order per game. */
-export function readPublicSeason(path: string, season: number, firstGameId: number): SeasonRows {
+export function readPublicSeason(path: string, season: number, firstGameId: number, chart?: ChartSeason): SeasonRows {
   const raw = readFileSync(path);
   const bytes = path.endsWith('.gz') ? gunzipSync(raw) : raw;
   const byGame = new Map<string, { id: number; n: number }>();
   const rows: PlayByPlayRow[] = [];
+  const k = { passRunPlays: 0, ftnMissing: 0, personnelCharted: 0, dropbacks: 0, dropbacksCharted: 0, coverageCharted: 0, carries: 0, carriesBoxCharted: 0, rushersBoth: 0, rushersEqual: 0, boxBoth: 0, boxEqual: 0 };
   const { missing } = readCsv(bytes, PUBLIC_COLUMNS_READ, (c) => {
     if (c['season_type'] !== 'REG' || Number(c['season']) !== season) return;
     let g = byGame.get(c['game_id']!);
     if (!g) { g = { id: firstGameId + byGame.size, n: 0 }; byGame.set(c['game_id']!, g); }
-    const row = rowFromPublic(c, { gameId: g.id, playIndex: g.n + 1 });
-    if (row) { g.n++; rows.push(row); }
+    const base = rowFromPublic(c, { gameId: g.id, playIndex: g.n + 1 });
+    if (!base) return;
+    g.n++;
+    if (!chart) { rows.push(base); return; }
+    const key = playKey(c['game_id']!, c['play_id']!);
+    const ch = chart.byPlay.get(key);
+    const row = applyChart(base, ch);
+    rows.push(row);
+    if (!isPassOrRun(row)) return;
+    k.passRunPlays++;
+    if (ch === undefined || ch.playAction === null) k.ftnMissing++;
+    if (row.personnelCode !== null) k.personnelCharted++;
+    const second = chart.second.get(key);
+    if (isDropback(row)) {
+      k.dropbacks++;
+      if (row.rushers !== null) k.dropbacksCharted++;
+      if (row.coverageFamily !== null) k.coverageCharted++;
+      if (ch?.rushers != null && second?.rushers != null) { k.rushersBoth++; if (ch.rushers === second.rushers) k.rushersEqual++; }
+    }
+    if (isCarry(row)) {
+      k.carries++;
+      if (row.boxCount !== null) k.carriesBoxCharted++;
+      if (ch?.boxCount != null && second?.boxCount != null) { k.boxBoth++; if (ch.boxCount === second.boxCount) k.boxEqual++; }
+    }
   });
   if (missing.length) throw new Error(`${path}: missing columns ${missing.join(', ')}`);
-  return { season, games: byGame.size, rows };
+  return chart ? { season, games: byGame.size, rows, chart, chartCheck: { season, ...k, participationRows: chart.counts.participationRows, ftnRows: chart.counts.ftnRows } } : { season, games: byGame.size, rows };
 }
 
 /** League totals by the official definitions, for the adapter check against team-total collections. */
@@ -63,7 +87,7 @@ export function readTeamTotals(path: string): Map<number, Record<string, number>
   return out;
 }
 
-export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[], sources: readonly BaselineSource[], totals: readonly { source: string; bySeason: Map<number, Record<string, number>> }[]): RealBaseline {
+export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[], sources: readonly BaselineSource[], totals: readonly { source: string; bySeason: Map<number, Record<string, number>> }[], groups: readonly CellGroup[] = []): RealBaseline {
   const adapterChecks: AdapterCheck[] = [];
   for (const s of seasons) {
     const mine = officialTotals(s.rows);
@@ -76,6 +100,6 @@ export function buildBaseline(ruleSetId: string, seasons: readonly SeasonRows[],
   const years = seasons.map((s) => s.season);
   return {
     ruleSetId, seasons: `${Math.min(...years)}-${Math.max(...years)}`, seasonType: 'REG', sources,
-    games: seasons.reduce((a, s) => a + s.games, 0), rows: rows.length, adapterChecks, cells: measureCells(rows),
+    games: seasons.reduce((a, s) => a + s.games, 0), rows: rows.length, adapterChecks, chartChecks: seasons.flatMap((s) => (s.chartCheck ? [s.chartCheck] : [])), groups, cells: measureCells(rows),
   };
 }
