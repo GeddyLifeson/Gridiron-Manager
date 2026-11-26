@@ -23,6 +23,8 @@ export interface CareerSeasonStart {
 /** What the shell host supplies. Without `consoleConfig` the console calls from the football desk's sheets. */
 export type CareerHost = Omit<SeasonPortHost, 'level' | 'seasonYear' | 'consoleConfig' | 'football'> & {
   readonly consoleConfig?: SeasonPortHost['consoleConfig'];
+  /** Key bindings for the desk's console setup (sheet key hints skip the console's own keys). */
+  readonly bindings?: readonly { readonly context: string; readonly keys: readonly string[] }[];
 };
 
 export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, host: CareerHost): CareerPort {
@@ -41,13 +43,15 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   // The league rules the week screens check the week against (H1.1.2), from the same file the season is built on.
   const ruleFile = s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules;
   const weekRules = ruleFile?.values ? weekLoop.weekRules(ruleFile.values, s.level) : undefined;
-  // The seat's football desk (plan item 2b): the football screens edit its sheets, and the console calls from them.
+  // The seat's football desk (plan item 2b): the football screens and, unless the host overrides it, the console read it.
+  // The port gets no bindings, so the console takes this setup rather than the week loop's own staff sheets: an edit
+  // on the call sheet is the sheet called on game day.
   const football = new play.FootballDesk({ teamId: sp.seatTeamId, ruleSetId: s.ruleSetId, level: s.level });
-  const { consoleConfig, ...rest } = host;
+  const { bindings = DEFAULT_KEYMAP.bindings, consoleConfig, ...rest } = host;
   const port = careerPortFromSeason(sp, {
     colours: (key) => strips.get(key) ?? null, ...(weekRules ? { weekRules } : {}), venues: weekLoop.venuesOf(content, s.level), marketOf: (key) => markets.get(key) ?? null,
     ...rest, level: s.level, seasonYear: s.seasonYear, football,
-    consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, host.bindings ?? DEFAULT_KEYMAP.bindings)),
+    consoleConfig: consoleConfig ?? ((gameId) => football.consoleConfig(gameId, bindings)),
   });
   // Screens that edit hub state (the football desk) ask the root to redraw through the port's subscription.
   const redraws = new Set<() => void>();
@@ -55,14 +59,14 @@ export function startCareerSeason(content: LeagueContent, s: CareerSeasonStart, 
   // The hubs' route sources, built once: the new-game seat hands over the generated world (its history).
   const world = s.live?.world ?? ('world' in s.seat && isStartedWorld(s.seat.world) ? s.seat.world : null);
   const sources = hubSources({ season: sp, content, world, football, changed, print: () => globalThis.print?.() });
-  const withSources: CareerPort = { ...port, sources: () => sources, subscribe: (f) => { redraws.add(f); return () => { redraws.delete(f); }; } };
+  const hub = { ...port, sources: () => sources, subscribe: (f: () => void) => { redraws.add(f); return () => { redraws.delete(f); }; } };
   const live = s.live;
-  if (!live || !('world' in s.seat)) return withSources;
+  if (!live || !('world' in s.seat)) return hub;
   const seat: SeatWorld = {
     world: live.world, teamId: s.seat.teamId, userPersonId: live.userPersonId, level: s.level,
     leagueRules: s.level === 'pro' ? c.proLeagueRules : c.collegeLeagueRules,
   };
-  return { ...withSources, seatWorld: () => seat };
+  return { ...hub, seatWorld: () => seat };
 }
 
 /** The new-game picker's seat world is the whole generated world; a bare team list is not. */

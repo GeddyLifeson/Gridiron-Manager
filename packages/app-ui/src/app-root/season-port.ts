@@ -193,16 +193,8 @@ export function careerPortFromSeason(sp: play.SeasonPlay, host: SeasonPortHost):
         const ms = tap ? presentationLive.liveMsFrom(tap, TICKS_PER_SECOND)(rec) : 0;
         return ms > 0 ? ms : host.liveMs?.() ?? 0;
       };
-      const gameId = String(seat.context.fixture.gameId);
-      // The football desk's sheets are the ones the user sees and edits on the call sheet: the week calls from them.
-      const open = host.football && host.bindings ? openLoop() : null;
-      if (open && host.football && !open.isFinished) {
-        host.football.prepare(gameId);
-        const own = host.football.sheets();
-        open.setSheet('offense', own.offense);
-        open.setSheet('defense', own.defense);
-      }
       closeLoop();
+      const gameId = String(seat.context.fixture.gameId);
       const consoleSetup = loop && host.bindings ? loop.consoleConfig(host.bindings) : host.consoleConfig(gameId);
       const session = sp.openGame({ console: consoleSetup, resolve: host.resolve, keyIntervalMs: 0, startMs: 0, liveMs: shown, tapResolver: tapped });
       const input = sp.gameInput!;
