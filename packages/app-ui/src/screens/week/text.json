@@ -1,0 +1,13 @@
+{
+  "$comment": "Week schedule screen text (H1, O1.2.3). Screen-local until the shell text table takes screen keys.",
+  "limits": "Limits",
+  "noFindings": "Inside every limit this week.",
+  "soft": "Costs fatigue and morale",
+  "documents": "Documents",
+  "late": "late",
+  "unplanned": "unplanned",
+  "done": "done",
+  "padded": "pads",
+  "coachHours": "Your hours this week: {hours}",
+  "shape": { "normal": "Normal week", "short": "Short week", "long": "Long week", "bye": "Bye week", "playoff": "Playoff week" }
+}

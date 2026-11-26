@@ -110,7 +110,8 @@ export function step(run0: WeekRun, mode: Mode, resolve: BlockResolver, opts: St
       continue;
     }
     if (!next) return { run, stop: 'week_end' };
-    if (mode === 'game' && next.type === 'game') return { run, stop: 'game_day' };
+    // The game itself belongs to area I: every control stops in front of it.
+    if (next.type === 'game') return { run, stop: 'game_day' };
     if (mode === 'day' && next.start.day !== today) return { run, stop: 'day' };
     const delegated = delegateAll && next.leader === opts.userRole;
     run = resolveOne(run, next, resolve, delegated);

@@ -18,3 +18,4 @@ export {
   type PlanType, type Mode as TravelMode, type BudgetTier, type Trip, type TravelPlan, type TravelResult, type CurfewPlayer,
 } from './travel.ts';
 export * from './rung.ts';
+export * from './view.ts';

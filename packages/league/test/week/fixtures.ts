@@ -2,13 +2,18 @@
 // F-league-*, F-college-*); keys G-10 lacks come from the week's own rows (data/week-keys.json).
 import { stream, seedFromNumber } from '@gm/engine-core';
 import type { RandomStream } from '@gm/schema';
-import PRO from '../../../rules-data/data/league/proleague_2026.json' with { type: 'json' };
-import COLLEGE from '../../../rules-data/data/league/collegeleague_2026.json' with { type: 'json' };
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { dayNumber, type Instant } from '../../src/calendar/date.ts';
 import { calendarLookup, lookupFromValues } from '../../src/calendar/keys.ts';
 import type { RuleLookup } from '../../src/calendar/types.ts';
 import { WorkRuleChecker, type HeldActivity, type WorkContext } from '../../src/calendar/work-rules.ts';
 import { buildWeek, defaultSet, weekLookup, type LimitEnv, type Week, type WeekInput, type EditEnv } from '../../src/week/index.ts';
+
+const leagueFile = (name: string): { values: { key: string; value: unknown }[] } =>
+  JSON.parse(readFileSync(fileURLToPath(new URL(`../../../rules-data/data/league/${name}`, import.meta.url)), 'utf8'));
+const PRO = leagueFile('proleague_2026.json');
+const COLLEGE = leagueFile('collegeleague_2026.json');
 
 export const proLeague: RuleLookup = calendarLookup(lookupFromValues(PRO.values));
 export const collegeLeague: RuleLookup = lookupFromValues(COLLEGE.values);
