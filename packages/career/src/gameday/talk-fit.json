@@ -1,0 +1,24 @@
+{
+  "$comment": "Fit tables for the pregame talk (I1.6.1) and the postgame talk (I10.2.1). Assumption (design tuning): the leaves give the mechanism and a few examples (emotional before a low-stakes game to a veteran team does nothing or harms, the same before a rivalry game to a young team helps; demanding after a sloppy win and steady after a close loss played well fit; anger after a hard-fought loss to a better team and praise after a lazy win do not) but no table. Pregame values are signs in -1..1 scaled by pretalk.boundZ; postgame values are bands good, neutral or poor (I10.2.1). No theme is best in every context (I1.6.1 acceptance).",
+  "pregame": {
+    "contexts": ["low_veteran", "low_young", "normal_veteran", "normal_young", "high_veteran", "high_young"],
+    "themes": {
+      "calm_detailed": { "low_veteran": 0.5, "low_young": 0.2, "normal_veteran": 0.6, "normal_young": 0.3, "high_veteran": 0.5, "high_young": 0.0 },
+      "emotional":     { "low_veteran": -0.3, "low_young": 0.0, "normal_veteran": -0.1, "normal_young": 0.4, "high_veteran": 0.3, "high_young": 0.9 },
+      "challenge_unit":{ "low_veteran": 0.1, "low_young": 0.3, "normal_veteran": 0.3, "normal_young": 0.3, "high_veteran": 0.4, "high_young": 0.2 },
+      "keys":          { "low_veteran": 0.4, "low_young": 0.4, "normal_veteran": 0.5, "normal_young": 0.5, "high_veteran": 0.4, "high_young": 0.3 },
+      "say_little":    { "low_veteran": 0.3, "low_young": 0.0, "normal_veteran": 0.2, "normal_young": -0.1, "high_veteran": 0.2, "high_young": -0.2 },
+      "player_speaks": { "low_veteran": 0.2, "low_young": 0.2, "normal_veteran": 0.3, "normal_young": 0.3, "high_veteran": 0.6, "high_young": 0.5 }
+    }
+  },
+  "postgame": {
+    "situations": ["clean_win", "sloppy_win", "lazy_win", "upset_win", "close_loss_played_well", "loss_to_better_team", "sloppy_loss", "blowout_loss"],
+    "tones": {
+      "proud":     { "clean_win": "good", "sloppy_win": "poor", "lazy_win": "poor", "upset_win": "good", "close_loss_played_well": "neutral", "loss_to_better_team": "neutral", "sloppy_loss": "poor", "blowout_loss": "poor" },
+      "level":     { "clean_win": "neutral", "sloppy_win": "neutral", "lazy_win": "neutral", "upset_win": "neutral", "close_loss_played_well": "good", "loss_to_better_team": "good", "sloppy_loss": "neutral", "blowout_loss": "neutral" },
+      "demanding": { "clean_win": "neutral", "sloppy_win": "good", "lazy_win": "good", "upset_win": "poor", "close_loss_played_well": "neutral", "loss_to_better_team": "neutral", "sloppy_loss": "good", "blowout_loss": "good" },
+      "angry":     { "clean_win": "poor", "sloppy_win": "neutral", "lazy_win": "neutral", "upset_win": "poor", "close_loss_played_well": "poor", "loss_to_better_team": "poor", "sloppy_loss": "good", "blowout_loss": "neutral" },
+      "brief":     { "clean_win": "neutral", "sloppy_win": "neutral", "lazy_win": "neutral", "upset_win": "neutral", "close_loss_played_well": "neutral", "loss_to_better_team": "neutral", "sloppy_loss": "neutral", "blowout_loss": "neutral" }
+    }
+  }
+}
