@@ -30,7 +30,7 @@ Bible leaves: C2.1 to C2.6 (pro), T3.1.1 and T3.1.2 (college). Every number is i
 3. **C2.1.1 acceptance 3** says "every club in the other conference at least 3 times" in 12 seasons. With a 4-year cycle that holds exactly (3 meetings). Fine as written.
 4. **C2.3.1 west coast.** Only Pacific home games are barred from the early Sunday slot, as the bible says. Mountain-zone home games at 11:00 a.m. local are allowed. Research could check the real rule.
 
-## Requests for the integrator ("Integrate modules: contracts, facade, gate")
+## Requests for the integrator ("Integrate: rule key mapping and gate")
 
 - Barrel line in `packages/league/src/index.ts`: `export * as schedule from './schedule/index.ts';`
 - A world-level stream name for the scheduler (J13.2.1 lists game streams only); callers pass a `RandomStream`, the world package should derive it as `stream(seed, 'schedule', [season, competitionId])`.
