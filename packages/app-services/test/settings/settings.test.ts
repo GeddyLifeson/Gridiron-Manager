@@ -33,7 +33,7 @@ describe('schema', () => {
     expect(FAVOURITES_MAX).toBe(12);
     expect(checkValue(SETTINGS_BY_KEY.get('navigation.favourites')!, Array.from({ length: 13 }, (_, i) => `/r${i}`))).toMatch(/at most 12/);
     expect(SETTINGS_BY_KEY.get('playback.stoppageCompression')).toMatchObject({ options: ['real', 'short', 'instant'], lockedInCertified: true });
-    expect(SETTINGS_BY_KEY.get('display.theme')).toMatchObject({ options: ['system', 'light', 'dark', 'high-contrast'] });
+    expect(SETTINGS_BY_KEY.get('display.theme')).toMatchObject({ options: ['system', 'light', 'dark', 'high-contrast', 'classic'] });
   });
   it('scopes: display, audio, controls, accessibility and privacy are user; rule set, packs and certified are save', () => {
     for (const s of SETTINGS) if (['display', 'audio', 'controls', 'accessibility', 'privacy'].includes(s.group)) expect(s.scope, s.key).toBe('user');
