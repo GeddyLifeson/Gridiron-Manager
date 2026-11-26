@@ -111,7 +111,9 @@ const ROWS = [
   // Tuned from 0.10 (Assumption) against J15.4.1 interceptions by depth: an off-target ball into coverage is picked far
   // more often than one on target, and at 0.10 a covered deep throw still rated above his threshold.
   ['judge.missPickContested', 0.25, 0, 0.3, 'probability', 'assumption', 'J7.3.1', RATES],
-  ['judge.missPickOpen', 0.02, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
+  // 0.04 from 0.02 with value.incompleteCostEp 0.2: his picked share of off-target balls to open receivers was half
+  // what happened (clean throws believed 0.009, picked 0.017 in a 24-game trace).
+  ['judge.missPickOpen', 0.04, 0, 0.1, 'probability', 'assumption', 'J7.3.1', RATES],
   // Added share of off-target balls picked per yard of air beyond the short band, receiver judged open (J15 interceptions by depth).
   ['judge.missPickOpenPerYd', 0.008, 0, 0.01, 'probability/yd', 'assumption', 'J7.3.1', RATES],
   ['judge.positionTolYd', 0.5, 0.2, 1.5, 'yd', 'assumption', 'J7.3.1', STRUCT],
@@ -127,7 +129,10 @@ const ROWS = [
   ['value.turnoverCostEp', 4, 2, 6, 'EP', 'assumption', 'J7.3.1', N2],
   // What the lost down costs when a throw is neither caught nor intercepted. At 0 a covered deep throw (one chance
   // in four for 25 yards) rated above his threshold; tuned against J15.4.1 air yards per attempt and completion (1 of 3, 2 of 3).
-  ['value.incompleteCostEp', 0.3, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
+  // 0.2 from 0.3 once the throw's miss was held against the receiver's reach: his short estimates fell to what was
+  // caught, every look rated lower against the same thresholds, and he held the ball (sacks 10.1% against main's 9.3%
+  // over 192 games). At 0.2, with judge.missPickOpen 0.04, sacks 9.3% and interceptions 2.55% (main 9.3%, 2.60%).
+  ['value.incompleteCostEp', 0.2, 0, 0.8, 'EP', 'assumption', 'J7.3.1', N2],
   ['value.conversionBonusEp', 0.9, 0, 2, 'EP', 'assumption', 'J7.3.2', N2],
   ['value.conversionDownFrom', 3, 2, 4, 'down', 'assumption', 'J7.3.2', N2],
 
