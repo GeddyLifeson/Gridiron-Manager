@@ -1,0 +1,25 @@
+{
+  "$comment": "Test fixture, not game data. Values already in G-10's proleague_2026.json carry its fact id; values marked NEW are the bible's stated values (M6.1.1 rule 4, M6.2.4 rule 1) for keys this module requests from G-10.",
+  "id": "fixture_pro_camp",
+  "values": {
+    "work.camp_padded_practices_max": [16, "F-league-0085"],
+    "work.camp_padded_streak_days": [3, "F-league-0086"],
+    "work.camp_padded_runs_max": [3, "NEW M6.1.1"],
+    "work.camp_padded_run_gap_days": [3, "NEW M6.1.1"],
+    "work.camp_acclimation_days": [5, "NEW M6.1.1"],
+    "work.camp_day_off_after_acclimation": [true, "NEW M6.1.1"],
+    "work.camp_days_off_min": [6, "F-league-0089"],
+    "work.camp_days_off_min_short_preseason": [8, "NEW M6.1.1"],
+    "work.camp_short_preseason_games": [3, "NEW M6.1.1"],
+    "work.camp_days_off_after_last_game": [4, "NEW M6.1.1"],
+    "work.camp_final_days_off_run": [3, "NEW M6.1.1"],
+    "work.camp_post_game_off_within_days": [2, "NEW M6.1.1"],
+    "work.camp_post_game_off_exempt_gap_days": [5, "NEW M6.1.1"],
+    "work.camp_day_off_every_days": [7, "NEW M6.1.1"],
+    "work.camp_facility_hours_max": [11, "NEW M6.1.1"],
+    "work.camp_facility_hours_reduced": [10, "NEW M6.1.1"],
+    "work.camp_facility_reduced_after_game": [2, "NEW M6.1.1"],
+    "work.joint_practice_days_per_week_max": [2, "NEW M6.2.4"],
+    "work.joint_practice_days_season_max": [4, "NEW M6.2.4"]
+  }
+}

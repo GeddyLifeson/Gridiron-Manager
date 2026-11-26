@@ -1,0 +1,39 @@
+{
+  "$comment": "D6.3.2 flag rules: one raise rule and one clear rule per flag type (acceptance: each type has both in config). Thresholds are starting values; the effort rule is the bible's own (3 or more loafs per 100 snaps over 4 games). Every other threshold is this module's assumption (P-57-10), set to the bible's example where one exists ('second hamstring strain in 10 months').",
+  "effort": {
+    "raise": { "measure": "loafs_per_100_snaps", "windowGames": 4, "atLeast": 3, "severityStep": 3 },
+    "clear": { "rule": "below_threshold", "windowGames": 4 }
+  },
+  "medical": {
+    "raise": { "measure": "same_injury_count", "windowDays": 300, "atLeast": 2, "severityStep": 1 },
+    "clear": { "rule": "healthy_seasons", "seasons": 2 }
+  },
+  "durability": {
+    "raise": { "measure": "games_missed_injured", "windowSeasons": 2, "atLeast": 8, "severityStep": 8 },
+    "clear": { "rule": "healthy_seasons", "seasons": 2 }
+  },
+  "coachability": {
+    "raise": { "measure": "observed_events", "windowDays": 365, "atLeast": 2, "severityStep": 2 },
+    "clear": { "rule": "quiet_days", "days": 365 }
+  },
+  "off_field": {
+    "raise": { "measure": "observed_events", "windowDays": 730, "atLeast": 1, "severityStep": 1 },
+    "clear": { "rule": "quiet_days", "days": 730 }
+  },
+  "learning": {
+    "raise": { "measure": "install_share_behind", "atLeast": 0.25, "severityStep": 0.25 },
+    "clear": { "rule": "below_threshold" }
+  },
+  "size_speed": {
+    "raise": { "measure": "sd_below_position_norm", "atLeast": 1, "severityStep": 1 },
+    "clear": { "rule": "below_threshold" }
+  },
+  "age": {
+    "raise": { "measure": "years_into_decline_band", "atLeast": 0, "severityStep": 2 },
+    "clear": { "rule": "below_threshold" }
+  },
+  "contract": {
+    "raise": { "measure": "minus_contract_years_left", "atLeast": -1, "severityStep": 1 },
+    "clear": { "rule": "below_threshold" }
+  }
+}
