@@ -196,7 +196,7 @@ export function signalChangeUnits(changedSignals: number, readers: number): numb
 /**
  * Pro-rule-set equipment equity (G4.4.3): on a total coach-to-player failure on one side, the other side's
  * equipment is taken until the failed system is restored. Temporary dropouts do not count. The rule set
- * says whether the equity rule applies (key coach_to_player.equity_on_failure).
+ * says whether the equity rule applies (key comm.c2p_equity_on_failure).
  */
 export function radioState(equityRule: boolean, failure: { readonly side: 'home' | 'away'; readonly total: boolean; readonly restored: boolean } | null): { readonly home: boolean; readonly away: boolean } {
   if (!failure || !failure.total || failure.restored) return { home: true, away: true };

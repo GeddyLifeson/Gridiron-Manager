@@ -78,7 +78,7 @@ export interface LengthWarning {
 
 /**
  * G4.3.2 warnings. `cutoffS` is the rule set's coach-to-player cutoff on the play clock (key
- * coach_to_player.cutoff_play_clock_s); null when the rule set has no radio.
+ * comm.c2p_cutoff_seconds); null when the rule set has no radio.
  */
 export function lengthWarning(r: Rendered, words: WordList, cutoffS: number | null, twoPlay: boolean, model: LengthModel = 'syllable', bandNumberS = param('band.lookupS')): LengthWarning {
   const lengthS = spokenLength(r, words, model);

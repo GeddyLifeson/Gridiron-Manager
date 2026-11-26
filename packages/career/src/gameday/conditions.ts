@@ -28,7 +28,7 @@ export type Direction = 'north' | 'south';
 
 /** Field goal distance from the line of scrimmage (yards to the goal line): end zone plus snap and hold. */
 export function kickDistance(losYdToGoal: number, rules: GameDayRules): number {
-  return losYdToGoal + rules.endZoneDepthYd + gp('kick.snapAndHoldYd');
+  return losYdToGoal + rules.endZoneDepthFt / 3 + gp('kick.snapAndHoldYd');
 }
 
 /**

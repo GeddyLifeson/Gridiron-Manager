@@ -20,7 +20,7 @@ rule values come in a `GameDayRules` object read from rule keys (`RULE_KEYS` in 
 - Schemas: move `packages/app-services/test/game-frame/proposed-schemas.ts` into `@gm/schema` and register specs.
 - New rule keys: toss.minutes_before_kickoff (3), toss.field_presence_minutes (10), toss.late_field_penalty_yd (15),
   replay.challenge_designee_allowed, league.officiating_review.max_plays (9), comm.c2p_designated_offense (3),
-  comm.c2p_designated_defense (3), field.end_zone_depth_yd (10). Until they land the caller passes them in rules.
+  comm.c2p_designated_defense (3). End zone depth reads the dictionary key field.end_zone_depth_ft (pending research). The c2p_designated keys differ from c2p_receivers_* (players named with a radio helmet before the game, versus one on the field per down). Until they land the caller passes them in rules.
 - Shell: startGame jumps straight to /game/console, so game.pregame is not reachable before kickoff and
   game.halftime is not reached at the half. The game-day route flow should open on pregame and visit halftime.
 - Structural types in app-services/app-ui become imports from `@gm/career` once the barrel line lands.

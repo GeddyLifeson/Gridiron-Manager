@@ -33,7 +33,7 @@ export const PRO: GameDayRules = {
   lateFieldPenaltyYd: 15,
   challengeDesigneeAllowed: true,
   halftimeMin: num(pro, 'clock.halftime_min'),
-  endZoneDepthYd: 10,
+  endZoneDepthFt: 30,
   officiatingReviewMaxPlays: 9,
 };
 

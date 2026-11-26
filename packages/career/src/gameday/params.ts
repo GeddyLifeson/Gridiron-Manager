@@ -68,7 +68,7 @@ const ROWS: readonly Row[] = [
   // I1.3.2 kicking lines
   ['kick.comfortableMake', 0.75, 0.5, 0.95, 'probability', 'bible', 'I1.3.2'],
   ['kick.maximumMake', 0.4, 0.1, 0.6, 'probability', 'bible', 'I1.3.2'],
-  ['kick.snapAndHoldYd', 7, 7, 8, 'yard', 'bible', 'I1.3.2 (7 or 8 for the snap; end zone depth is the rule key field.end_zone_depth_yd)'],
+  ['kick.snapAndHoldYd', 7, 7, 8, 'yard', 'bible', 'I1.3.2 (7 or 8 for the snap; end zone depth is the rule key field.end_zone_depth_ft)'],
   ['kick.reportErrorAtZero', 4, 0, 10, 'yard', 'assumption', 'I1.3.2 ("can be off by several yards"; spread at the worst coordinator chosen here)'],
   ['kick.reportErrorAtFull', 0.4, 0, 1, 'yard', 'assumption', 'I1.3.2 (acceptance: within 1 yard with a perfect coordinator)'],
   ['kick.directionWindMph', 10, 0, 30, 'mph', 'bible', 'I1.3.2'],
@@ -247,6 +247,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'comm.c2p_receivers_defense', type: 'number', meaning: 'Defensive players on the field with a helmet radio on a scrimmage down', ownerLeaf: 'I1.2.4', readBy: ['career/gameday'] },
   { key: 'toss.captains_max', type: 'number', meaning: 'Captains at the toss', ownerLeaf: 'I1.5.1', readBy: ['career/gameday'] },
   { key: 'toss.defer_allowed', type: 'boolean', meaning: 'The toss winner may defer to the second half', ownerLeaf: 'I1.5.2', readBy: ['career/gameday'] },
+  { key: 'field.end_zone_depth_ft', type: 'number', meaning: 'End zone depth in feet; field goal distance adds it to the line of scrimmage (value under research)', ownerLeaf: 'I1.3.2', readBy: ['career/gameday'] },
   { key: 'clock.halftime_min', type: 'number', meaning: 'Halftime intermission length', ownerLeaf: 'I8.2.1', readBy: ['career/gameday'] },
   // requested (not in the dictionary yet)
   { key: 'toss.minutes_before_kickoff', type: 'number', meaning: 'The toss is held not more than this many minutes before kickoff (Rule 4-2-2; college 3-1-1-e)', ownerLeaf: 'I1.5.2', readBy: ['career/gameday'] },
@@ -255,6 +256,5 @@ export const RULE_KEYS: RuleKeyManifest = [
   { key: 'replay.challenge_designee_allowed', type: 'boolean', meaning: 'A pregame challenge designee may throw the flag (Rule 15-1-1(a))', ownerLeaf: 'I1.4.5', readBy: ['career/gameday'] },
   { key: 'comm.c2p_designated_offense', type: 'number', meaning: 'Radio helmets a team may designate for its quarterbacks before the game (Rule 5-3-3: three); 0 means no designation rule', ownerLeaf: 'I1.2.4', readBy: ['career/gameday'] },
   { key: 'comm.c2p_designated_defense', type: 'number', meaning: 'Radio helmets a team may designate for defensive primary and backup users (Rule 5-3-3: three); 0 means no designation rule', ownerLeaf: 'I1.2.4', readBy: ['career/gameday'] },
-  { key: 'field.end_zone_depth_yd', type: 'number', meaning: 'End zone depth, used for field goal distance from the line of scrimmage', ownerLeaf: 'I1.3.2', readBy: ['career/gameday'] },
   { key: 'league.officiating_review.max_plays', type: 'number', meaning: 'Plays a head coach may send to the league office per week', ownerLeaf: 'I10.5.3', readBy: ['career/gameday'] },
 ];

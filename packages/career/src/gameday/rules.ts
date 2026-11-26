@@ -39,8 +39,8 @@ export interface GameDayRules {
   readonly challengeDesigneeAllowed: boolean;
   /** `clock.halftime_min`. */
   readonly halftimeMin: number;
-  /** `field.end_zone_depth_yd` (requested key). */
-  readonly endZoneDepthYd: number;
+  /** `field.end_zone_depth_ft` (dictionary key, read by engine-core/field; feet). */
+  readonly endZoneDepthFt: number;
   /** `league.officiating_review.max_plays` (requested key); 0 when the level has no such channel. */
   readonly officiatingReviewMaxPlays: number;
 }

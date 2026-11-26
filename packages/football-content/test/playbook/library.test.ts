@@ -15,9 +15,11 @@ describe('module contract', () => {
   it('radio values are read by key, absent keys mean no radio', () => {
     const none = pb.radioRules({ keys: () => [], num: () => { throw new Error('x'); }, bool: () => { throw new Error('x'); } });
     expect(none).toEqual({ cutoffS: null, defenseSpeakers: 0, equityOnFailure: false });
-    const vals: Record<string, number | boolean> = { 'coach_to_player.cutoff_play_clock_s': 15, 'coach_to_player.defense_speakers_on_field': 1, 'coach_to_player.equity_on_failure': true };
+    const vals: Record<string, number | boolean> = { 'comm.c2p_allowed': true, 'comm.c2p_cutoff_seconds': 15, 'comm.c2p_receivers_defense': 1, 'comm.c2p_equity_on_failure': true };
     const r = pb.radioRules({ keys: () => Object.keys(vals), num: (k) => vals[k] as number, bool: (k) => vals[k] as boolean });
     expect(r).toEqual({ cutoffS: 15, defenseSpeakers: 1, equityOnFailure: true });
+    const off: Record<string, number | boolean> = { ...vals, 'comm.c2p_allowed': false };
+    expect(pb.radioRules({ keys: () => Object.keys(off), num: (k) => off[k] as number, bool: (k) => off[k] as boolean }).cutoffS).toBeNull();
   });
 });
 
