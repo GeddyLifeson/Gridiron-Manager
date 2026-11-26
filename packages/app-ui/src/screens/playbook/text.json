@@ -111,6 +111,24 @@
     "pb.detail.length": "Spoken length",
     "pb.detail.latestStart": "Latest start",
     "pb.sort.asc": "(rising)",
-    "pb.sort.desc": "(falling)"
+    "pb.sort.desc": "(falling)",
+    "pb.tab.folders": "My folders",
+    "pb.folders.title": "My folders",
+    "pb.folders.none": "No folders yet. Make one to keep plays your way.",
+    "pb.folders.newName": "New folder name",
+    "pb.folders.create": "Make folder",
+    "pb.folders.count": "{count} plays",
+    "pb.folders.open": "Open {name}",
+    "pb.folders.rename": "Rename {name}",
+    "pb.folders.delete": "Delete {name}",
+    "pb.folders.up": "Move {name} up",
+    "pb.folders.down": "Move {name} down",
+    "pb.folders.showing": "Showing folder {name}, in your order. Drag rows or use the arrows to reorder.",
+    "pb.folders.addTo": "Add {count} to folder",
+    "pb.folders.pick": "Choose a folder",
+    "pb.folders.remove": "Take {call} out of the folder",
+    "pb.folders.playUp": "Move {call} up",
+    "pb.folders.playDown": "Move {call} down",
+    "pb.filter.folder": "Folder"
   }
 }

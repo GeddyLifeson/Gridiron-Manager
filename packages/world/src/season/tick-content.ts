@@ -544,7 +544,13 @@ export function createStarterContentPort(opts: StarterContentOptions = {}): Star
     ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}),
   }));
 
+  // Route tags on the call ("Z post") re-lay that receiver's route from a shape already in the content (route-tags.ts).
   const playDefOf = (calls: PlayCalls): starter.PlayDef | null => {
+    const def = basePlayDefOf(calls);
+    const c = calls.snapping;
+    return def && c.unit === 'offense' && c.tags.some((t) => t.startsWith('route:')) ? full.withRouteTags(def, c.tags) : def;
+  };
+  const basePlayDefOf = (calls: PlayCalls): starter.PlayDef | null => {
     const c = calls.snapping;
     if (c.unit !== 'offense') return null;
     if (c.playContentId !== null && playById.has(c.playContentId)) return playById.get(c.playContentId)!;

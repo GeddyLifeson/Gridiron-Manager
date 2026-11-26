@@ -184,6 +184,12 @@ export type GameplanIntent =
   | { kind: 'add_entry'; boxId: string; playId: string }
   | { kind: 'remove_entry'; boxId: string; entryId: string }
   | { kind: 'move_entry'; boxId: string; entryId: string; by: -1 | 1 }
+  /** Drag and drop: an entry to a place in any box (G7.3.1 the order is the user's). */
+  | { kind: 'drop_entry'; fromBoxId: string; entryId: string; toBoxId: string; at: number }
+  /** Drag and drop or the arrow buttons: a box to a grid cell, same size (O3.4.2). */
+  | { kind: 'move_box'; boxId: string; side: 0 | 1; col: number; row: number; w: number; h: number }
+  /** Seed this sheet from last week's (layout, entries, scripts, audibles, notes). */
+  | { kind: 'start_from_last_week' }
   | { kind: 'remove_box'; boxId: string }
   | { kind: 'edit_fourth'; distanceYd: number; yardsToGoalYd: number; call: 'go' | 'field_goal' | 'punt' }
   | { kind: 'edit_two_point'; scoreDiff: number; goForTwo: boolean }
@@ -210,4 +216,11 @@ export function lookText(l: LookRow): string {
   const counts = gt('gp.look.counts', { count: l.count, n: l.n });
   if (l.rate === null) return counts;
   return gt('gp.look.rate', { counts, rate: Math.round(l.rate * 100), lo: Math.round((l.lo ?? 0) * 100), hi: Math.round((l.hi ?? 0) * 100) });
+}
+
+/** Grid cell under a drop point, clamped so a box of `w` by `h` stays on the page (O3.4.2). */
+export function cellAt(x: number, y: number, width: number, height: number, page: { cols: number; rows: number }, w: number, h: number): { col: number; row: number } {
+  const col = Math.floor((x / Math.max(1, width)) * page.cols);
+  const row = Math.floor((y / Math.max(1, height)) * page.rows);
+  return { col: Math.max(0, Math.min(page.cols - w, col)), row: Math.max(0, Math.min(page.rows - h, row)) };
 }

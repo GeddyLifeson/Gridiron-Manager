@@ -12,6 +12,10 @@ import { gameCalling } from '@gm/app-services';
 import { homeFromSeason, recordText } from './today.ts';
 import { FinalPanel, PlayLog, keyForIn, useLiveSession } from './ConsoleHost.tsx';
 import { rt } from './text.ts';
+import { v } from '../tokens/index.ts';
+import { InGameDesk } from '../screens/game-calling/InGameDesk.tsx';
+import { ct } from '../screens/game-calling/GameConsole.tsx';
+import { deskAdd, deskSearch, searchAsked } from './desk.ts';
 import { teamSources } from './sources/team.ts';
 import type { CareerPort, GameSession, SeasonToday, WeekProgress } from './port.ts';
 import type { SoundStage } from '../audio/stage/index.ts';
@@ -65,6 +69,11 @@ interface LiveConsoleProps { readonly port: CareerPort; readonly session: GameSe
 /** The console route while a game is open: the live session drawn through the G-60 console. */
 function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveConsoleProps): ReactNode {
   useLiveSession(session, { bindings, keysActive: true, ...(now ? { now } : {}) });
+  // The playbook desk (search and sideline drawing) opens from its key or button; the clock keeps running.
+  const [desk, setDesk] = useState(false);
+  const seen = useRef(session.driver.commands.length);
+  if (searchAsked(session, seen.current)) { seen.current = session.driver.commands.length; if (!desk) setDesk(true); }
+  else seen.current = session.driver.commands.length;
   const keyFor = useMemo(() => keyForIn(bindings), [bindings]);
   const names = useMemo(() => port.names(session), [port, session]);
   const view = gameCalling.consoleViewOfSession(session, { keyFor }) as unknown as ConsoleViewModel;
@@ -84,8 +93,14 @@ function LiveConsole({ port, session, bindings, now, soundStage, onDone }: LiveC
     </div>
   ) : log;
   return (
-    <div data-live-console data-step={session.final ? 'final' : session.driver.state.step} data-unit={session.driver.state.open?.unit ?? ''} style={{ height: '100%' }}>
+    <div data-live-console data-step={session.final ? 'final' : session.driver.state.step} data-unit={session.driver.state.open?.unit ?? ''} style={{ height: '100%', position: 'relative' }}>
       {session.final ? <FinalPanel session={session} names={names} onDone={onDone} /> : null}
+      {!session.final ? (
+        <div data-desk-layer style={{ position: 'absolute', right: 8, top: 8, zIndex: 5, maxWidth: 440, maxHeight: '70%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+          <button type="button" data-open-desk aria-expanded={desk} onClick={() => setDesk((d) => !d)}>{ct('console.playbook')}</button>
+          {desk ? <div style={{ background: v('surface.panel'), overflow: 'auto' }}>{createElement(InGameDesk, { search: (t: string) => deskSearch(session, t), onAdd: (id, d) => deskAdd(session, id, d), onClose: () => setDesk(false) })}</div> : null}
+        </div>
+      ) : null}
       {createElement(GameConsole, { view, field })}
     </div>
   );

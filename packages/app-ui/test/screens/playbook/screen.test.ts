@@ -32,6 +32,7 @@ function view(over: Partial<PlaybookUi> = {}, locks: Partial<PlaybookUi['locks']
       approve: lock(false, 'head_coach', true), draw_scout_cards: lock(true), ...locks,
     },
     filter: {},
+    folders: [],
     options: { formation: [{ id: 'formation.trips', word: 'Trips' }], concept: [{ id: 'concept.stick', word: 'Stick' }], personnel: [{ id: 'personnel.11', word: '11' }] },
     ...over,
   };
@@ -137,5 +138,35 @@ describe('playbook library screen (O3.3.1)', () => {
   it('every string id used by the screen exists in text.json', () => {
     const ids = pbTextIds();
     for (const id of ['pb.role.base', 'pb.role.shot', 'pb.status.retired', 'pb.holder.coordinator', 'pb.size.warning.red', 'pb.tab.size']) expect(ids).toContain(id);
+  });
+});
+
+describe('My folders (G3.1.1 labels kept the coach\'s way)', () => {
+  const folders = [{ id: 'f1', name: 'Openers', playIds: ['Smash', 'Stick'] }, { id: 'f2', name: 'Red zone', playIds: [] }];
+  const html = (v: PlaybookUi, tab: Tab, readOnly = false) => renderToStaticMarkup(createElement(PlaybookScreen, { view: v, tab, readOnly, onTab: () => {}, onFilter: () => {}, onIntent: () => {} }));
+  it('the folders tab lists folders in order with counts and controls', () => {
+    const out = html(view({ folders }), 'folders');
+    expect(out.indexOf('data-folder="f1"')).toBeLessThan(out.indexOf('data-folder="f2"'));
+    expect(out).toContain(pt('pb.folders.count', { count: 2 }));
+    expect(out).toContain(pt('pb.folders.create'));
+    expect(out).toContain(esc(pt('pb.folders.up', { name: 'Openers' })));
+  });
+  it('an empty list says so; read-only hides edits', () => {
+    expect(html(view(), 'folders')).toContain(esc(pt('pb.folders.none')));
+    expect(html(view({ folders }), 'folders', true)).not.toContain(pt('pb.folders.create'));
+  });
+  it('an open folder shows the note and per-row reorder controls; rows are draggable', () => {
+    const out = html(view({ folders, filter: { folder: 'f1' }, rows: [row('Smash'), row('Stick')] }), 'library');
+    expect(out).toContain('data-open-folder="f1"');
+    expect(out).toContain('draggable="true"');
+    expect(out).toContain('data-folder-at="0"');
+    expect(out).toContain('data-add-to-folder');
+  });
+  it('the folder filter lives in the address', () => {
+    expect(filterFromView({ folder: 'f1' })).toEqual({ folder: 'f1' });
+    expect(filterToView({ tab: 'library' }, { folder: 'f2' })).toEqual({ tab: 'library', folder: 'f2' });
+  });
+  it('every folder string id exists', () => {
+    for (const id of ['pb.tab.folders', 'pb.folders.title', 'pb.folders.showing', 'pb.folders.remove', 'pb.filter.folder']) expect(pbTextIds()).toContain(id);
   });
 });
