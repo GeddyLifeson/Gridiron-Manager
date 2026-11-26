@@ -303,7 +303,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const d = play.designed ?? null;
     // J8.1.1 inputs: which vision grade applies to this carry.
     if (how === 'catch' || how === 'interception') zVision = zEff(w, c, 'run_after_catch');
-    else if (how === 'kick') zVision = zEff(w, c, 'return_vision');
+    else if (how === 'kick') zVision = zEff(w, c, 'return_vision') * q['ret.visionZScale'];
     else if (d !== null && d.slot === c) zVision = zEff(w, c, d.kind === 'zone' ? 'vision_zone' : 'vision_gap');
     else { const a = zEff(w, c, 'vision_zone'), b = zEff(w, c, 'vision_gap'); zVision = a > b ? a : b; }
     zDecisive = zOf(style?.decisiveness); zCreative = zOf(style?.creativity);

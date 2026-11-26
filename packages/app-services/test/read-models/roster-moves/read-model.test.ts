@@ -7,7 +7,7 @@ import {
 } from '../../../src/observer/index.ts';
 import { rosterMovesSpec, ROSTER_MOVES_MODEL, type RosterMovesView, type RosterWeekSource } from '../../../src/read-models/roster-moves/index.ts';
 import { fixtureTables, HOME, AWAY, USER, ASSISTANT, AWAY_COACH, HOME_PLAYERS } from '../../observer/fixture-world.ts';
-import { RosterMovesData } from './data-schema.ts';
+import { RosterMovesData } from '@gm/schema';
 import { PRO, SIDE, COACH_POWER } from './fixture.ts';
 
 function leagueFor(): roster.LeagueRosters {

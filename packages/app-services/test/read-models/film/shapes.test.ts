@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import type { z } from 'zod';
 import { pathsOfClass, holdsTruth } from '../../../src/observer/index.ts';
 import type * as V from '../../../src/read-models/film/views.ts';
-import * as S from './schemas.ts';
+import * as S from '@gm/schema';
 
 type Same<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
 const check = <T extends true>(_: T) => _;
