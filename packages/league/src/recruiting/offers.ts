@@ -4,15 +4,17 @@
 import { clamp, type RecruitingContext } from './context.ts';
 import { P } from './params.ts';
 import { addEvidence, bumpEdge, edgeOf } from './interest.ts';
+import { offersToProspect } from './indexes.ts';
 import { tieOf, tiesOfProspect } from './limits.ts';
 import type { MemoryNote, Offer, PreferenceKey, RecruitingState } from './types.ts';
 
 export function activeOffer(state: RecruitingState, prospectId: number, teamId: number): Offer | undefined {
-  return state.offers.find((o) => o.prospectId === prospectId && o.teamId === teamId && !o.withdrawn);
+  for (const o of offersToProspect(state, prospectId)) if (o.teamId === teamId && !o.withdrawn) return o;
+  return undefined;
 }
 
 export function offersOf(state: RecruitingState, prospectId: number): Offer[] {
-  return state.offers.filter((o) => o.prospectId === prospectId && !o.withdrawn);
+  return offersToProspect(state, prospectId).filter((o) => !o.withdrawn);
 }
 
 /** The prospect's public offer list (T4.4.5 outputs): schools only, never `committable`. */
