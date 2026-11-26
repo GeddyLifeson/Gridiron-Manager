@@ -24,6 +24,7 @@ import { createPresnapStages, planPresnap, presnapParams, snapperOf, startingAdv
 import { createTickLoop, createTickWorld, createTrajectoryRecorder, type PlayStage, type TrajectoryRecorder } from '../tick/index.ts';
 import { createCatchPointStage } from './catch-point.ts';
 import { createFinish } from './finish.ts';
+import { createKeyEvidence } from './key-evidence.ts';
 import { createRouteCuts } from './route-cuts.ts';
 import { createInteract } from './interact.ts';
 import { createKickOp, isFreeKick } from './kick-op.ts';
@@ -64,6 +65,8 @@ export function orderEvents(events: readonly TruthEvent[]): TruthEvent[] {
   return order.map((o) => o.e);
 }
 
+const PERCEPTION_RESET = { keys: [], prep: 0, dComplexityS: 0, dKnowledgeS: 0, readsKeys: false, prior: 0, aggression: 0, boxDefender: false } as const;
+
 export function createTickResolver(options: TickResolverOptions): TickResolver {
   const supplied = options.plugs ?? [];
   for (const plug of supplied) if (!PLUG_IDS.includes(plug.id)) throw new Error(`unknown stage module ${String(plug.id)}`);
@@ -79,8 +82,9 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
 
   // Shared instances (ports.ts `PlayServices`).
   const interact = createInteract();
-  const perception = createPerception();
-  const movement = createMovement({ engagementLimit: interact.limit });
+  const keyEvidence = createKeyEvidence();
+  const perception = createPerception({ evidence: keyEvidence.source });
+  const movement = createMovement({ engagementLimit: interact.limit, slipping: interact.slipping });
   const playerAi = createPlayerAi({
     view: perception.view,
     gaze: { atBall: (slot) => perception.gazeAtBall(slot) },
@@ -130,6 +134,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     begin(w: TickWorld): void { inner.begin?.(w); },
     run(w: TickWorld, dt: number): void { if (w.tick >= from()) inner.run(w, dt); },
   });
+  const keysThenPerception: PlayStage = { name: perception.stage.name, begin(w: TickWorld): void { perception.stage.begin?.(w); }, run(w: TickWorld, dt: number): void { keyEvidence.record(w); perception.stage.run(w, dt); } };
   // What the play cost each man is read at the whistle, so film ticks after it never change a result.
   const energyAtWhistle = new Float64Array(SLOT_COUNT);
   let energyTaken = false;
@@ -144,7 +149,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
   };
   // MODULE_ORDER, spelled out. The loop groups by stage name and keeps this order inside each name.
   const fixedStages: readonly PlayStage[] = [
-    gate(perception.stage, () => perceptionFrom), gate(playerAi.stage, () => 0), routeCuts.stage, movement.stage, heldBall,
+    gate(keysThenPerception, () => perceptionFrom), gate(playerAi.stage, () => 0), routeCuts.stage, movement.stage, heldBall,
     ball.move, ball.detect, boundary.moveStage, boundary.detectStage, interact.stage, kickOp.stage, catchPoint.stage,
     ...built[0]!.stages, ...built[1]!.stages, ...built[2]!.stages, finish, ledger,
   ];
@@ -254,15 +259,23 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     callNoise[0] = s0.context.noise?.[0] ?? 0; callNoise[1] = s0.context.noise?.[1] ?? 0;
     // Eyes start each play with the hips: a gaze rule a module set on the last play must not carry into this one (J13.1.1).
     for (let s = 0; s < SLOT_COUNT; s++) perception.gazeWithHips(s);
-    for (let s = 0; s < SLOT_COUNT; s++) { const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
-    playerAi.setPlay(slotPlays, s0.context, null);
-
+    // So do his keys and the rest of his settings: perception keeps a setting until it is changed, and a play that
+    // sets none (a kick) would otherwise be read with the keys of the play before it, which differ from run to run of
+    // the same game in one process.
+    for (let s = 0; s < SLOT_COUNT; s++) { perception.configure(s, PERCEPTION_RESET); const cfg = s0.perception[s]; if (cfg !== undefined) perception.configure(s, cfg); }
     let loop = freeKickLoop;
     if (free) {
+      playerAi.setPlay(slotPlays, s0.context, null);
       plan = null; presnap = null; perceptionFrom = 0;
       interact.setPlay(contests!, null);
     } else {
       const thePlan = planPresnap(world, presnapInput), pp = presnapParams(params);
+      // K1.5.1 rule 2 reads the play clock left when the units are set (J5.8.1), which only the plan knows; and a
+      // player the call never reached plays the old assignment (J5.1.3, J4.5.3). A missing substitute is not on the field.
+      playerAi.setPlay(slotPlays, s0.context.playClockLeftS === undefined ? { ...s0.context, playClockLeftS: thePlan.setClockLeftS } : s0.context, null);
+      const missed: number[] = [];
+      for (let s = 0; s < SLOT_COUNT; s++) if (!thePlan.received[s]![0] && !thePlan.missing.includes(s)) missed.push(s);
+      playerAi.setMissedCalls(missed);
       plan = thePlan; presnap = createPresnapStages(thePlan, presnapInput);
       perceptionFrom = -q['setup.perceptionLeadTicks']!;
       interact.setPlay(contests!, (blocker, defender) => startingAdvantage(thePlan.startS[blocker]!, thePlan.startS[defender]!, pp));
@@ -272,6 +285,7 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     kickOp.setPlay(input, O, s0.context.pressure ?? 0, snapOf, look, kickAs);
     catchPoint.setPlay(contests!);
     routeCuts.setPlay(world, assignmentOf);
+    keyEvidence.setPlay(assignmentOf);
     for (const b of built) b.setPlay?.(world);
 
     const full = input.options.detail === 'full', stopAtTick = input.options.stopAtTick;
@@ -289,12 +303,19 @@ export function createTickResolver(options: TickResolverOptions): TickResolver {
     for (const e of events) if (e.type === 'dead_ball') { dead = e; break; }
     const live = dead !== null && dead.reason !== 'pre_snap_foul' && dead.reason !== 'period_ended_before_snap';
     const liveDurationTenths = live ? Math.max(0, Math.round(dead!.t * 10)) : 0;
-    // B7.7.1 impetus, as far as the physical record can say it: the team that last had the ball when it
-    // became dead on or behind a goal line. Officiating may refine it from the events.
+    // B7.7.1 impetus, as far as the physical record can say it: the team whose force put the ball on or behind the
+    // goal line where it became dead. That is the last team to hold it outside that end zone, and the snapping or
+    // kicking team when nobody did (a kick that rolls in). It is not the team that held it when it died: a returner
+    // who picks a kick up in his own end zone and is tackled there has a touchback, and naming his team here made
+    // every such kickoff a safety, with a safety kick after it.
     let endZoneImpetus: 0 | 1 | null = null;
     if (dead !== null && live && (dead.spot.x <= geometry.goalLineWestX || dead.spot.x >= geometry.goalLineEastX)) {
-      const last = world.ball.carrierSlot >= 0 ? world.ball.carrierSlot : world.ball.lastPossessorSlot;
-      endZoneImpetus = last >= 0 ? slots[last]!.side : null;
+      const west = dead.spot.x <= geometry.goalLineWestX;
+      endZoneImpetus = slots[0]!.side;
+      for (const e of events) {
+        if (e.type !== 'possession' || e.t > dead.t) continue;
+        if (west ? e.spot.x > geometry.goalLineWestX : e.spot.x < geometry.goalLineEastX) endZoneImpetus = e.side;
+      }
     }
     const truth: PlayTruth = {
       resolverId: 'tick', resolverVersion: TICK_RESOLVER_VERSION, gameId: sit.gameId, playNumber: sit.playNumber,

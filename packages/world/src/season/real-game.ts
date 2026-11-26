@@ -9,12 +9,15 @@ import {
   ATTRIBUTE_IDS, NEUTRAL_ENVIRONMENT,
   type GameDeps, type GameInput, type ParamFile, type ParamTable, type RuleSet, type Side, type SimPlayer, type SimTeam,
 } from '@gm/schema';
-import { DMATH, field, seedFromHex, streamSource } from '@gm/engine-core';
-import { flow, stats } from '@gm/engine-game';
+import { DMATH, ball, carrier, contest, field, foulsInjuries, kinematics, perception, playerAi, presnap, qb, seedFromHex, stream, streamSource, tickResolver } from '@gm/engine-core';
+import { lang } from '@gm/football-lang';
+import { environment, flow, stats } from '@gm/engine-game';
 import * as officiating from '@gm/officiating';
 import { resolver } from '@gm/resolver-reference';
+import { full } from '@gm/football-content';
 import { resolveRuleSet } from '@gm/rules-data';
 import * as chart from './chart/index.ts';
+import { UNIT_JERSEYS, createStarterContentPort } from './tick-content.ts';
 import type { SeasonPorts, StatLine } from './types.ts';
 
 /** Every parameter file of the modules a phase 1 game runs. A name defined twice is an error. */
@@ -23,6 +26,26 @@ export const ENGINE_PARAM_FILES: readonly ParamFile[] = [
   officiating.crew.PARAMS, officiating.replay.PARAMS, officiating.kick.PARAMS, officiating.restart.PARAMS,
   officiating.overtime.PARAMS, resolver.PARAMS, flow.PARAMS, stats.PARAMS, chart.PARAMS,
 ];
+
+/**
+ * Every parameter file the tick path reads (J1 to J10): field, kinematics, perception, pre-snap, player AI,
+ * ball, contest, quarterback, tick resolver (with the kick look and its trigger read), ball carrier, fouls and
+ * injuries, and the rule language. Integrator-owned: a module that adds a parameter file lists it here.
+ */
+export const TICK_PARAM_FILES: readonly ParamFile[] = [
+  field.PARAMS, kinematics.PARAMS, perception.PARAMS, presnap.PARAMS, playerAi.PARAMS, ball.PARAMS, contest.PARAMS,
+  qb.PARAMS, tickResolver.PARAMS, carrier.PARAMS, foulsInjuries.PARAMS, ...lang.PARAM_FILES,
+  // J12.6.1 and J12.8.1: the crowd on each play (tick content) and the gate venue.
+  environment.PARAMS,
+];
+
+/** The game modules' files and the tick path's together: what a game with the tick resolver reads. */
+export const ALL_ENGINE_PARAM_FILES: readonly ParamFile[] = [...ENGINE_PARAM_FILES, ...TICK_PARAM_FILES];
+
+/** The merged table for the tick path (one name, one row; a duplicate or unknown override throws). */
+export function tickParamTable(overrides: Readonly<Record<string, number>> = {}): ParamTable {
+  return engineParamTable(ALL_ENGINE_PARAM_FILES, overrides);
+}
 
 export function engineParamTable(files: readonly ParamFile[] = ENGINE_PARAM_FILES, overrides: Readonly<Record<string, number>> = {}): ParamTable {
   const map = new Map<string, number>();
@@ -49,7 +72,7 @@ const UNITS = ['offense', 'defense', 'kick', 'return'] as const;
 const PER_UNIT = 11;
 
 /** PLACEHOLDER roster: four units of eleven, every attribute at `iss`. Not real people, not generated people. */
-export function placeholderTeam(side: Side, iss: number): SimTeam {
+export function placeholderTeam(side: Side, iss: number, jerseys?: Readonly<Record<string, readonly number[]>>): SimTeam {
   const base = (side + 1) * 1000;
   const players: SimPlayer[] = [];
   const depth: Record<string, number[]> = {};
@@ -60,7 +83,7 @@ export function placeholderTeam(side: Side, iss: number): SimTeam {
       const attributes: Record<string, number> = {};
       for (const a of ATTRIBUTE_IDS) attributes[a] = iss;
       players.push({
-        playerId, position: unit, jersey: (u * PER_UNIT + i) % 100, heightIn: 74, weightLb: 220, ageYears: 25, attributes,
+        playerId, position: unit, jersey: jerseys?.[unit]?.[i - 1] ?? (u * PER_UNIT + i) % 100, heightIn: 74, weightLb: 220, ageYears: 25, attributes,
         tests: { fortyS: 4.6, tenSplitS: 1.6, threeConeS: null, shuttleS: null, verticalIn: null, broadIn: null, changeOfDirectionZ: 0 },
         gameDay: { freshness: 1, freshnessLongTerm: 1, conditioning: 50, playingHurt: [], knowledge: {}, snapsThisGame: 0, requiredAbsenceDowns: 0, ejected: false, unavailable: false },
       });
@@ -73,37 +96,127 @@ export function placeholderTeam(side: Side, iss: number): SimTeam {
 export interface RealGameCore {
   readonly rules: RuleSet;
   readonly params: ParamTable;
+  readonly resolverId: RealResolver;
   input(gameIndex: number, seedHex: string): GameInput;
   deps(input: GameInput): GameDeps;
   simulate(input: GameInput): ReturnType<typeof flow.simulateGame>;
 }
 
-export interface RealGameOptions { readonly iss?: number; readonly paramOverrides?: Readonly<Record<string, number>> }
+/** The tick resolver on all three real modules (no stand-ins) over the starter content port. */
+export function createRealTickResolver(site: environment.Site = 'home'): ReturnType<typeof tickResolver.createTickResolver> {
+  return tickResolver.createTickResolver({ content: createStarterContentPort({ site }), plugs: tickResolver.availablePlugs() });
+}
+
+/** Which play resolver a real game runs: the tick engine (J1, the default) or the reference resolver (WP-08). */
+export type RealResolver = 'tick' | 'reference';
+export const DEFAULT_REAL_RESOLVER: RealResolver = 'tick';
+
+/**
+ * Skill of the gate's placeholder rosters by competition level. `iss` is a team's starter skill on the scale
+ * where pro starters are 50 (every attribute of the placeholder roster); `teamSd` the spread of that level
+ * between teams. With a spread, each game draws both teams' levels from its own `gate.roster_level` stream,
+ * so a batch plays a range of mismatches the way a real season does.
+ *
+ * `census` is the D13.4.1 metric 3 census of the G-17 generator: the mean primary-technique skill of a team's
+ * 22 starters. Pro starters measure 52.9 (sd 1.3 between teams), which checks the method against the scale.
+ * College is the top division of a founded standard world (scripts/talent-census.ts, two seeds), where each
+ * program's tiers follow its strength (founding `programStrength`, fitted to 247Sports 2025 blue-chip counts by
+ * roster rank, research/tuning/talent-spread.md): starters 19.6 ISS below pro starters (33.1 against 52.7),
+ * team sd 3.9 to 4.0. The second division sits at 26.0, sd 1.2. The shape is 2 of 3; the fit is an Assumption.
+ * Before program strength every school drew one tier mix and the sd was 1.6 (sampling only).
+ *
+ * `gate` is what the gate plays today. College plays the census team spread around 50, not the census level:
+ * the tick engine measures skill on the absolute scale, so at 25 for both teams sacks are 30% of dropbacks and
+ * accepted fouls 16.7 per team (quarterback clocks and mental terms are per absolute z). The college level of 50
+ * is a PLACEHOLDER, not a level shift: skill stays on the pro scale (Marlon's ruling, 2026-11-26), and the gate
+ * moves to the census level once each absolute engine term has a matching defensive term, so equal low skill
+ * cancels (research/tuning/skill-response.md). With block
+ * engagements on skill difference (#299), the 1.6 spread gives a mean margin of 15.8 (real 16.3) and a home
+ * margin sd of 20.4 (real 20.3) over 40 games; without #299 the same spread gave 23.0 and 28.3.
+ *
+ * The gate keeps 1.6, not the census 4.0, because the engine answers a skill point with about twice the real
+ * margin: 54 v 46 college gives +37.6 (4.7 points per ISS), 52 v 48 pro +22.6 (5.6), 40 games each, while the
+ * real rating sd (9.2 college, T12.2.1; about 4.0 per pro team, derived) over the census spreads needs about
+ * 2.3 and 2.9. At 4.0 today the mean margin is 22.0 and the home margin sd 28.1. Move `gate.teamSd` to the
+ * census value when skill response comes down (equal teams also score about 36 points each, real 22).
+ */
+export interface RosterLevel { readonly iss: number; readonly teamSd: number }
+export const GATE_ROSTER_LEVEL: Readonly<Record<string, { readonly gate: RosterLevel; readonly census: RosterLevel }>> = {
+  pro: { gate: { iss: 50, teamSd: 0 }, census: { iss: 50, teamSd: 0 } },
+  college: { gate: { iss: 50, teamSd: 1.6 }, census: { iss: 30.4, teamSd: 4.0 } },
+};
+
+export interface RealGameOptions {
+  /** One skill level for both teams (every attribute), in place of the level's census value and spread. */
+  readonly iss?: number;
+  /** Team-to-team spread of the roster level, in place of the level's value (0: equal teams). */
+  readonly teamSd?: number;
+  /** Play the level's census roster skill and spread instead of the gate's current value (GATE_ROSTER_LEVEL). */
+  readonly census?: boolean;
+  readonly paramOverrides?: Readonly<Record<string, number>>;
+  /** Default `tick`: every snap through the tick resolver on all three real modules and the starter content port. */
+  readonly resolver?: RealResolver;
+  /** Default true on the tick engine: call from the level's starter book. False runs the one-play-per-kind defaults. */
+  readonly book?: boolean;
+  /**
+   * Venue crowd `noiseBase` (J12.6.1). Default on the tick engine: the level's gate value (`environment.gate.noiseBase*`),
+   * so calibration games carry the home edge through its mechanisms; 0 is the empty-stadium test (J12.8.1 acceptance 2).
+   * The reference resolver reads no crowd and keeps the neutral snapshot.
+   */
+  readonly noiseBase?: number;
+  /** Home venue (default) or neutral site (no venue term, no familiarity). */
+  readonly site?: environment.Site;
+}
 
 /** The real game for a rule set: inputs, dependencies (both sides on the chart caller) and a whole-game run. */
 export function createRealGameCore(ruleSetId: string, opts: RealGameOptions = {}): RealGameCore {
   const rules = resolveRuleSet(ruleSetId);
-  const params = engineParamTable(ENGINE_PARAM_FILES, opts.paramOverrides);
+  const resolverId = opts.resolver ?? DEFAULT_REAL_RESOLVER;
+  const tick = resolverId === 'tick';
+  const params = engineParamTable(tick ? ALL_ENGINE_PARAM_FILES : ENGINE_PARAM_FILES, opts.paramOverrides);
+  // One tick resolver per game: it keeps its stage modules and compiled assignments between plays (P6.3.1),
+  // and a new game starts from a new one, so no state crosses from one game to the next and a game plays
+  // the same whatever this runner played before it (J13.3.2: the week pool hands games out in any order).
+  const jerseys = tick ? UNIT_JERSEYS : undefined;
   const geometry = field.fieldGeometry(rules);
   const off = officiating.facade.createOfficiating();
   const regulationPeriods = rules.num('clock.periods');
-  const iss = opts.iss ?? 50;
+  const levels = GATE_ROSTER_LEVEL[rules.level];
+  const level = (opts.census ? levels?.census : levels?.gate) ?? { iss: 50, teamSd: 0 };
+  const iss = opts.iss ?? level.iss;
+  const teamSd = opts.teamSd ?? (opts.iss === undefined ? level.teamSd : 0);
+  const teamIss = (gameIndex: number, seedHex: string): [number, number] => {
+    if (teamSd <= 0) return [iss, iss];
+    const s = stream(seedFromHex(seedHex), 'gate.roster_level', [gameIndex]);
+    const one = (): number => Math.min(100, Math.max(0, Math.round((iss + teamSd * s.normal()) * 10) / 10));
+    return [one(), one()];
+  };
   // The callers read the chart through the same overrides as the parameter table, on top of the level's chart (CR-G87-5).
   const overrides = chart.chartOverrides(rules.level, opts.paramOverrides);
-  const input = (gameIndex: number, seedHex: string): GameInput => ({
-    gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
-    teams: [placeholderTeam(0, iss), placeholderTeam(1, iss)],
-    crew: officiating.crew.neutralCrew(1), environment: NEUTRAL_ENVIRONMENT, seedHex, fidelityTier: 'B',
-  });
+  // On the tick engine both staffs call from the level's starter book (G3), so every call kind has a real mix of
+  // concepts under it. The reference resolver reads no content, so it runs without one (and its results do not move).
+  const book = tick && (opts.book ?? true) ? full.starterBookFor(rules.level) : null;
+  // The gate's venue (J12.8.1): the neutral indoor snapshot with the level's crowd. The weather stays neutral.
+  const site = opts.site ?? 'home';
+  const noiseBase = opts.noiseBase ?? (tick ? environment.gateNoiseBase(rules.level, params) : 0);
+  const gameEnvironment = noiseBase === 0 ? NEUTRAL_ENVIRONMENT : { ...NEUTRAL_ENVIRONMENT, noiseBase };
+  const input = (gameIndex: number, seedHex: string): GameInput => {
+    const [home, away] = teamIss(gameIndex, seedHex);
+    return {
+      gameId: gameIndex + 1, ruleSetId, gameType: 'regular',
+      teams: [placeholderTeam(0, home, jerseys), placeholderTeam(1, away, jerseys)],
+      crew: officiating.crew.neutralCrew(1), environment: gameEnvironment, seedHex, fidelityTier: 'B',
+    };
+  };
   const deps = (inp: GameInput): GameDeps => ({
     rules, params, geometry, streams: streamSource(seedFromHex(inp.seedHex)), math: DMATH,
-    resolver: resolver.REFERENCE_RESOLVER, officiating: off,
+    resolver: tick ? createRealTickResolver(site) : resolver.REFERENCE_RESOLVER, officiating: off,
     deciders: [
-      chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides }),
-      chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides }),
+      chart.createChartCaller({ side: 0, geometry, roster: chart.depthRoster(inp.teams[0].depth), regulationPeriods, overrides, book }),
+      chart.createChartCaller({ side: 1, geometry, roster: chart.depthRoster(inp.teams[1].depth), regulationPeriods, overrides, book }),
     ],
   });
-  return { rules, params, input, deps, simulate: (inp) => flow.simulateGame(inp, deps(inp)) };
+  return { rules, params, resolverId, input, deps, simulate: (inp) => flow.simulateGame(inp, deps(inp)) };
 }
 
 export interface RealPortOptions {
@@ -111,6 +224,7 @@ export interface RealPortOptions {
   readonly paramOverrides?: Readonly<Record<string, number>>;
   /** Attribute level of a team's placeholder roster on the internal skill scale; the real game's default when left out. */
   readonly issOf?: (teamId: number) => number;
+  readonly resolver?: RealResolver;
 }
 
 /** Season-wide player id of a placeholder roster slot: unique per team, stable across games. */
@@ -125,7 +239,7 @@ export function fixtureInput(game: RealGameCore, f: { gameId: number; phase: str
   const base = game.input(f.gameId - 1, seedHex);
   return {
     ...base, gameType: f.phase === 'postseason' ? 'postseason' as const : 'regular' as const,
-    ...(issOf ? { teams: [placeholderTeam(0, issOf(f.home)), placeholderTeam(1, issOf(f.away))] as typeof base.teams } : {}),
+    ...(issOf ? { teams: [placeholderTeam(0, issOf(f.home), game.resolverId === 'tick' ? UNIT_JERSEYS : undefined), placeholderTeam(1, issOf(f.away), game.resolverId === 'tick' ? UNIT_JERSEYS : undefined)] as typeof base.teams } : {}),
   };
 }
 
@@ -159,7 +273,7 @@ export function outcomeOf(
 
 /** The season runner's game port backed by the real game: every fixture simulated whole. */
 export function realGamePort(o: RealPortOptions): { game: RealGameCore; playGame: SeasonPorts['playGame'] } {
-  const game = createRealGameCore(o.ruleSetId, o.paramOverrides ? { paramOverrides: o.paramOverrides } : {});
+  const game = createRealGameCore(o.ruleSetId, { ...(o.paramOverrides ? { paramOverrides: o.paramOverrides } : {}), ...(o.resolver ? { resolver: o.resolver } : {}) });
   const statsModule = stats.createStatsModule({ geometry: field.fieldGeometry(game.rules), params: game.params });
   const playGame: SeasonPorts['playGame'] = (ctx) => {
     const input = fixtureInput(game, ctx.fixture, ctx.seedHex, o.issOf);

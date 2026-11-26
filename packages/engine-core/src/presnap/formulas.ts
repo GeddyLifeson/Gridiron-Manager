@@ -13,6 +13,16 @@ export type Tempo = 'huddle' | 'no_huddle' | 'hurry_up';
 /** J5.1.1 run-on time: bench-to-spot distance at jog speed. */
 export function runOnS(distanceYd: number, p: PresnapParams): number { return distanceYd / p['sub.jogSpeedYps']!; }
 
+/**
+ * J5.8.1 time for a man to reach his spot and stand still there, as the tick engine moves him (start, jog, slow, settle):
+ * a fixed part and a pace well under the jog speed. Zero for a man already on his spot.
+ */
+export function alignTravelS(distanceYd: number, p: PresnapParams): number {
+  return distanceYd < ALIGN_AT_SPOT_YD ? 0 : p['align.settleS']! + distanceYd / p['align.paceYps']!;
+}
+/** Closer than this a man is on his spot (the stage's own test, `stages.ts`). */
+const ALIGN_AT_SPOT_YD = 0.1;
+
 /** I4.1.1 What the coach's fourth-down choice does to the kicking unit's run-on. */
 export interface UnitChange {
   readonly unit: 'punt' | 'field_goal';
@@ -57,6 +67,43 @@ export function substitutionErrorChance(tempo: Tempo, callLateS: number, readine
 export function holdEndS(offenseSubbed: boolean, matchWindow: boolean, insideTwoMinute: boolean, defenseSubStartS: number, defenseSubDurS: number, p: PresnapParams): number {
   if (!offenseSubbed || !matchWindow || insideTwoMinute) return 0;
   return defenseSubStartS + Math.min(defenseSubDurS, p['hold.capS']!);
+}
+
+/** J5.1.3 no-huddle delivery of the play call (signals and the quarterback's voice at the line): near 1, less in noise. */
+export function noHuddleDeliveryChance(noise: number, p: PresnapParams): number {
+  return possible(clip(p['nohuddle.deliveryBase']! - p['nohuddle.noiseK']! * clip(noise, 0, 1), 0, 1));
+}
+
+/** I2.1.1 stages 1 to 3 as the caller's side plans them: what runs off the play clock before the huddle. Seconds. */
+export interface RelayInput {
+  /** Stage 1: the officials spot the ball (3 to 6 s after a normal play). */
+  readonly spottingS: number;
+  /** Stage 2: the caller's usual time to decide. The play's lateness is drawn on top of it. */
+  readonly decisionS: number;
+  /** Stage 3, I2.4.1: the relay method's fixed time (radio 2 s, signals 3 s, messenger 6 s). */
+  readonly methodS: number;
+  /** Spoken length of the call by this method (0 for a wristband number or a signal). */
+  readonly spokenS: number;
+}
+
+/** I2.4.1 chance the call is garbled on its way in: low, rising with noise and with the words past a long call. */
+export function relayGarbleChance(noise: number, callWords: number, p: PresnapParams): number {
+  const over = callWords - p['huddle.longCallWords']!;
+  return possible(clip(p['relay.garbleBase']! + p['relay.garblePerNoise']! * clip(noise, 0, 1) + p['relay.garblePerWord']! * (over > 0 ? over : 0), 0, 1));
+}
+
+/**
+ * Seconds of play clock gone when the huddle has the call (I2.1.1 stages 1 to 3). `uLate` draws how late the call
+ * was made (an exponential tail on the decision); noise slows the relay and the huddle, and a garbled call is sent
+ * again, where the second can be garbled too (J12.6.1: noise lengthens the visiting offense's relay, which is
+ * where its delay-of-game excess comes from).
+ */
+export function relayTimeS(r: RelayInput, noise: number, garble: number, uLate: number, uGarble1: number, uGarble2: number, math: DeterministicMath, p: PresnapParams): { totalS: number; repeats: number } {
+  const u = uLate < 1 ? uLate : 1 - 1e-12;
+  const lateS = -p['relay.decisionTailS']! * math.log(1 - u);
+  const repeats = uGarble1 < garble ? (uGarble2 < garble ? 2 : 1) : 0;
+  const slowS = p['relay.noiseSlowS']! * clip(noise, 0, 1);
+  return { totalS: r.spottingS + r.decisionS + lateS + slowS + (r.methodS + r.spokenS) * (1 + repeats), repeats };
 }
 
 /** J5.1.3 huddle delivery: near 1, less for the last-named players of a long call and for a quarterback with poor clock command (D4.5.1). */

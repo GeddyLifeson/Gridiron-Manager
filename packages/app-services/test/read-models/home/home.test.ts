@@ -7,7 +7,7 @@ import {
 import { buildHomeView, homeSpec, HOME_MODEL, type DayPlan, type HomeView } from '../../../src/read-models/home/index.ts';
 import { advance, answerItem, markRead } from '../../../src/commands/home/index.ts';
 import { fixtureTables, AWAY, USER, ASSISTANT, AWAY_COACH, OWNER } from '../../observer/fixture-world.ts';
-import { HomeData } from '../people/data-schema.ts';
+import { HomeData } from '@gm/schema';
 
 const day = (dayIndex: number) => ({ seasonYear: 2030, dayIndex });
 

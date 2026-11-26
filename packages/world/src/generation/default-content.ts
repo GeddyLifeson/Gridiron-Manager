@@ -5,9 +5,11 @@
 // so no football number is typed here.
 import { positions } from '@gm/career';
 import { generator } from '@gm/people';
+import { DMATH } from '@gm/engine-core';
 import type { PersonRecord, RandomStream } from '@gm/schema';
 import type { ContentCollege, ContentLocation, ContentProLeague, LevelSpec, PersonNameSource, WorldContent } from './content.ts';
 import rosterMix from './data/roster-mix.json' with { type: 'json' };
+import { param } from './params.ts';
 
 type WeightedList = ReadonlyArray<readonly [string, number]>;
 interface NameIndex { names: string[]; cum: number[]; total: number }
@@ -70,6 +72,23 @@ export function rosterTierShares(trackedPerSignee: number): number[] {
   for (const t of [5, 4, 3, 2, 1] as const) { const take = Math.min(room, generator.TIER_SHARES[t]); out[t - 1] = take; room -= take; }
   const sum = out.reduce((a, b) => a + b, 0);
   return out.map((x) => x / sum);
+}
+
+/**
+ * A founding college player's tier from his program's strength (T12.2.1, D13.3.2). Each player has a latent
+ * quality `rho * programZ + sqrt(1 - rho^2) * e` with e standard normal; the tiers are its upper quantiles at
+ * the national roster shares, so the world's total tier mix is unchanged and only where it lands moves.
+ * rho is fitted to how real blue-chip recruits sit on rosters by program rank (research/tuning/talent-spread.md).
+ */
+export function tierFromProgram(s: RandomStream, programZ: number, tierShares: readonly number[]): generator.Tier {
+  const rho = param('talent.programRho');
+  const latent = rho * programZ + DMATH.sqrt(1 - rho * rho) * s.normal();
+  let above = 0;
+  for (const t of [5, 4, 3, 2] as const) {
+    above += tierShares[t - 1]!;
+    if (above > 0 && above < 1 && latent > generator.normalInv(1 - above, DMATH)) return t;
+  }
+  return 1;
 }
 
 export function makeNameSource(raw: RawContent): PersonNameSource {
@@ -137,7 +156,8 @@ export function defaultContent(raw: RawContent, input: DefaultContentInput): Wor
       college: {
         ruleSetId: 'college_2026', leagueRulesId: 'college_league_2026', ...input.college, rosterMix: rosterMix.mixes.college.counts,
         bossChairs: ['athletic_director', 'president'], ageModel: 'class_years', playerGroup: 'college_player',
-        talent: (s) => ({ kind: 'tier', tier: tiers[s.pick(tierShares)]! }),
+        talent: (s, programZ) => ({ kind: 'tier', tier: programZ === undefined ? tiers[s.pick(tierShares)]! : tierFromProgram(s, programZ, tierShares) }),
+        programStrength: true,
         violationClasses: input.violationClasses?.college ?? [],
       },
     },

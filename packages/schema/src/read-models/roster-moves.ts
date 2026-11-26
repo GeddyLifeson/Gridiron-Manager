@@ -1,8 +1,9 @@
+// Moved here from app-services/test/read-models/roster-moves/data-schema.ts (CR-G70-1); registered in READ_MODELS (commands.ts).
 // The zod schema of the roster moves read model, with a visibility class on every field. It belongs in
 // @gm/schema (READ_MODELS) because app-services may not import zod: CR-G70-1 asks the integrator to move
 // this file there unchanged. Every field is public or own-team league-office data; nothing is truth.
 import { z } from 'zod';
-import { pub } from '@gm/schema';
+import { pub } from '../field.ts';
 
 const id = () => pub(z.number().int(), 'id');
 const count = () => pub(z.number().int().min(0), 'count');

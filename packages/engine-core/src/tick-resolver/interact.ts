@@ -30,18 +30,25 @@ const DOWN = MOVE_MODES.indexOf('down');
 const code = (b: Behavior): number => BEHAVIORS.indexOf(b);
 const PASS_BLOCKERS = new Set([code('passSet'), code('protectKick')]);
 const RUN_BLOCKERS = new Set([code('runBlock'), code('pull'), code('returnBlock'), code('kickReturnBlock')]);
+const COVERING = new Set([code('kickCoverage'), code('gunner')]);
 
 // D3 grades behind each side of a block (J6.2.1, J6.3.1 inputs). Equal weights until the technique matrix exists.
 const PASS_BLOCK_ATTRS = ['pass_set', 'anchor', 'mirror', 'hand_use_in_protection'] as const;
 const PASS_RUSH_ATTRS = ['get_off', 'power_rush', 'hand_moves', 'speed_rush_and_bend'] as const;
-const RUN_BLOCK_ATTRS = ['zone_run_blocking', 'gap_run_blocking', 'play_strength'] as const;
-const RUN_DEFENSE_ATTRS = ['block_shedding', 'taking_on_blocks', 'play_strength'] as const;
+// Pad level is the leverage term of a run block (D3 universal attribute, J6.1.1 mLeverage: "the low man wins"). It
+// enters as an equal-weight attribute of the mix, so a player strong everywhere answers exactly as before and pad
+// level alone moves a run block a quarter of the way a whole run-block skill does. The weight is an Assumption:
+// no public source grades pad level per player (research/tuning/dead-skills.md).
+const RUN_BLOCK_ATTRS = ['zone_run_blocking', 'gap_run_blocking', 'play_strength', 'pad_level'] as const;
+const RUN_DEFENSE_ATTRS = ['block_shedding', 'taking_on_blocks', 'play_strength', 'pad_level'] as const;
 const COUNTER_ATTR = 'inside_counter';
 
 export interface Interact {
   readonly stage: PlayStage;
   /** Hand this to `createMovement({ engagementLimit })`. */
   readonly limit: EngagementLimit;
+  /** Hand this to `createMovement({ slipping })`: true for a defender in the free time after he shed a block. */
+  readonly slipping: (world: TickWorld, slot: number) => boolean;
   /**
    * Call before the loop's `begin`. `startAdvantage(blockerSlot, defenderSlot)` gives the J5.6.1
    * get-off term for the first contest of a defender; null when the play has no snap count.
@@ -57,6 +64,8 @@ export function createInteract(): Interact {
   let p: TickResolverParams | null = null;
   const open: boolean[] = [], interior: boolean[] = [], held: number[] = [], countered: boolean[] = [];
   const freeUntil = new Int32Array(SLOT_COUNT), everEngaged = new Uint8Array(SLOT_COUNT);
+  /** `beaten[blocker * SLOT_COUNT + coverMan]`: this blocker's hold-up of this cover man is over for the play. */
+  const beaten = new Uint8Array(SLOT_COUNT * SLOT_COUNT);
 
   const isDown = (w: TickWorld, s: number): boolean => w.players.moveMode[s] === DOWN || w.tick < w.players.onGroundUntilTick[s]!;
   const meanZ = (w: TickWorld, s: number, attrs: readonly string[]): number => {
@@ -98,14 +107,16 @@ export function createInteract(): Interact {
 
   const step = (w: TickWorld, i: number, q: TickResolverParams): void => {
     const c = w.contests[i]!, o = c.offenseSlot, d = c.defenseSlot, pl = w.players, lib = contests!;
-    if (isDown(w, o) || isDown(w, d) || pl.hasBall[o] === 1 || pl.hasBall[d] === 1 || gap(w, o, d) > q['interact.breakGapYd']!) { close(w, i); return; }
+    // A protector on a kicking unit who has gone to cover the kick has let go of his man: the block is over.
+    if (isDown(w, o) || isDown(w, d) || pl.hasBall[o] === 1 || pl.hasBall[d] === 1 || gap(w, o, d) > q['interact.breakGapYd']! || COVERING.has(pl.behavior[o]!)) { close(w, i); return; }
     // Help that has drifted off or gone down stops counting; the contest itself goes on.
     for (let k = c.helperSlots.length - 1; k >= 0; k--) {
       const h = c.helperSlots[k]!;
       if (isDown(w, h) || gap(w, h, d) > q['interact.breakGapYd']!) { if (pl.engagement[h] === i) pl.engagement[h] = -1; c.helperSlots.splice(k, 1); }
     }
     const pass = c.type === 'passBlock';
-    let dz = zEff(w, o, pass ? PASS_BLOCK_ATTRS : RUN_BLOCK_ATTRS) - zEff(w, d, pass ? PASS_RUSH_ATTRS : RUN_DEFENSE_ATTRS);
+    // The players' own difference is scaled by the contest's rating response; help is a fact of numbers, not of skill, and is not.
+    let dz = (pass ? lib.passRush.skillGain() : lib.runBlock.skillGain()) * (zEff(w, o, pass ? PASS_BLOCK_ATTRS : RUN_BLOCK_ATTRS) - zEff(w, d, pass ? PASS_RUSH_ATTRS : RUN_DEFENSE_ATTRS));
     if (c.helperSlots.length > 0) dz += pass ? lib.passRush.helpZ('double', (w.tick - c.startedTick) * TICK_S) : lib.runBlock.comboZ();
     // Exactly one normal per open contest per tick, whatever happens next.
     let a = lib.math.stepEngagement(c.advantage, dz, paramsOf(i, c), c.stream.normal());
@@ -119,6 +130,16 @@ export function createInteract(): Interact {
       }
     }
     c.advantage = a;
+    // A block on a man covering a kick is a hold-up, not a sustained block (F12): in the open field a blocker cannot
+    // stay on a man running past him without holding. The cover man is off it after `interact.coverHoldS`, later when
+    // the blocker is winning and sooner when he is losing, and that blocker does not get him a second time.
+    if (!pass && COVERING.has(pl.behavior[d]!) && a > -1 && a < 1 && (w.tick - c.startedTick) * TICK_S >= q['interact.coverHoldS']! * (1 + a)) {
+      freeUntil[d] = w.tick + Math.round(q['interact.shedFreeS']! / TICK_S);
+      beaten[o * SLOT_COUNT + d] = 1;
+      for (let k = 0; k < c.helperSlots.length; k++) beaten[c.helperSlots[k]! * SLOT_COUNT + d] = 1;
+      close(w, i);
+      return;
+    }
     if (a <= -1) { freeUntil[d] = w.tick + Math.round(q['interact.shedFreeS']! / TICK_S); won(w, i, d, o); return; }
     if (a >= 1) { pl.onGroundUntilTick[d] = w.tick + 1 + Math.round(q['interact.wonRecoveryS']! / TICK_S); won(w, i, o, d); return; }
     if (!pass && a > 0) {
@@ -126,6 +147,43 @@ export function createInteract(): Interact {
       const dx = pl.posX[d]! - pl.posX[o]!, dy = pl.posY[d]! - pl.posY[o]!, len = dSqrt(dx * dx + dy * dy);
       if (len > 0) { const m = lib.runBlock.displacementYps(a) * TICK_S / len; pl.posX[d] = pl.posX[d]! + dx * m; pl.posY[d] = pl.posY[d]! + dy * m; }
     }
+    // Two men locked up are bodies (J6.1.2): a blocker does not run through his man, and a defender working
+    // through a block carries the blocker with him. The blocker is the one moved, back to contact.
+    standOff(w, o, d);
+    for (let k = 0; k < c.helperSlots.length; k++) standOff(w, c.helperSlots[k]!, d);
+  };
+
+  const standOff = (w: TickWorld, o: number, d: number): void => {
+    const pl = w.players, dx = pl.posX[o]! - pl.posX[d]!, dy = pl.posY[o]! - pl.posY[d]!, len = dSqrt(dx * dx + dy * dy);
+    const min = w.slots[o]!.movement.bodyRadiusYd + w.slots[d]!.movement.bodyRadiusYd;
+    if (len >= min) return;
+    if (len > 0) { pl.posX[o] = pl.posX[d]! + (dx / len) * min; pl.posY[o] = pl.posY[d]! + (dy / len) * min; }
+    else pl.posX[o] = pl.posX[d]! - min * pl.attackDir[o]!;
+  };
+
+  const lateral = (w: TickWorld, s: number): number => { const y = w.players.posY[s]! - w.frame.originY; return y < 0 ? -y : y; };
+  const centres = (w: TickWorld, a: number, b: number): number => {
+    const dx = w.players.posX[a]! - w.players.posX[b]!, dy = w.players.posY[a]! - w.players.posY[b]!;
+    return dSqrt(dx * dx + dy * dy);
+  };
+  /** True when no other free pass protector is nearer rusher `d` than `b` is. A tie goes to the man nearer the ball. */
+  const ownsRusher = (w: TickWorld, b: number, d: number): boolean => {
+    const pl = w.players, side = w.slots[b]!.side, mine = centres(w, b, d);
+    for (let o = 0; o < SLOT_COUNT; o++) {
+      if (o === b || w.slots[o]!.side !== side || !PASS_BLOCKERS.has(pl.behavior[o]!) || pl.engagement[o]! >= 0 || pl.hasBall[o] === 1 || isDown(w, o)) continue;
+      const his = centres(w, o, d);
+      if (his < mine || (his === mine && lateral(w, o) < lateral(w, b))) return false;
+    }
+    return true;
+  };
+  /** True when a free opponent within `rangeYd` of protector `b` is his to block. */
+  const hasOwnRusher = (w: TickWorld, b: number, rangeYd: number): boolean => {
+    const pl = w.players, side = w.slots[b]!.side;
+    for (let d = 0; d < SLOT_COUNT; d++) {
+      if (w.slots[d]!.side === side || pl.engagement[d]! >= 0 || pl.hasBall[d] === 1 || isDown(w, d)) continue;
+      if (centres(w, b, d) <= rangeYd && ownsRusher(w, b, d)) return true;
+    }
+    return false;
   };
 
   const tryOpen = (w: TickWorld, b: number, q: TickResolverParams): void => {
@@ -135,12 +193,17 @@ export function createInteract(): Interact {
     const side = w.slots[b]!.side, reach = q['interact.contactGapYd']!;
     let best = -1, bestGap = reach;
     for (let d = 0; d < SLOT_COUNT; d++) {
-      if (w.slots[d]!.side === side || pl.hasBall[d] === 1 || isDown(w, d) || w.tick < freeUntil[d]!) continue;
+      if (w.slots[d]!.side === side || pl.hasBall[d] === 1 || isDown(w, d) || w.tick < freeUntil[d]! || beaten[b * SLOT_COUNT + d] === 1) continue;
       const e = pl.engagement[d]!;
       // An opponent who is himself blocking someone, or who already has two men on him, is not picked up.
       if (e >= 0 && (w.contests[e]!.defenseSlot !== d || w.contests[e]!.helperSlots.length > 0)) continue;
       const g = gap(w, b, d);
-      if (g <= bestGap) { if (g < bestGap || best < 0) { best = d; bestGap = g; } }
+      if (g > bestGap) continue;
+      // Pass protection (J6.2.1): the rusher belongs to the free protector nearest him, so two men do not
+      // take one rusher at the snap while the man beside him comes free. Help goes to a blocked rusher only
+      // from a protector who has no free rusher of his own near.
+      if (pass && (e < 0 ? !ownsRusher(w, b, d) : hasOwnRusher(w, b, q['interact.helpClearYd']!))) continue;
+      if (g < bestGap || best < 0) { best = d; bestGap = g; }
     }
     if (best < 0) return;
     const existing = pl.engagement[best]!;
@@ -164,7 +227,7 @@ export function createInteract(): Interact {
     begin(w: TickWorld): void {
       p = tickResolverParams(w.params);
       open.length = 0; interior.length = 0; held.length = 0; countered.length = 0;
-      freeUntil.fill(-2147483648); everEngaged.fill(0);
+      freeUntil.fill(-2147483648); everEngaged.fill(0); beaten.fill(0);
     },
     run(w: TickWorld): void {
       if (w.tick < 0 || w.deadAtTick !== null || contests === null) return;
@@ -187,6 +250,7 @@ export function createInteract(): Interact {
 
   return {
     stage, limit,
+    slipping: (w, slot) => w.tick >= 0 && w.tick < freeUntil[slot]!,
     setPlay(c, start) { contests = c; startAdvantage = start; },
     isOpen: (index) => open[index] === true,
   };

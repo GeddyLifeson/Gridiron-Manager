@@ -11,7 +11,7 @@ import {
   type SeasonLogHash, type GameRecord, type PlayRecord, type GameDriveRow, type TrajectoryRef, type PlayerPlayGrade,
   type DecisionGrade, type SuggestionRecord, type JobHistoryRow, type LedgerEntry, type NewsItem, type EvaluationRecord,
   type SeasonStatSummary, type TendencyCell, type NotabilityRollup, type ScreenRecord, type SettingRecord, type KeyBinding,
-  type TemplateText,
+  type TemplateText, type SystemStateEntry,
 } from '@gm/schema';
 import { filterRows, filterValue, type FilterOptions, type Seen } from './filter.ts';
 import { lookupFrom, type Observer, type TableSource, type WorldLookup } from './observer.ts';
@@ -29,7 +29,7 @@ export interface WorldRows {
   trajectories: TrajectoryRef; playGrades: PlayerPlayGrade; decisionGrades: DecisionGrade; suggestions: SuggestionRecord;
   jobHistory: JobHistoryRow; ledger: LedgerEntry; news: NewsItem; evaluations: EvaluationRecord; seasonSummaries: SeasonStatSummary;
   tendencies: TendencyCell; notability: NotabilityRollup; screens: ScreenRecord; settings: SettingRecord; keyBindings: KeyBinding;
-  templates: TemplateText;
+  templates: TemplateText; systemState: SystemStateEntry;
 }
 export type WorldTableName = keyof WorldRows;
 
@@ -39,7 +39,7 @@ export const WORLD_ROW_TABLES: readonly WorldTableName[] = [
   'jobs', 'positions', 'rosterSlots', 'depthCharts', 'contracts', 'knowledge', 'injuries', 'prospects', 'relationships', 'cohesion',
   'memories', 'promises', 'reputations', 'openings', 'balanceSheets', 'households', 'inbox', 'philosophies', 'eventTypes', 'events',
   'logHashes', 'games', 'plays', 'drives', 'trajectories', 'playGrades', 'decisionGrades', 'suggestions', 'jobHistory', 'ledger',
-  'news', 'evaluations', 'seasonSummaries', 'tendencies', 'notability', 'screens', 'settings', 'keyBindings', 'templates',
+  'news', 'evaluations', 'seasonSummaries', 'tendencies', 'notability', 'screens', 'settings', 'keyBindings', 'templates', 'systemState',
 ];
 
 let tableSchemas: Map<string, Schema> | null = null;

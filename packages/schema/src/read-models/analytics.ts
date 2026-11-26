@@ -1,10 +1,11 @@
+// Moved here from app-services/test/read-models/analytics/schemas.ts (CR-G71-1); registered in READ_MODELS (commands.ts).
 // Data schemas of the analytics read models (G-71). They live here because app-services may not import
 // zod (CR-G71-1, same as CR-G27-4); the integrator moves this file into @gm/schema and passes the
 // schemas to `analyticsReadModels`. Every field carries a visibility class: the league strength table
 // is public (a public-information estimate, N2.6.1 rule 4); the staff's chart, report plan and load
 // report are the team's own.
 import { z } from 'zod';
-import { pub, own } from '@gm/schema';
+import { pub, own } from '../field.ts';
 
 const Mark = z.enum(['solid', 'fair', 'thin']);
 const Option = z.enum(['go', 'field_goal', 'punt']);

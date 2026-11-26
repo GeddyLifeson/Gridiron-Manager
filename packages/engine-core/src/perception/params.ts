@@ -28,7 +28,10 @@ const ROWS: readonly ParamRow[] = [
   ['keyDelayFloorS', 0.10, 0.05, 0.2, 's', 'bible', 'J3.2.1', READ],
   ['evidenceGainBase', 1.0, 0.5, 1.5, 'ratio', 'bible', 'J3.2.2', READ],
   ['evidenceGainPerZ', 0.25, 0, 0.5, 'ratio', 'bible', 'J3.2.2', READ],
-  ['evidenceNoiseBase', 0.5, 0.1, 1, 'ratio', 'bible', 'J3.2.2', READ],
+  // Bible start 0.5. One draw of 0.5 a tick is a random walk that crosses the read threshold (1.5) on its own inside a
+  // second about one time in three, so defenders whose key had shown nothing yet read run on dropbacks and left their
+  // men. At 0.2 an unforced false read is rare and a fake still moves the evidence. Tuned value (Assumption).
+  ['evidenceNoiseBase', 0.2, 0.1, 1, 'ratio', 'assumption', 'J3.2.2', READ],
   ['evidenceNoisePerZ', 0.08, 0, 0.2, 'ratio', 'bible', 'J3.2.2', READ],
   ['evidenceNoiseMin', 0.1, 0, 0.5, 'ratio', 'bible', 'J3.2.2', READ],
   ['readThresholdBase', 1.5, 1, 2.5, 'ratio', 'bible', 'J3.2.2', READ],

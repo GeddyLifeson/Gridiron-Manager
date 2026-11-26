@@ -1,9 +1,10 @@
+// Moved here from app-services/test/game-frame/proposed-schemas.ts (G-62); registered in READ_MODELS (commands.ts).
 // Proposed read-model data schemas for the game-day frame (G-62), one visibility class per field. app-services
 // may not import zod (P1.2.2), so these wait here, truth-scanned by the tests, until the integrator moves them
 // into @gm/schema and registers the specs. own_team: the user's own staff and plan; public: what the press and
 // the other team can also see (the toss outcome, the news conference, a handshake noticed by media).
 import { z } from 'zod';
-import { own, pub } from '@gm/schema';
+import { own, pub } from '../field.ts';
 
 const unit = z.enum(['offense', 'defense', 'special']);
 

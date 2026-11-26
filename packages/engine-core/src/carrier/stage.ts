@@ -85,6 +85,8 @@ export interface ReturnPlan {
   readonly side: 'left' | 'right' | 'middle';
   /** True: fair-catch when coverage arrives within the threshold. False: never signal. */
   readonly fairCatchAllowed: boolean;
+  /** I4.5 returner rule: a punt coming down or bouncing inside this own yard line is left alone. Absent: he fields everything. */
+  readonly letGoInsideYd?: number;
 }
 
 /** Tendencies J8.2.2 needs that D3.3.1 does not hold yet (routed to D). Internal skill scale, 50 when absent. */
@@ -196,6 +198,8 @@ export function createCarrier(options: CarrierOptions): Carrier {
   // Per-play state, reset in begin. Typed arrays so nothing is allocated per tick (P6.3.1).
   const ran = new Uint8Array(SLOT_COUNT);
   const rearm = new Int32Array(SLOT_COUNT);
+  /** A receiver has touched this kick (a muff): the returner's let-it-go rule no longer applies. */
+  let receiversTouched = false;
   const hit = new Float64Array(SLOT_COUNT);
   const moveVs = new Int8Array(SLOT_COUNT); // move chosen against this tackler, -1 none
   const carrierStreams: (RandomStream | null)[] = new Array<RandomStream | null>(SLOT_COUNT).fill(null);
@@ -267,7 +271,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     p = carrierParams(w.params); kp = kinParams(w.params); bp = ballParams(w.params); contests = contestsOf();
     ran.fill(0); rearm.fill(0); hit.fill(0); moveVs.fill(-1); carrierStreams.fill(null); pairStreams.clear();
     carries.length = 0; tackles.length = 0; reads.length = 0; moveLog.length = 0; endings.length = 0; laneLog.length = 0;
-    cur = -1; prevBallKind = w.ball.kind; runPhase = 0; hasChoice = false; hasTrack = false; escapeUntil = 0;
+    cur = -1; prevBallKind = w.ball.kind; runPhase = 0; hasChoice = false; hasTrack = false; escapeUntil = 0; receiversTouched = false;
   }
 
   // ---- starting a carry -----------------------------------------------------------------------
@@ -303,7 +307,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const d = play.designed ?? null;
     // J8.1.1 inputs: which vision grade applies to this carry.
     if (how === 'catch' || how === 'interception') zVision = zEff(w, c, 'run_after_catch');
-    else if (how === 'kick') zVision = zEff(w, c, 'return_vision');
+    else if (how === 'kick') zVision = zEff(w, c, 'return_vision') * q['ret.visionZScale'];
     else if (d !== null && d.slot === c) zVision = zEff(w, c, d.kind === 'zone' ? 'vision_zone' : 'vision_gap');
     else { const a = zEff(w, c, 'vision_zone'), b = zEff(w, c, 'vision_gap'); zVision = a > b ? a : b; }
     zDecisive = zOf(style?.decisiveness); zCreative = zOf(style?.creativity);
@@ -340,7 +344,7 @@ export function createCarrier(options: CarrierOptions): Carrier {
       const e = view.entity(s);
       if (e === null) continue;
       const eng = w.players.engagement[s]!;
-      if (eng >= 0 && eng < w.contests.length && w.contests[eng]!.advantage > -0.5) continue;
+      if (eng >= 0 && eng < w.contests.length && w.contests[eng]!.advantage > -0.5 && tiedUp(w, s)) continue;
       const dx = e.px - cx, dy = e.py - cy, d = hyp(dx, dy);
       if (d > 0.5 && (dCos(heading) * dx + dSin(heading) * dy) / d < cone) continue;
       // J8.1.1 rule 5: in the first moments the line screens defenders at the line who are off his line of sight.
@@ -706,11 +710,23 @@ export function createCarrier(options: CarrierOptions): Carrier {
     return d > 0 ? (1 + (vx * dx + vy * dy) / (sp * d)) / 2 : 1;
   }
 
+  /**
+   * A defender in a block cannot get to the carrier, with one exception (J6.3.1 gap control): a run defender who
+   * is holding his ground in the block (advantage under the gap-control line) still has his gap, and comes off
+   * onto a carrier who runs into it.
+   */
+  function tiedUp(w: TickWorld, s: number): boolean {
+    const e = w.players.engagement[s]!;
+    if (e < 0) return false;
+    const k = e < w.contests.length ? w.contests[e]! : null;
+    return !(k !== null && k.type === 'runBlock' && k.defenseSlot === s && contests.runBlock.controlsGap(true, k.advantage));
+  }
+
   function contactsOf(w: TickWorld, c: number, out: Int16Array): number {
     const q = P(), side = w.slots[c]!.side;
     let n = 0;
     for (let s = 0; s < SLOT_COUNT; s++) {
-      if (w.slots[s]!.side === side || isDown(w, s) || w.players.engagement[s]! >= 0 || w.tick < rearm[s]!) continue;
+      if (w.slots[s]!.side === side || isDown(w, s) || tiedUp(w, s) || w.tick < rearm[s]!) continue;
       const gap = hyp(w.players.posX[s]! - w.players.posX[c]!, w.players.posY[s]! - w.players.posY[c]!) - w.slots[s]!.movement.bodyRadiusYd - w.slots[c]!.movement.bodyRadiusYd;
       if (gap > q['tackle.contactGapYd']) continue;
       let i = n;
@@ -909,19 +925,35 @@ export function createCarrier(options: CarrierOptions): Carrier {
     w.emit({ type: 'possession', t: roundSimS(tNow(w)), side: info.side, playerId: info.playerId, spot: spot(b.x, b.y), how });
   }
 
+  /** True when the receivers leave this punt alone: it is inside the yard line their returner's rule names, and none of them has touched it. */
+  function leftAlone(w: TickWorld): boolean {
+    const lim = play.returnPlan?.letGoInsideYd, b = w.ball;
+    if (lim === undefined || b.kickKind !== 'punt' || receiversTouched) return false;
+    const dir = w.snappingAttackDir;
+    return (dir === 1 ? w.geometry.goalLineEastX - b.x : b.x - w.geometry.goalLineWestX) < lim;
+  }
+
   function kickRun(w: TickWorld): void {
     const q = P(), b = w.ball, pl = w.players;
-    if (!(b.velHeight < 0) || b.heightYd > q['ret.catchHeightYd'] || !inField(w, b.x, b.y)) return;
+    // The ball is catchable on the tick it comes down through catching height, at the place it does so: a punt falls
+    // about 2 yd and travels more than a yard in a tick, so asking for it to be under that height at a tick boundary let
+    // four in ten punts hit the ground at a waiting returner's feet.
+    if (!(b.velHeight < 0) || b.heightYd + b.velHeight * TICK_S > q['ret.catchHeightYd'] || !inField(w, b.x, b.y)) return;
+    const fall = b.heightYd > q['ret.catchHeightYd'] ? (b.heightYd - q['ret.catchHeightYd']) / -b.velHeight : 0;
+    const cx = b.x + b.velX * fall, cy = b.y + b.velY * fall;
+    const leave = leftAlone(w);
     let best = -1, bestD = Infinity;
     for (let s = 0; s < SLOT_COUNT; s++) {
       if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]! || !inField(w, pl.posX[s]!, pl.posY[s]!)) continue;
-      const d = hyp(pl.posX[s]! - b.x, pl.posY[s]! - b.y);
+      if (leave && !isKicker(s)) continue;
+      const d = hyp(pl.posX[s]! - cx, pl.posY[s]! - cy);
       if (d <= w.slots[s]!.movement.bodyRadiusYd + q['ret.touchGapYd'] && d < bestD) { best = s; bestD = d; }
     }
     if (best < 0) return;
     const info = w.slots[best]!, kickers = isKicker(best), t = tNow(w);
     w.emit({ type: 'kick_touch', t: roundSimS(t), marginYd: null, marginS: null, visibility: 'open', kind: kickers ? 'touched_by_kickers' : 'touched_by_receivers', playerId: info.playerId, side: info.side, spot: spot(pl.posX[best]!, pl.posY[best]!) });
     if (kickers) { takeBall(w, best, 'kick_recovery'); declareDead(w, 'kick_recovered_by_kickers', t, b.x, b.y, best); return; }
+    receiversTouched = true;
     // J8.6.2 fair catch: coverage arriving within the threshold of the catch.
     const plan = play.returnPlan ?? null;
     let tCover = Infinity, crowd = 0;
@@ -964,9 +996,11 @@ export function createCarrier(options: CarrierOptions): Carrier {
     const q = P(), b = w.ball, pl = w.players, bs = contests.ballSecurity;
     if (b.heightYd > q['recover.heightYd'] || !inField(w, b.x, b.y)) return;
     const reach = bs.recoveryReachYd();
+    const leave = leftAlone(w);
     let n = 0;
     for (let s = 0; s < SLOT_COUNT; s++) {
       if (isDown(w, s) || pl.engagement[s]! >= 0 || w.tick < rearm[s]! || !inField(w, pl.posX[s]!, pl.posY[s]!)) continue;
+      if (leave && !isKicker(s)) continue;
       const d = hyp(pl.posX[s]! - b.x, pl.posY[s]! - b.y) - w.slots[s]!.movement.bodyRadiusYd;
       if (d <= reach) contender[n++] = s;
     }

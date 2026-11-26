@@ -34,11 +34,11 @@ function lateral(c: Ctx, call: KickCall): number {
 function returner(c: Ctx): number { return c.byRole('opposing', RETURNER_ROLES) ?? c.pickId('opposing'); }
 
 /** A caught kick run back toward -px. A returner in the field of play is never carried back into his own end zone. */
-function runBack(c: Ctx, id: number, fromPx: number, py: number, yards: number, t0: number): void {
+function runBack(c: Ctx, id: number, fromPx: number, py: number, yards: number, t0: number, fumbleShare = 0): void {
   let toPx = fromPx - yards;
   if (fromPx < c.goalAhead && toPx >= c.goalAhead) toPx = c.goalAhead - RES_YD;
   c.facts.kickReturn = true;
-  c.carry({ team: 'opposing', carrierId: id, fromPx, toPx, py, t0, oobShare: 0, fumbleShare: 0, ownEndZoneImpetus: c.sideSnap });
+  c.carry({ team: 'opposing', carrierId: id, fromPx, toPx, py, t0, oobShare: 0, fumbleShare, ownEndZoneImpetus: c.sideSnap });
 }
 
 function punt(c: Ctx, call: KickCall): void {
@@ -101,8 +101,9 @@ function punt(c: Ctx, call: KickCall): void {
     return;
   }
   c.push({ type: 'possession', t: roundSimS(tLand), side: c.sideOpp, playerId: ret, spot: c.spot(land, py), how: 'kick_catch' });
-  const yards = K.returnFloor + c.expo(K.returnMean - K.returnFloor) - c.edge * K.returnMean;
-  runBack(c, ret, land, py, yards, tLand);
+  // A share of returned punts go all the way; a share are fumbled away (muffs included).
+  const yards = c.rng.chance(K.returnTd) ? land - c.goalBehind + 1 : K.returnFloor + c.expo(K.returnMean - K.returnFloor) - c.edge * K.returnMean;
+  runBack(c, ret, land, py, yards, tLand, K.returnFumbleLost);
 }
 
 function placeKick(c: Ctx, call: KickCall, snapped: boolean): void {
@@ -124,7 +125,9 @@ function placeKick(c: Ctx, call: KickCall, snapped: boolean): void {
   let p = F.tryMake;
   if (call.kickKind !== 'try_kick') {
     let band = 0;
-    while (band < FG_BAND_UPPER.length && distance >= FG_BAND_UPPER[band]!) band++;
+    // Kick distance is recorded to the whole yard, and the bands are whole yards.
+    const whole = Math.round(distance);
+    while (band < FG_BAND_UPPER.length && whole >= FG_BAND_UPPER[band]!) band++;
     p = F.make[band]!;
   }
   const good = c.rng.chance(c.shifted(p, c.edge));
