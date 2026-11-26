@@ -148,6 +148,56 @@ export function lintCorePurity(root: string, map = loadPackageMap(root)): LintPr
 }
 
 /**
+ * PV-01 (presentation-build-plan section 6, MB-16, J13.4.1): sound and visual variety draw only from the seeded
+ * cosmetic streams in app-services (`cosmetic.display`, `cosmetic.audio`), so presentation can never change a
+ * game result and film replays repeat. Two checks:
+ *   1. app-ui and app-services may not call the platform's random (Math.random, crypto random). The one
+ *      allowed use is fresh entropy for a new world's seed (J13.4.1), marked on the line or the line above with
+ *      `allow-platform-random: J13.4.1`.
+ *   2. No core package names the cosmetic stream: the flow is one way, presentation reads game state, never
+ *      the reverse.
+ */
+export const PRESENTATION_RANDOM_PACKAGES: readonly string[] = ['app-ui', 'app-services'];
+const PLATFORM_RANDOM: { re: RegExp; what: string }[] = [
+  { re: /\bMath\s*\.\s*random\b/, what: 'platform random' },
+  { re: /\b(getRandomValues|randomUUID|randomBytes|randomInt|randomFillSync|randomFill)\b/, what: 'platform crypto random' },
+];
+const PLATFORM_RANDOM_PRAGMA = /allow-platform-random:\s*J13\.4\.1/;
+
+export function lintPresentationRandom(root: string, map = loadPackageMap(root)): LintProblem[] {
+  const problems: LintProblem[] = [];
+  for (const name of PRESENTATION_RANDOM_PACKAGES) {
+    if (!map[name]) continue;
+    for (const file of walk(join(root, 'packages', name, 'src'))) {
+      const rel = relative(root, file);
+      const raw = readFileSync(file, 'utf8');
+      const rawLines = raw.split('\n');
+      const code = stripCommentsAndStrings(raw);
+      for (const { re, what } of PLATFORM_RANDOM) {
+        const g = new RegExp(re.source, 'g');
+        let m: RegExpExecArray | null;
+        while ((m = g.exec(code))) {
+          const line = lineOf(code, m.index);
+          const here = rawLines[line - 1] ?? '', above = rawLines[line - 2] ?? '';
+          if (PLATFORM_RANDOM_PRAGMA.test(here) || PLATFORM_RANDOM_PRAGMA.test(above)) continue;
+          problems.push({ rule: 'PV-01 no platform random in presentation', file: rel, line, message: `${m[0]}: ${what}; draw from the cosmetic streams (app-services cosmetic) instead` });
+        }
+      }
+    }
+  }
+  for (const [name, info] of Object.entries(map)) {
+    if (info.kind !== 'core') continue;
+    for (const file of walk(join(root, 'packages', name, 'src'))) {
+      const raw = readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, (x) => x.replace(/[^\n]/g, ' ')).replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+      const re = /['"`]cosmetic(?:['"`.])/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(raw))) problems.push({ rule: 'PV-01 core reads a cosmetic stream', file: relative(root, file), line: lineOf(raw, m.index), message: `${m[0]}: the cosmetic streams are presentation only (J13.2.1 A-2)` });
+    }
+  }
+  return problems;
+}
+
+/**
  * D6.5.1 / O6.5.1 rule 2 (ruling MA-48): no UI code path renders a projected number or range. The scouting
  * module keeps its projection maths (`project`, the band helpers, the projection noise) for AI and world
  * code; the UI layer (app packages that build or render read models, and the shells) may show only assigned
@@ -314,6 +364,7 @@ export function runLint(root: string): number {
     ['core purity and level words (P1.1.1, P1.1.2)', () => lintCorePurity(root)],
     ['forbidden keys (Q1.2.1)', () => lintForbiddenKeys(root)],
     ['no projected number or range in the UI layer (D6.5.1, O6.5.1, MA-48)', () => lintUiProjection(root)],
+    ['no platform random in presentation, cosmetic streams one way (PV-01, J13.4.1)', () => lintPresentationRandom(root)],
   ];
   for (const [title, f] of sections) {
     const p = f();

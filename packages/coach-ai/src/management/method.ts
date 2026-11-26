@@ -38,6 +38,16 @@ function argmax(options: readonly OptionEst[]): OptionEst {
   return best;
 }
 
+/** K5.1.1 rules 1 and 2 alone: the advisor's line. No draw. `close` is a margin inside the thinking band. */
+export function modelLine(options: readonly OptionEst[], habit: string): { optionId: string; marginPts: number; close: boolean } {
+  const sorted = [...options].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const h = sorted.find((o) => o.id === habit);
+  if (!h) throw new ManagementError(`habit ${habit} is not an option`);
+  const model = argmax(sorted);
+  const marginPts = (model.wp - h.wp) * PTS;
+  return { optionId: model.id, marginPts, close: marginPts < param('think.closeBandPts') };
+}
+
 export function decide(input: MethodInput): MethodResult {
   const options = [...input.options].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   if (options.length === 0) throw new ManagementError(`${input.decisionType}: no option`);

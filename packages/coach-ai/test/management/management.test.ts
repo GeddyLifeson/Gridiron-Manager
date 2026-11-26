@@ -5,7 +5,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   allowScore, challengeDecision, clockPlan, createManagementDecider, decide, endOfHalf, ERROR_IDS, errorChance, errorHappens, fourthDown,
-  fourthDownOffsetPts, kneelWins, overtimeChoice, param, PARAMS, penaltyChoice, restForSeason, restInGame, restThreshold, RULE_KEYS, soundMode,
+  fourthDownOffsetPts, kneelWins, modelLine, overtimeChoice, param, PARAMS, penaltyChoice, restForSeason, restInGame, restThreshold, RULE_KEYS, soundMode,
   timeoutDecision, tossChoice, tryChoice, twoDownTerritory, type ChallengeAspect, type StaffPort, type TimeoutMoment, type ViewLike,
 } from '../../src/management/index.ts';
 import { CHART, MATH, OTHER_RULES, PRO_RULES, coach, draws, env, estimates, fixtureRules, share, sit } from './helpers.ts';
@@ -56,6 +56,11 @@ describe('K5.1.1 estimate, offset, advice, choice', () => {
     expect(seen).toEqual(new Set(['go', 'punt', 'field_goal']));
     expect(off / n).toBeGreaterThan(param('prob.floor'));
     expect(off / n).toBeLessThan(param('prob.floor') * 4);
+  });
+
+  it('modelLine: the advisor line of rules 1 and 2, with no draw', () => {
+    expect(modelLine(opts, 'punt')).toEqual({ optionId: 'go', marginPts: expect.closeTo(3, 9), close: false });
+    expect(modelLine(opts, 'go')).toEqual({ optionId: 'go', marginPts: 0, close: true });
   });
 
   it('is deterministic and independent of option order', () => {

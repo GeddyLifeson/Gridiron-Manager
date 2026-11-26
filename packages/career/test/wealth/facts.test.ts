@@ -28,7 +28,9 @@ describe('Q6 wealth fact rows', () => {
   });
   it('state rows short of Verified print PROVISIONAL and the conflicted row cannot ship (E6.2.2 acceptance 3)', () => {
     const w = stateProfileWarnings(loadStateProfiles());
-    expect(w.some((x) => x.startsWith('GA:') && x.includes('cannot ship'))).toBe(true);
+    // GA was a Conflict (5.19 vs 5.09); the Georgia Department of Revenue page says 4.99 for 2026, so it ships now.
+    expect(w.some((x) => x.startsWith('GA:') && x.includes('cannot ship'))).toBe(false);
+    expect(loadStateProfiles().get('GA')).toMatchObject({ kind: 'flat', rate: 0.0499 });
     expect(w.some((x) => x.startsWith('TX:') && x.includes('PROVISIONAL'))).toBe(true);
   });
   it('no forbidden keys in the data and PARAMS validates', () => {
