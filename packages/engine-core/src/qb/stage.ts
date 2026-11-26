@@ -747,6 +747,10 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
       thr = judgeRead(w, v, cd, t, est);
       if (thr === thr && est.iHat <= intCeil) throwIdx = cd;
     }
+    // With the rusher on him there is no next read to wait for: the other choice is throwing it away, so the throw is
+    // rated against that and not against the read he would have looked at next. Rated against the next read he threw
+    // it away with a receiver he rated a completion: one dropback in five ended as a throwaway.
+    if (throwIdx >= 0) thr = p['resp.throwAwayEp'] - p['value.incompleteCostEp'];
     if (throwIdx >= 0 && !options.test?.noThrow) { scores.push((est.v - thr) / temp); which.push(0); }
     if (phase === POCKET || phase === DROP) { scores.push((p['resp.pocketEp'] + p['resp.pocketPerZEp'] * zPocket) / temp); which.push(1); }
     // Escape needs somewhere to go: no rusher he senses on the side away from the threat.
