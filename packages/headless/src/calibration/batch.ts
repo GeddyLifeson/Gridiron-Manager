@@ -4,7 +4,9 @@
 // flow (WP-06) and statistics (WP-07) land, tests drive it with fakes of the same interfaces.
 import type { GameInput, GameDeps, GameFlow, StatsModule, GameSummary, PlayByPlayRow } from '@gm/schema';
 import type { CalibrationSample } from './measures.ts';
-import { chart } from '@gm/coach-ai';
+import { season } from '@gm/world';
+
+const { chart } = season;
 
 const { mix32 } = chart;
 

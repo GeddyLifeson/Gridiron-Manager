@@ -8,11 +8,13 @@ export { checkTargets, factValueMatches, levelOf } from './targets.ts';
 export type { LoadedTargets, Level } from './targets.ts';
 export { buildReport, formatReport, fmt } from './report.ts';
 export type { CalibrationReport, ReportRow, RowState, RunInfo, GateVerdict } from './report.ts';
-import { chart } from '@gm/coach-ai';
+import { season } from '@gm/world';
+
+const { chart } = season;
 export const { createChartCaller, depthRoster, mix32 } = chart;
-export type ChartCallerOptions = chart.ChartCallerOptions;
-export type RosterSource = chart.RosterSource;
-export type CallUnit = chart.CallUnit;
+export type ChartCallerOptions = season.chart.ChartCallerOptions;
+export type RosterSource = season.chart.RosterSource;
+export type CallUnit = season.chart.CallUnit;
 export { runBatch, gameSeedHex } from './batch.ts';
 export type { BatchSpec, BatchResult } from './batch.ts';
 export { loadTargets, readMeasuredRateFacts, targetFilePath } from './files.ts';
