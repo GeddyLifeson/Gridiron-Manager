@@ -24,12 +24,14 @@ routes them with `league.news`, which owns every routing rule and number. Bind i
   of the witnesses. The draws are the same as over every edge (test), the cost follows the reach.
 - NW-05 Season-point rows (hall, cohorts, leaving) are read in the first pass of the next season; their
   tallies go to the season they are dated in.
+- NW-07 X7 ties to edges (`edgesFromTies`): a tie is one warm edge when either of its two sides is warm, at
+  the stronger warm side's strength. Team ties are left out (news passes between people).
+- NW-08 Tie strength is read as the edges step last settled it; decay is applied when that step touches a tie.
 - NW-06 A missing candor or discipline facet reads as 50, the population middle, as the compliance binding does.
 
 ## Not bound yet (owners)
-- X7 edges: no edges step keeps edges off-screen, so `edges` is empty and nothing that is not public moves
-  (X12.2.1 edge case: public news only). Pass `edges: (w) => ...` once the edges step stores them.
-- X4 notability: rows carry no score until the notability step is bound, so only coach changes become items.
+- The master tool binds `edges: news.edgesFromTies` over the X7 ties of world/src/people (PR 315). Without
+  an edges port nothing that is not public moves (X12.2.1 edge case: public news only).
 - C10.7.1 contact tips, X12.2.2 rumors (L6 speculation) and the user's inbox are on-screen features; the
   history run has no user. `league.news.contactTip`, `resolveRumors` and `selectForInbox` stay for the career.
 - Barrel line `export * as news from './news/index.ts'` in `packages/world/src/index.ts` (exports integrator);

@@ -217,6 +217,31 @@ function plain(v: unknown): unknown {
 }
 const canonicalOf = (x: unknown): string => JSON.stringify(x) ?? 'undefined';
 
+/** Entries per hashed piece of a large state map: big enough to be cheap, small enough that no piece's text nears the engine's string limit. */
+const STATE_CHUNK = 2000;
+
+/**
+ * Folds `systemState` into a hash one system at a time. A system's top-level map fields (ties, memory
+ * rows, needs records: hundreds of thousands of entries in a long history) are folded in sorted chunks,
+ * so the world hash never builds one string of the whole state. Every value still counts.
+ */
+function hashSystemState(prev: string, state: ReadonlyMap<string, unknown>): string {
+  let h = prev;
+  for (const key of [...state.keys()].sort()) {
+    const v = state.get(key);
+    if (v === null || typeof v !== 'object' || v instanceof Map || Array.isArray(v)) { h = history.chainHash(h, { key, value: plain(v) }); continue; }
+    const small: Record<string, unknown> = {};
+    const big: [string, Map<unknown, unknown>][] = [];
+    for (const [f, x] of Object.entries(v)) if (x instanceof Map && x.size > STATE_CHUNK) big.push([f, x]); else small[f] = plain(x);
+    h = history.chainHash(h, { key, value: small });
+    for (const [f, m] of big.sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+      const entries = plain(m) as unknown[];
+      for (let i = 0; i < entries.length; i += STATE_CHUNK) h = history.chainHash(h, { key, field: f, at: i, entries: entries.slice(i, i + STATE_CHUNK) });
+    }
+  }
+  return h;
+}
+
 /** A hash of the whole live world, for replay checks (J13). `deep` adds every person and job. */
 export function worldHash(world: LiveWorld, deep = true): string {
   const head = {
@@ -224,10 +249,10 @@ export function worldHash(world: LiveWorld, deep = true): string {
     log: world.log.seasonHashes(), nextIds: world.nextIds, seasons: world.seasons,
     status: [...world.status].sort((a, b) => a[0] - b[0]), tiers: [...world.tiers].sort((a, b) => a[0] - b[0]),
     rosters: [...world.rosters].sort((a, b) => a[0] - b[0]), pools: [...world.pools].sort((a, b) => (a[0] < b[0] ? -1 : 1)),
-    systemState: plain(world.systemState),
     hall: world.hall.members,
   };
   let h = history.chainHash(history.EMPTY_SEASON_HASH, head);
+  h = hashSystemState(h, world.systemState);
   if (deep) {
     for (const id of [...world.people.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.people.get(id));
     for (const id of [...world.jobs.keys()].sort((a, b) => a - b)) h = history.chainHash(h, world.jobs.get(id));

@@ -247,8 +247,12 @@ export function routeRows(world: LiveWorld, st: NewsState, rows: readonly WorldE
     if (w.money?.misreported) t.moneyMisreported++;
   }
 
-  const edges = b.edges?.(world) ?? [];
-  const adj = edges.length > 0 ? warmAdjacency(edges) : null;
+  // The edges are read only when a row with a witness needs them, and once a pass.
+  let adj: Map<number, RelationshipEdge[]> | null | undefined;
+  const adjacency = (): Map<number, RelationshipEdge[]> | null => {
+    if (adj === undefined) { const edges = b.edges?.(world) ?? []; adj = edges.length > 0 ? warmAdjacency(edges) : null; }
+    return adj;
+  };
   const members = teamMembers(world);
   const facets: news.PasserFacets = (id) => {
     const p = world.people.get(id);
@@ -268,8 +272,9 @@ export function routeRows(world: LiveWorld, st: NewsState, rows: readonly WorldE
     const witnesses = witnessesOf(world, e, members);
     if (witnesses.length === 0) continue;
     t.witnessed++;
-    if (!adj) continue;
-    const reach = reachableEdges(adj, witnesses);
+    const nb = adjacency();
+    if (!nb) continue;
+    const reach = reachableEdges(nb, witnesses);
     if (reach.length === 0) continue;
     const ds = news.spreadNonPublic(e, dayOf(e), witnesses, reach, facets, streams.spread);
     if (ds.length === 0) continue;

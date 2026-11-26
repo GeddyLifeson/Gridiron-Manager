@@ -4,6 +4,8 @@ import { calendar, news as league } from '@gm/league';
 import type { EventTypeDef, RelationshipEdge, WorldEvent } from '@gm/schema';
 import { NAMES, loop, setup, testSchedule, testGamePort, trimmed } from '../fixtures.ts';
 import * as news from '../../src/news/index.ts';
+import * as people from '../../src/people/index.ts';
+import { relationships } from '@gm/people';
 
 const base = { harmClass: 'none' as const, importedAllowed: true, minTier: 3 as const, consumers: ['world.news'], compactable: false };
 const TYPES: readonly EventTypeDef[] = [
@@ -193,5 +195,33 @@ describe('the news state over seasons', () => {
     expect(st.tallies.length).toBeGreaterThanOrEqual(2);
     expect(st.tallies.reduce((n, t) => n + t.events, 0)).toBe(st.cursor - 1);
     expect(league.newsTraceProblems(st.items, x.log.rows())).toEqual([]);
+  });
+});
+
+describe('X7 ties from the edges step as news edges (NW-07)', () => {
+  const d = { seasonYear: 2000, dayIndex: 0 };
+  const side = (strength: number, sign: 'warm' | 'neutral' | 'cold') => ({ strength, sign, peak: strength, decayedThrough: d });
+  function tie(a: number, b: number | null, ab: ReturnType<typeof side> | null, ba: ReturnType<typeof side> | null, bTeamId: number | null = null) {
+    const t = { kind: 'teammate' as const, a, b, bTeamId, promiseId: null, since: d, lastContact: d, ab, ba, basis: [] };
+    return [relationships.tieKey(t), people.packTie(t)] as const;
+  }
+
+  it('reads a tie as warm when either side is warm, at the stronger warm side, and leaves out cold and team ties', () => {
+    const w = build();
+    const [a, b, c, e] = [0, 1, 2, 3].map((i) => person(w, i)) as [number, number, number, number];
+    const ties = people.edgesOf(w).ties;
+    for (const [k, r] of [tie(a, b, side(40, 'warm'), side(90, 'cold')), tie(b, c, side(30, 'warm'), side(70, 'warm')), tie(c, e, side(90, 'cold'), side(90, 'neutral')), tie(a, null, side(90, 'warm'), null, 1)]) ties.set(k, [...r]);
+    expect(news.edgesFromTies(w).map((x) => [x.a, x.b, x.strength])).toEqual([[a, b, 40], [b, c, 70]]);
+  });
+
+  it('spreads a room row through the ties the edges step keeps', () => {
+    const w = build();
+    const [a, b, c] = [0, 1, 2].map((i) => person(w, i)) as [number, number, number];
+    for (const p of [a, b, c]) setFacets(w, p, 100, 0);
+    const ties = people.edgesOf(w).ties;
+    for (const [k, r] of [tie(a, b, side(100, 'warm'), null), tie(b, c, null, side(100, 'warm'))]) ties.set(k, [...r]);
+    emit(w, 'test_room', { personIds: [a] });
+    week(w, newsOnly({ edges: news.edgesFromTies }));
+    expect(news.newsOf(w).deliveries.map((x) => [x.to, x.hops])).toEqual([[b, 1], [c, 2]]);
   });
 });

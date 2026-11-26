@@ -6,3 +6,4 @@ export {
   emptyNews, newsOf, setNews, isCoachChange, witnessesOf, heardPublic, routeRows, pruneNews, newsStep, deliveriesTo,
   type NewsTally, type NewsState, type NewsBinding,
 } from './binding.ts';
+export { edgesFromTies } from './from-ties.ts';
