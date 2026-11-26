@@ -15,6 +15,7 @@ import type { CarrierPlay } from '../carrier/stage.ts';
 import type { PresnapInput, PresnapPlan, SnapResult } from '../presnap/index.ts';
 import type { QbPlay } from '../qb/play.ts';
 import type { PlayStage } from '../tick/index.ts';
+import type { LookCondition } from './kick-check.ts';
 
 /** The stage modules the build plan gives to other work packages. The assembly owns everything else. */
 export const PLUG_IDS = ['qb', 'carrier', 'foulsInjuries'] as const;
@@ -168,6 +169,31 @@ export interface KickLook {
   readonly kind: 'punt' | 'field_goal' | 'try_kick';
   /** Team slot (0 to 10) the ball is snapped to: the punter, the protector, the holder, the kicker. */
   readonly snapTo: number;
+  /**
+   * I4.6.1 the fake called with its trigger ("run it only if the look is there"). Null or absent: the
+   * fake is called outright and always runs.
+   */
+  readonly check?: KickLookCheck | null;
+}
+
+/**
+ * The trigger read of a fake (I4.6.1). Before the snap the designated player reads the defense's shown
+ * alignment against the look; he reads it right with `checkReadChance`. Seeing the look he runs the fake;
+ * not seeing it he runs the kick, at no cost. A misread runs the fake into a bad look or kicks away a
+ * good one.
+ */
+export interface KickLookCheck {
+  /** Team slot (0 to 10) of the man who reads it: the upback or protector, the holder, or the punter with a green light. */
+  readonly readerSlot: number;
+  /** The trigger look; every condition must hold. Content: the look is installed with the fake. */
+  readonly look: readonly LookCondition[];
+  /** Repped in practice this week (true) or installed but not repped (false) (D9, G5). */
+  readonly repped: boolean;
+  /**
+   * The kick the unit runs instead, from the same alignment: the kicking unit's own jobs. Its offensive
+   * spots must equal the fake's. Its own `kickLook` is ignored. The kick is the look's `kind`, aimed straight.
+   */
+  readonly kick: PlaySetup;
 }
 
 export interface PlayContentPort {

@@ -49,7 +49,7 @@ export function isFreeKick(input: PlayInput): boolean {
 export interface KickOp {
   readonly stage: PlayStage;
   /** Call before the loop's `begin`. `assignments` are the kicking team's, team-slot order; `pressure` is D4's pressure of the moment. */
-  setPlay(input: PlayInput, assignments: readonly Assignment[], pressure: number, snap: () => SnapResult | null, look?: KickLook | null): void;
+  setPlay(input: PlayInput, assignments: readonly Assignment[], pressure: number, snap: () => SnapResult | null, look?: KickLook | null, kickAs?: KickKind | null): void;
   /** The slot this operation still owns (punter before the punt, holder before the place kick), or -1. */
   owner(): number;
 }
@@ -203,10 +203,11 @@ export function createKickOp(perception: Perception): KickOp {
       if (kind === null || kicked || FREE_KICKS.includes(kind)) return -1;
       return kind === 'punt' ? kicker : holder;
     },
-    setPlay(input, assignments, pressureOfMoment, snap, kickLook = null) {
+    setPlay(input, assignments, pressureOfMoment, snap, kickLook = null, kickAs = null) {
       const c = input.calls.snapping;
       look = kickLook;
-      kind = c.unit === 'kick' ? c.kickKind : null;
+      // A checked fake that became the kick (I4.6.1) is still an offensive call: the kick is the look's, aimed straight.
+      kind = c.unit === 'kick' ? c.kickKind : kickAs;
       aim = c.unit === 'kick' ? c.direction : null;
       const find = (type: string): number => assignments.findIndex((a) => a.behavior.type === type);
       kicker = find('kicker'); holder = find('holder'); snapper = find('snapper');

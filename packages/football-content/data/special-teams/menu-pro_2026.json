@@ -18,7 +18,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.ko.dyn_landing_deep",
@@ -32,7 +33,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.ko.dyn_line_drive",
@@ -46,7 +48,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -65,7 +68,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.kr.dyn_left",
@@ -78,7 +82,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.kr.dyn_right",
@@ -91,7 +96,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -111,7 +117,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.shield",
@@ -125,7 +132,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.rugby",
@@ -139,7 +147,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.directional_left",
@@ -153,7 +162,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.directional_right",
@@ -167,7 +177,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.pooch",
@@ -181,7 +192,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.coffin_left",
@@ -195,7 +207,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.coffin_right",
@@ -209,7 +222,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.punt.fake_pp_pass",
@@ -217,7 +231,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.punt.fake_pp_pass",
-      "contentHash": "a4e37259",
+      "contentHash": "d35a93af",
       "kind": "quick_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -234,7 +248,17 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "wing released uncovered"
+     "requiredLook": "wing released uncovered",
+     "look": [
+      {
+       "kind": "uncovered",
+       "who": [
+        "wing"
+       ],
+       "lateralYd": 2,
+       "depthYd": 7
+      }
+     ]
     },
     {
      "id": "st.punt.fake_punter_pass",
@@ -242,7 +266,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.punt.fake_punter_pass",
-      "contentHash": "d8894fd6",
+      "contentHash": "4297bbbe",
       "kind": "dropback_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -259,7 +283,18 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "gunner or slot uncovered"
+     "requiredLook": "gunner or slot uncovered",
+     "look": [
+      {
+       "kind": "uncovered",
+       "who": [
+        "gunner",
+        "slot"
+       ],
+       "lateralYd": 2,
+       "depthYd": 7
+      }
+     ]
     },
     {
      "id": "st.punt.fake_run",
@@ -267,7 +302,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.punt.fake_run",
-      "contentHash": "f62a71cd",
+      "contentHash": "ef68accd",
       "kind": "run",
       "personnelCode": "11",
       "formationId": null,
@@ -284,7 +319,15 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "rush leaves the edge open"
+     "requiredLook": "rush leaves the edge open",
+     "look": [
+      {
+       "kind": "edgeOpen",
+       "outsideOf": "wing",
+       "marginYd": 1,
+       "depthYd": 5
+      }
+     ]
     }
    ]
   },
@@ -303,7 +346,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.pr.wall_right",
@@ -316,7 +360,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.pr.middle",
@@ -329,7 +374,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.pr.block",
@@ -342,7 +388,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.pr.safe",
@@ -355,7 +402,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -375,7 +423,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fg.try_kick",
@@ -389,7 +438,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fg.fair_catch_kick",
@@ -403,7 +453,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fg.fake_holder_run",
@@ -411,7 +462,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.fg.fake_holder_run",
-      "contentHash": "d9568318",
+      "contentHash": "4fcb612d",
       "kind": "run",
       "personnelCode": "11",
       "formationId": null,
@@ -428,7 +479,15 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "edge rushers inside the wing"
+     "requiredLook": "edge rushers inside the wing",
+     "look": [
+      {
+       "kind": "edgeOpen",
+       "outsideOf": "wing",
+       "marginYd": 0,
+       "depthYd": 5
+      }
+     ]
     },
     {
      "id": "st.fg.fake_holder_pass",
@@ -436,7 +495,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.fg.fake_holder_pass",
-      "contentHash": "ac58ab9f",
+      "contentHash": "542d8fbe",
       "kind": "movement_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -453,7 +512,18 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "wing or end released uncovered"
+     "requiredLook": "wing or end released uncovered",
+     "look": [
+      {
+       "kind": "uncovered",
+       "who": [
+        "wing",
+        "end"
+       ],
+       "lateralYd": 2,
+       "depthYd": 7
+      }
+     ]
     },
     {
      "id": "st.fg.swinging_gate",
@@ -461,7 +531,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.fg.swinging_gate",
-      "contentHash": "2894e541",
+      "contentHash": "b778b0fb",
       "kind": "trick",
       "personnelCode": "11",
       "formationId": null,
@@ -478,7 +548,14 @@
      },
      "fake": true,
      "fakeShare": 0.01,
-     "requiredLook": "defense does not match the gate"
+     "requiredLook": "defense does not match the gate",
+     "look": [
+      {
+       "kind": "outnumbered",
+       "gapYd": 3,
+       "depthYd": 7
+      }
+     ]
     }
    ]
   },
@@ -497,7 +574,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fgb.edge_right",
@@ -510,7 +588,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fgb.middle",
@@ -523,7 +602,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.fgb.safe",
@@ -536,7 +616,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -556,7 +637,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.onside.drive",
@@ -570,7 +652,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.onside.dribble",
@@ -584,7 +667,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -603,7 +687,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   },
@@ -617,7 +702,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.pick",
-      "contentHash": "59e66b50",
+      "contentHash": "a88b03c8",
       "kind": "quick_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -633,7 +718,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.two.sprint_out",
@@ -641,7 +727,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.sprint_out",
-      "contentHash": "9b16a413",
+      "contentHash": "18a29a4b",
       "kind": "movement_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -657,7 +743,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.two.fade",
@@ -665,7 +752,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.fade",
-      "contentHash": "63e8d996",
+      "contentHash": "fadc903e",
       "kind": "quick_pass",
       "personnelCode": "11",
       "formationId": null,
@@ -681,7 +768,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.two.jumbo_play_action",
@@ -689,7 +777,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.jumbo_play_action",
-      "contentHash": "dcab1069",
+      "contentHash": "6097d755",
       "kind": "play_action",
       "personnelCode": "11",
       "formationId": null,
@@ -705,7 +793,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.two.qb_power",
@@ -713,7 +802,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.qb_power",
-      "contentHash": "46d9bcf7",
+      "contentHash": "5d491443",
       "kind": "qb_run",
       "personnelCode": "11",
       "formationId": null,
@@ -729,7 +818,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     },
     {
      "id": "st.two.power",
@@ -737,7 +827,7 @@
      "call": {
       "unit": "offense",
       "playContentId": "st.two.power",
-      "contentHash": "e15e5acb",
+      "contentHash": "f51359bf",
       "kind": "run",
       "personnelCode": "11",
       "formationId": null,
@@ -753,7 +843,8 @@
      },
      "fake": false,
      "fakeShare": null,
-     "requiredLook": null
+     "requiredLook": null,
+     "look": null
     }
    ]
   }
