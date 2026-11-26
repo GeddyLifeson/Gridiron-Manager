@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { medical } from '@gm/league';
-import { stream, seedFromHex } from '@gm/engine-core';
+import { foulsInjuries, stream, seedFromHex } from '@gm/engine-core';
 import { NAMES, PRO_LOOKUP, COLLEGE_LOOKUP, loop, setup, testGamePort, testSchedule, trimmed } from '../fixtures.ts';
 import * as turnover from '../../src/turnover/index.ts';
 import * as health from '../../src/health/index.ts';
@@ -56,9 +56,8 @@ describe('diagnosis from the engine report (J10.6.1 to D11.2.1)', () => {
     expect(health.diagnosisOf(CATALOGUE, 'spleen', 0.2).typeId).toBe('all_other');
     expect(health.diagnosisOf(CATALOGUE, 'hamstring', 0.2).grade).toBeNull();
   });
-  it('knows every region the engine can name (fouls-injuries REGION_TABLE)', async () => {
-    const { REGION_TABLE } = await import('../../../engine-core/src/fouls-injuries/formulas.ts');
-    for (const rows of Object.values(REGION_TABLE)) for (const [region] of rows) expect(CATALOGUE.has(region), region).toBe(true);
+  it('knows every region the engine can name (fouls-injuries REGION_TABLE)', () => {
+    for (const rows of Object.values(foulsInjuries.REGION_TABLE)) for (const [region] of rows) expect(CATALOGUE.has(region), region).toBe(true);
   });
 });
 

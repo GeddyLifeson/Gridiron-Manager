@@ -109,6 +109,40 @@ export interface FoundOptions {
   readonly firstIds?: { readonly person: number; readonly job: number };
 }
 
+/**
+ * Program strength z of every team on a level that ranks programs (T12.2.1). Teams rank by competition (the
+ * first college competition is the top division), then prestige, ties broken on the founding stream. z is the
+ * normal quantile of the team's rank among all the level's schools in a full-size world (X10.2.1: the content's
+ * schools of every level in `collegeLevelsBySize.full`), so a smaller world keeps the same top programs rather
+ * than stretching its divisions over the whole range. Capped at `talent.programZCap`.
+ */
+export function programStrength(seed: WorldSeed, content: WorldContent, built: BuiltStructures): Map<number, number> {
+  const out = new Map<number, number>();
+  const fullOrder = content.collegeLevelsBySize.full ?? [];
+  const schoolsIn = (name: string): number => content.college.schools.filter((s) => s.level === name).length;
+  for (const level of [...new Set(built.competitions.map((c) => c.level))]) {
+    if (!content.levels[level]?.programStrength) continue;
+    const comps = built.competitions.filter((c) => c.level === level);
+    const full = comps.every((c) => fullOrder.includes(c.name));
+    const order = full ? fullOrder : comps.map((c) => c.name);
+    const total = full ? order.reduce((a, n) => a + Math.max(schoolsIn(n), comps.find((c) => c.name === n)?.teamIds.length ?? 0), 0)
+      : comps.reduce((a, c) => a + c.teamIds.length, 0);
+    let above = 0;
+    for (const name of order) {
+      const comp = comps.find((c) => c.name === name);
+      const size = full ? Math.max(schoolsIn(name), comp?.teamIds.length ?? 0) : comp!.teamIds.length;
+      if (comp) {
+        const teams = comp.teamIds.map((id) => built.teams.find((t) => t.id === id)!);
+        const tie = new Map(teams.map((t) => [t.id, stream(seed, STREAM_FOUNDING, [t.id, 'program_strength']).uniform()]));
+        const ranked = [...teams].sort((a, b) => b.prestige - a.prestige || tie.get(a.id)! - tie.get(b.id)! || a.id - b.id);
+        ranked.forEach((t, i) => out.set(t.id, Math.min(param('talent.programZCap'), generator.normalInv(1 - (above + i + 0.5) / total, DMATH))));
+      }
+      above += size;
+    }
+  }
+  return out;
+}
+
 export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldContent, built: BuiltStructures, names: PersonNameSource, opts: FoundOptions = {}): FoundingResult {
   const year = opts.year ?? setup.firstSeasonYear;
   const date: WorldDate = { seasonYear: year, dayIndex: 0 };
@@ -130,6 +164,7 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
   const classYearOf = new Map<number, number>();
   const implausible: number[] = [];
   const next = { person: opts.firstIds?.person ?? 1, job: opts.firstIds?.job ?? 1 };
+  const strength = programStrength(seed, content, built);
 
   for (const team of built.teams) {
     if (opts.teamIds && !opts.teamIds.has(team.id)) continue;
@@ -183,7 +218,7 @@ export function foundPeople(setup: SetupRecord, seed: WorldSeed, content: WorldC
         const classYear = slot % classYears;
         const age = spec.ageModel === 'curve' ? curveAge(s.uniform()) : param('age.collegeFirstYear') + classYear;
         const g = generator.generatePlayer({
-          personId: next.person++, position, ageYears: age, seasonYear: year, talent: spec.talent(s),
+          personId: next.person++, position, ageYears: age, seasonYear: year, talent: spec.talent(s, strength.get(team.id)),
           classKey: { classYear: year, classType: `founding:${team.id}:player`, slotIndex: slot },
           group: spec.playerGroup as generator.PopulationGroup, homeRegion: place.region, hometown: null,
         }, rnd, (ns) => names(ns, year - age));

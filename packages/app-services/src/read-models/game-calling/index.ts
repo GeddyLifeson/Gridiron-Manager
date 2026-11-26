@@ -151,3 +151,5 @@ export function buildConsoleView(i: ConsoleViewInput): ConsoleView {
     unitAlert: c.open?.kind === 'fourth_down' ? { alerted: c.alerted, reversal: c.reversal } : null,
   };
 }
+export * from './session-view.ts';
+export * from './game-day-setup.ts';

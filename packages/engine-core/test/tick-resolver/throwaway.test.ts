@@ -8,8 +8,12 @@ import { availablePlugs, createTickResolver, type QuarterbackPlug } from '../../
 import { ALL_RULES, ALL_TABLE, CONTENT, playInput } from './support.ts';
 
 const N = 300, BALL_X = 35;
+// He rates no throw safe enough (interception ceiling below zero), so he has to get rid of the ball some other way.
+// With the fixture as it is the first read is open at 2.3 s on nearly every snap since his rating of a throw matches
+// what happens to it (PR 320), and he never throws one away. Routes, coverage and what he sees are untouched.
+const NO_THROW: typeof ALL_TABLE = { version: 'test', has: (n) => ALL_TABLE.has(n), num: (n) => (n === 'qb.risk.intCeiling' || n === 'qb.risk.intCeilingTrailing' ? -1 : ALL_TABLE.num(n)) };
 const input = (seed: number): PlayInput =>
-  ({ ...playInput({ kind: 'pass', seed, playNumber: seed, params: ALL_TABLE, ballX: BALL_X, detail: 'summary' }), rules: ALL_RULES });
+  ({ ...playInput({ kind: 'pass', seed, playNumber: seed, params: NO_THROW, ballX: BALL_X, detail: 'summary' }), rules: ALL_RULES });
 const plugs = availablePlugs();
 const resolver = createTickResolver({ content: CONTENT, plugs });
 const qbPlug = plugs.find((p) => p.id === 'qb') as QuarterbackPlug;
@@ -39,8 +43,10 @@ describe('throwaways on the fixture', () => {
     expect(n('ball:interception') / n('throwaway')).toBeLessThan(0.1);
     expect(n('ball:grounded') / n('throwaway')).toBeGreaterThan(0.5);
   });
-  it('no throwaway on the fixture carries a grounding hazard (all are in the vicinity of a receiver)', () => {
-    expect(n('hazard')).toBe(0);
+  it('a throwaway rarely carries a grounding hazard (nearly all are in the vicinity of a receiver)', () => {
+    // None of 35 when he still had throws to make. With no throw to make he holds it far longer (169 throwaways in
+    // 300 dropbacks) and 6 land away from every eligible: J7.5.2 lets him misjudge where an unseen receiver is.
+    expect(n('hazard') / n('throwaway')).toBeLessThan(0.05);
   });
   it('the same seed throws it away to the same spot', () => {
     const a = resolver.simulatePlay(input(firstSeed[0]!)), thA = qbPlug.quarterback()!.record().throwRecord!;

@@ -18,6 +18,7 @@ const SECURE = 'J8.4.1 acceptance (ball-security instruction lowers fumbles and 
 const CLOCK = 'J8.4.2 acceptance (85% in bounds when the rule is set and practiced)';
 const SLIDE = 'J8.4.3 acceptance (QB hits per scramble fall by half with protection on)';
 const YAC = 'J8.6.1 mean yards after catch 5.2 (1 of 3); depth table in research/play-calibration';
+const RETURN_SPREAD = 'real returner spread: punt return 1.44 yd and kickoff return 2.05 yd per sd, muff 0.10 logit per sd (nflverse play-by-play 2018-2025, 1 of 3)';
 const RETURN = 'J8.6.2 punt return average 9.4 yd (2 of 3); fair catch share (open question)';
 const SCREEN = 'J8.3.2 acceptance; screens 5.46 yd per attempt (1 of 3)';
 const TACKLE = 'J6.6.1 acceptance (rushing quantiles and yards after catch)';
@@ -96,7 +97,9 @@ const ROWS = [
   ['move.windowMaxS', 0.5, 0.4, 0.7, 's', 'bible', 'J8.3.1', MOVES],
   ['move.tempYd', 0.5, 0.2, 1.0, 'yd', 'bible', 'J8.3.1', MOVES],
   ['move.beta0', 0.0, -1, 1, 'logit', 'assumption', 'J8.3.1', MOVES],
-  ['move.beta1', 0.6, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
+  // Moved with contest.tackle.beta1 (0.6 * 0.35 / 0.5): the move contest and the tackle read the same pair of
+  // players, and together they are fitted to the real spread of missed and broken tackle rates (see that row).
+  ['move.beta1', 0.42, 0.2, 1.2, 'logit/z', 'assumption', 'J8.3.1', MOVES],
   ['move.brokeDown', -0.8, -2, 0, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.room', 0.6, 0, 1.5, 'logit', 'assumption', 'J8.3.1', MOVES],
   ['move.winYd', 3.0, 1, 6, 'yd', 'assumption', 'J8.3.1', MOVES],
@@ -152,18 +155,26 @@ const ROWS = [
   ['yac.inStrideMinYps', 3, 1, 6, 'yd/s', 'assumption', 'J8.6.1', YAC],
 
   // J8.6.2 returns
-  ['ret.fairCatchS', 0.8, 0.4, 1.2, 's', 'bible', 'J8.6.2', RETURN],
+  ['ret.fairCatchS', 0.35, 0.2, 1.2, 's', 'assumption', 'J8.6.2', RETURN + '; fair catches 27.9% of punts, returned 43.0% (nflverse 2022-2024). J8.6.2 states 0.8, set before the punt team covered; fitted with gunners running'],
   // A kicked ball can be caught at or below this height.
   ['ret.catchHeightYd', 1.2, 0.8, 1.6, 'yd', 'assumption', 'J8.6.2', RETURN],
   ['ret.touchGapYd', 0.3, 0.1, 0.6, 'yd', 'assumption', 'J8.6.2', STRUCT],
   ['ret.muffBeta0', -4.0, -6, -2, 'logit', 'assumption', 'J8.6.2', RETURN],
-  ['ret.muffPerZ', -0.5, -1.5, 0, 'logit/z', 'assumption', 'J8.6.2', RETURN],
+  // Real fumbles per punt fielded differ between returners by about 0.10 logit per sd (nflverse play-by-play
+  // 2018 to 2025, 248 returner-seasons, reliability 0.01; kickoffs show none): muffs are nearly all luck. Was -0.5.
+  ['ret.muffPerZ', -0.1, -1.5, 0, 'logit/z', 'assumption', 'J8.6.2', RETURN_SPREAD],
   ['ret.muffCrowd', 0.6, 0, 1.5, 'logit', 'assumption', 'J8.6.2', RETURN],
+  // A returner's vision grade is multiplied by this before it sets his look horizon, defenders accounted and lane
+  // noise (the run-vision formulas). At 1.0 one z was worth 3.4 yd per punt return and 4.4 per kickoff return;
+  // real returners differ by 1.4 and 2.0 yd per sd (nflverse play-by-play 2018 to 2025, 1 of 3).
+  ['ret.visionZScale', 0.55, 0.1, 1, 'ratio', 'assumption', 'J8.6.2', RETURN_SPREAD],
   ['ret.callSideYd', 1.5, 0, 4, 'yd', 'assumption', 'J8.6.2', RETURN],
 
   // J6.6.1 contact (the carrier module runs the tackle contest on bodies)
   ['tackle.windowS', 0.3, 0.2, 0.5, 's', 'bible', 'J6.6.1', TACKLE],
-  ['tackle.contactGapYd', 0.15, 0, 0.4, 'yd', 'assumption', 'J6.6.1', STRUCT],
+  // The gap between body circles a tackler can reach across with his arms. At 0.15 a tackler had to run into the
+  // carrier's body, and a carrier who passed at arm's length was never touched (runs averaged over 10 yards).
+  ['tackle.contactGapYd', 0.6, 0, 1.0, 'yd', 'assumption', 'J6.6.1', STRUCT],
   ['tackle.missDownS', 0.8, 0.3, 1.5, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   ['tackle.brokenDownS', 0.4, 0.1, 1.0, 's', 'assumption', 'J6.6.1', EXPLOSIVE],
   // Square approach: angle quality is the cosine of the angle between the tackler's velocity and the line to the carrier, mapped to 0 to 1.
