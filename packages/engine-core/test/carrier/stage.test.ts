@@ -281,3 +281,17 @@ describe('J6.6.2 pile', () => {
     expect(t!.progressYd).toBeGreaterThanOrEqual(-1); expect(t!.progressYd).toBeLessThanOrEqual(3);
   });
 });
+
+describe('out of bounds', () => {
+  it('a kick coming down beyond the end line is not taken by a man standing there', () => {
+    const r = runScene({
+      seed: 1, chasers: { 12: { at: [-30, 0], speed: 0, still: true } }, maxTicks: 4,
+      setup: (w) => {
+        w.ball.kind = 'kickInFlight'; w.ball.kickKind = 'punt'; w.ball.carrierSlot = -1; w.players.hasBall[RB] = 0;
+        w.players.posX[12] = w.geometry.lengthYd + 3;
+        w.ball.x = w.players.posX[12]!; w.ball.y = w.players.posY[12]!; w.ball.heightYd = 1.0; w.ball.velHeight = -5; w.ball.velX = 0; w.ball.velY = 0;
+      },
+    });
+    expect(r.events.some((e) => e.type === 'possession')).toBe(false);
+  });
+});
