@@ -32,6 +32,7 @@ export * as delegation from './read-models/delegation/index.ts';
 export * as meeting from './read-models/meeting/index.ts';
 export * as decisionLog from './read-models/decision-log/index.ts';
 export * as glossaryView from './read-models/glossary/index.ts';
+export * as notebook from './read-models/notebook/index.ts';
 export * as gameFrame from './read-models/game-frame/index.ts';
 export * as gameFrameCommands from './commands/game-frame/index.ts';
 export * as analytics from './read-models/analytics/index.ts';

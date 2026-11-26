@@ -34,6 +34,7 @@ import { installRoute, SCREEN_ID as INSTALL_SCREEN_ID } from './screens/install/
 import { printRoute, SCREEN_ID as PRINT_SCREEN_ID } from './screens/print/index.ts';
 import { decisionLogRoutes } from './screens/decision-log/index.ts';
 import { glossaryRoutes } from './screens/glossary/index.ts';
+import { notebookRoutes } from './screens/notebook/index.ts';
 
 type Args<F extends (...a: never[]) => unknown> = Parameters<F>;
 
@@ -96,6 +97,8 @@ export interface RouteSources {
   readonly decisionLog?: Args<typeof decisionLogRoutes>[0];
   /** N5.2 glossary. */
   readonly glossary?: Args<typeof glossaryRoutes>[0];
+  /** E11 coach's notebook. */
+  readonly notebook?: Args<typeof notebookRoutes>[0];
 }
 
 /** Office screen id that shows the assignment list below head coach (O1.2.1, O7.2.1). */
@@ -148,6 +151,7 @@ export function buildRoutes(s: RouteSources): RouteTable {
   if (s.peopleWork) putAll(peopleWorkRoutes(s.peopleWork));
   if (s.decisionLog) putAll(decisionLogRoutes(s.decisionLog));
   if (s.glossary) putAll(glossaryRoutes(s.glossary));
+  if (s.notebook) putAll(notebookRoutes(s.notebook));
   if (s.gameplan) { put(PLAN_SCREEN_ID, gamePlanRoute(s.gameplan)); put(SHEET_SCREEN_ID, callSheetRoute(s.gameplan)); }
   return t;
 }

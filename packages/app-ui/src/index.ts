@@ -43,3 +43,4 @@ export * as install from './screens/install/index.ts';
 export * as print from './screens/print/index.ts';
 export * as decisionLog from './screens/decision-log/index.ts';
 export * as glossary from './screens/glossary/index.ts';
+export * as notebook from './screens/notebook/index.ts';
