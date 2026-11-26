@@ -1,0 +1,50 @@
+{
+  "f1-season1": {
+    "format": 1,
+    "kind": "season1",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": false,
+    "seasonYear": 2026
+  },
+  "f1-certified": {
+    "format": 1,
+    "kind": "certified",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": true,
+    "seasonYear": 2026
+  },
+  "f2-season1": {
+    "format": 2,
+    "kind": "season1",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": false,
+    "seasonYear": 2026
+  },
+  "f2-season15": {
+    "format": 2,
+    "kind": "season15",
+    "stateHash": "88bae3a79476629a",
+    "stateHashAfterWeek": "410ad77c5749e654",
+    "certified": false,
+    "seasonYear": 2040
+  },
+  "f2-people-pack": {
+    "format": 2,
+    "kind": "people_pack",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": false,
+    "seasonYear": 2026
+  },
+  "f2-certified": {
+    "format": 2,
+    "kind": "certified",
+    "stateHash": "c1b9089d716634a1",
+    "stateHashAfterWeek": "f782d1d80cd2ae6e",
+    "certified": true,
+    "seasonYear": 2026
+  }
+}
