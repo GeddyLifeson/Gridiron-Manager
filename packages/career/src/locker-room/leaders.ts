@@ -1,6 +1,7 @@
 // Leaders (L2.2): captains by vote, appointment or vote with veto (L2.2.1); the leadership council and
 // player policing (L2.2.2); position-room leaders with hysteresis (L2.2.3). Ties, influence and culture are
 // read from the G-24 records (people/relationships, people/culture) through the structural `TieLookup`.
+import { possible } from '@gm/schema';
 import { clamp, lp, type Draw } from './params.ts';
 
 /** Any tie store with a symmetric `get` (G-24 `TieGraph` satisfies it). */
@@ -95,12 +96,12 @@ export interface CouncilMember { readonly id: number; readonly trustInCoach: num
 
 /** Surfacing probability per meeting (L2.2.2): 0.2 + 0.6 * mean member trust/100, or 0 if no member has a tie above 50 to someone involved. */
 export function surfacingProbability(members: readonly CouncilMember[], issue: CouncilIssue, ties: TieLookup): number {
-  if (members.length === 0) return 0;
+  if (members.length === 0) return possible(0);
   const line = lp('council.surface.minTie');
   const seen = members.some((m) => issue.involved.some((p) => p === m.id || ties.get(m.id, p) > line));
-  if (!seen) return 0;
+  if (!seen) return possible(0);
   const meanTrust = members.reduce((s, m) => s + clamp(m.trustInCoach, 0, lp('scale.max')), 0) / members.length;
-  return lp('council.surface.base') + lp('council.surface.trustSlope') * meanTrust / lp('scale.max');
+  return possible(lp('council.surface.base') + lp('council.surface.trustSlope') * meanTrust / lp('scale.max'));
 }
 
 export type CouncilResponse = 'act' | 'explain' | 'defer';

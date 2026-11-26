@@ -147,6 +147,58 @@ export function lintCorePurity(root: string, map = loadPackageMap(root)): LintPr
   return problems;
 }
 
+/**
+ * D6.5.1 / O6.5.1 rule 2 (ruling MA-48): no UI code path renders a projected number or range. The scouting
+ * module keeps its projection maths (`project`, the band helpers, the projection noise) for AI and world
+ * code; the UI layer (app packages that build or render read models, and the shells) may show only assigned
+ * grades (`gradeCells`, `formatGrade`) and potential words (`potentialRead`). This flags any use of the
+ * internal names, by import or by namespace, and any read of a projection's mean or variance.
+ */
+export const PROJECTION_INTERNALS: readonly string[] = [
+  'project', 'Projection', 'band', 'halfWidth', 'arrowFor', 'hunchStrength', 'ceilingLookVariance', 'projectionLookSd', 'linearToPeak',
+];
+const UI_LAYER_EXCLUDED = new Set(['store']);
+
+function uiLayerFiles(root: string, map: Record<string, PkgInfo>): string[] {
+  const files: string[] = [];
+  for (const [name, info] of Object.entries(map)) {
+    if (info.kind !== 'app' || UI_LAYER_EXCLUDED.has(name)) continue;
+    walk(join(root, 'packages', name, 'src'), files);
+  }
+  const shells = join(root, 'shells');
+  if (existsSync(shells)) for (const d of readdirSync(shells)) walk(join(shells, d, 'src'), files);
+  return files;
+}
+
+export function lintUiProjection(root: string, map = loadPackageMap(root)): LintProblem[] {
+  const problems: LintProblem[] = [];
+  const names = PROJECTION_INTERNALS.join('|');
+  const ns = new RegExp(`\\bscouting\\s*\\.\\s*(${names})\\b`, 'g');
+  const field = /\bprojection\s*\??\.\s*(mean|variance)\b/gi;
+  const internal = new Set(PROJECTION_INTERNALS);
+  for (const file of uiLayerFiles(root, map)) {
+    const rel = relative(root, file);
+    const raw = readFileSync(file, 'utf8');
+    // Comments removed but strings kept: screens build text in template literals, and `${...}` inside one
+    // is code (stripCommentsAndStrings would hide it).
+    const noComments = raw.replace(/\/\*[\s\S]*?\*\//g, (x) => x.replace(/[^\n]/g, ' ')).replace(/(^|[^:\\])\/\/.*$/gm, '$1');
+    const rule = 'D6.5.1 no projected number in UI';
+    let m: RegExpExecArray | null;
+    while ((m = ns.exec(noComments))) problems.push({ rule, file: rel, line: lineOf(noComments, m.index), message: `${m[0]}: projection internals stay out of the UI layer; show potentialRead words (MA-48)` });
+    while ((m = field.exec(noComments))) problems.push({ rule, file: rel, line: lineOf(noComments, m.index), message: `${m[0]}: a projected number may not reach a screen (MA-48)` });
+    const imp = /\b(?:import|export)\s+(?:type\s+)?\{([^}]*)\}\s*from\s*['"]([^'"]+)['"]/g;
+    while ((m = imp.exec(noComments))) {
+      const spec = m[2]!;
+      if (!/^@gm\/(people|app-services)\b/.test(spec) && !/scouting/.test(spec)) continue;
+      for (const part of m[1]!.split(',')) {
+        const name = part.trim().replace(/^type\s+/, '').split(/\s+as\s+/)[0]!.trim();
+        if (internal.has(name)) problems.push({ rule, file: rel, line: lineOf(noComments, m.index), message: `imports ${name} from ${spec}: projection internals stay out of the UI layer (MA-48)` });
+      }
+    }
+  }
+  return problems;
+}
+
 export function lintPackageTable(root: string, map = loadPackageMap(root)): LintProblem[] {
   const problems: LintProblem[] = [];
   const dirs = readdirSync(join(root, 'packages')).filter((d) => statSync(join(root, 'packages', d)).isDirectory());
@@ -261,6 +313,7 @@ export function runLint(root: string): number {
     ['dependency lint (P1.2.2)', () => lintDependencies(root)],
     ['core purity and level words (P1.1.1, P1.1.2)', () => lintCorePurity(root)],
     ['forbidden keys (Q1.2.1)', () => lintForbiddenKeys(root)],
+    ['no projected number or range in the UI layer (D6.5.1, O6.5.1, MA-48)', () => lintUiProjection(root)],
   ];
   for (const [title, f] of sections) {
     const p = f();

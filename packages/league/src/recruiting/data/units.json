@@ -1,0 +1,9 @@
+{
+ "$comment": "Calendar arithmetic and scale bounds for the recruiting module. Not football numbers; they live here because the league lint bans numeric literals in src (P1.1.2). Months are 1 to 12.",
+ "scaleMax": 100,
+ "fallFirstMonth": 8,
+ "springLastMonth": 5,
+ "recruitingYearFirstMonth": 4,
+ "julyMonth": 7,
+ "hoursPerDay": 24
+}

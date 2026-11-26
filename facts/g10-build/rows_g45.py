@@ -2,7 +2,7 @@
 Rows for keys that G-34 (draft, PR 76) and G-45 (locker room, PR 79) read. Every CBA quote is searched in the
 local text copy by the builder. Status is computed, never typed. A key with no row here has no source that
 was read; it is listed in README.md under "Still owed"."""
-import re
+import re, os
 from core import *
 from rows_cba import LG, CAP, cba
 from rows_web import W, sec
@@ -24,12 +24,29 @@ LG.row('pro', 'Draft day three opens with round 4 (rounds 4 to 7 on Saturday).',
   notes='League page says rounds 4 to 7 on Saturday; SI says the remaining rounds (after rounds 1, 2, 3) are on April 25, 2026.')
 
 # Compensatory pick keys (CBA Appendix V and Article 6). Quotes come from the test fixture of PR 76.
-fx = open('/home/claude/gridiron-manager/packages/league/test/draft/fixtures.ts', encoding='utf-8').read()
+# Static copy of the PR 76 fixture list (CBA Appendix V and Article 6 quotes); the fixture itself moved to file values.
+COMP = [
+  ('league_rules.draft.comp_first_round', 3, 'CBA App. V para 3(b)(1): "following the last selection in the third round"'),
+  ('league_rules.draft.comp_cfa_top_pct', 35, 'CBA App. V para 1(ii): "ranked within the top 35% of all League players"'),
+  ('league_rules.draft.comp_bracket_top_pct_r3', 5, 'CBA App. V para 3(b)(1): "within the top 5%"'),
+  ('league_rules.draft.comp_bracket_top_pct_r4', 10, 'CBA App. V para 3(b)(2): "within the top 10%"'),
+  ('league_rules.draft.comp_bracket_top_pct_r5', 15, 'CBA App. V para 3(b)(3): "within the top 15%"'),
+  ('league_rules.draft.comp_bracket_top_pct_r6', 25, 'CBA App. V para 3(b)(4): "within the top 25%"'),
+  ('league_rules.draft.comp_bracket_top_pct_r7', 35, 'CBA App. V para 3(b)(5): "within the top 35%"'),
+  ('league_rules.draft.comp_points_all_league', 20, 'CBA App. V para 2(b)(1): "20 points"'),
+  ('league_rules.draft.comp_points_all_conference', 5, 'CBA App. V para 2(b)(2): "5 points"'),
+  ('league_rules.draft.comp_snap_min_pct', 25, 'CBA App. V para 2(b)(3): "a minimum of 25% of the offensive/ defensive plays"'),
+  ('league_rules.draft.comp_points_per_punt', 1, 'CBA App. V para 2(b)(3): "1 point will be awarded for each punt attempted"'),
+  ('league_rules.draft.comp_points_per_punt_inside20', 1, 'CBA App. V para 2(b)(3): "1 point for each punt inside the 20-yard line"'),
+  ('league_rules.draft.comp_points_per_fga', 2, 'CBA App. V para 2(b)(3): "2 points for each field goal attempted"'),
+  ('league_rules.draft.comp_points_per_fgm', 1, 'CBA App. V para 2(b)(3): "1 point for each field goal made"'),
+  ('league_rules.draft.comp_veteran_accrued_seasons', 10, 'CBA App. V para 4: "ten or more Accrued Seasons"'),
+  ('league_rules.draft.comp_veteran_earliest_round', 5, 'CBA App. V para 4: "before the end of the fifth round"'),
+  ('league_rules.draft.comp_equal_count_margin_points', 300, 'CBA App. V para 5: "more than 300 points greater"'),
+]
 CB = 'Compensatory pick system, CBA Appendix V'
-for m in re.finditer(r"key: '(league_rules\.draft\.comp_[a-z0-9_]+)', value: (\d+), source: '([^']*?)'", fx):
-    key, val, src = m.group(1), int(m.group(2)), m.group(3)
+for key, val, src in COMP:
     q = re.search(r'"(.+)"', src)
-    if not q: continue
     where = re.sub(r':.*', '', src).replace('CBA ', '')
     unit = 'percent' if 'pct' in key else ('points' if 'point' in key else ('seasons' if 'seasons' in key else ('round' if 'round' in key else 'count')))
     stmt = f'{CB}: {key.split(".")[-1].replace("_", " ")} = {val}.'

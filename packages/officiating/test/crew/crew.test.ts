@@ -7,6 +7,7 @@ import {
   phantomCallChance, rulingErrorChance, seenFrom, trueFoulCallChance, viewOf,
 } from '../../src/crew/index.ts';
 import { NO_ERRORS, candidatesOf, ctx, ev, plays, truthOf } from './helpers.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const everyPlay = () => [
   plays.run(), plays.brokenTackle(), plays.catchAndRun({ marginYd: 0 }), plays.drop({ marginS: 0 }, { marginYd: 0 }), plays.interception({ marginYd: 0 }),
@@ -141,13 +142,13 @@ describe('the seen record is always a well-formed truth record', () => {
 });
 
 describe('wrong rulings (B11.3.2 rule 2)', () => {
-  it('error chance is a coin flip at the boundary, falls with the margin, and is zero with no margin', () => {
+  it('error chance is a coin flip at the boundary, falls with the margin, and is only the floor with no margin', () => {
     const c = ctx();
     const at = (marginYd: number | null) => rulingErrorChance('catch', { marginYd, marginS: null, visibility: 'open' }, c);
     expect(at(0)).toBeCloseTo(0.5, 12);
     expect(at(0.15)).toBeCloseTo(0.5 * Math.exp(-1), 6);
-    expect(at(3)).toBeLessThan(1e-8);
-    expect(at(null)).toBe(0);
+    expect(at(3)).toBe(PROB_FLOOR);
+    expect(at(null)).toBe(PROB_FLOOR);
     expect(rulingErrorChance('catch', { marginYd: 0, marginS: null, visibility: 'pile' }, c)).toBe(0.5);
     expect(rulingErrorChance('catch', { marginYd: 0.15, marginS: null, visibility: 'pile' }, c)).toBeCloseTo(0.75 * Math.exp(-1), 6);
     // With both margins the one nearer its boundary counts.
@@ -174,9 +175,9 @@ describe('wrong rulings (B11.3.2 rule 2)', () => {
     expect(share).toBeGreaterThan(0.47); expect(share).toBeLessThan(0.53);
     expect(seenShort).toBe(Math.round(share * 4000));
   });
-  it('a clear catch is never ruled incomplete', () => {
+  it('a clear catch is almost never ruled incomplete (floor chance only)', () => {
     const truth = plays.catchAndRun({ marginYd: 5 });
-    expect(rate(3000, (i) => wrong(crewModel.perceive(numbered(truth, i), [], ctx()).rulings.find((x) => x.aspect === 'catch')!))).toBe(0);
+    expect(rate(3000, (i) => wrong(crewModel.perceive(numbered(truth, i), [], ctx()).rulings.find((x) => x.aspect === 'catch')!))).toBeLessThan(0.002);
   });
 });
 

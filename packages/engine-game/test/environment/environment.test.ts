@@ -11,6 +11,7 @@ import {
   YD_PER_S_PER_MPH, type Precip,
 } from '../../src/environment/index.ts';
 import { COLLEGE, P, PRO, deps, game, mean, sd, venue } from './fixtures.ts';
+import { PROB_FLOOR } from '@gm/schema';
 
 const SEEDS = (n: number) => Array.from({ length: n }, (_, i) => i + 1);
 const env = (o: Partial<Contract.Environment> = {}): Contract.Environment => ({ ...Contract.NEUTRAL_ENVIRONMENT, ...o });
@@ -187,7 +188,7 @@ describe('J12.2 weather generation', () => {
       const g = series[series.length - 1]!;
       expect(g.tempF).toBe(truth.tempF);
       expect(g.windMph).toBe(truth.windMph);
-      expect(g.precipChance).toBe(truth.precip === 'none' ? 0 : 1);
+      expect(g.precipChance).toBe(truth.precip === 'none' ? PROB_FLOOR : 1 - PROB_FLOOR);
     }
     for (let dd = 1; dd <= 7; dd++) {
       expect(errT[dd]!).toBeGreaterThan(errT[dd - 1]!);
@@ -300,8 +301,8 @@ describe('J12.5.1 surface', () => {
     expect(softTurf).toBe(0);
   });
   it('slips happen only below the footing threshold and each check draws one uniform', () => {
-    expect(slipChancePerCut(0.92, P)).toBe(0);
-    expect(slipChancePerCut(1, P)).toBe(0);
+    expect(slipChancePerCut(0.92, P)).toBe(PROB_FLOOR);
+    expect(slipChancePerCut(1, P)).toBe(PROB_FLOOR);
     expect(slipChancePerCut(0.85, P)).toBeGreaterThan(slipChancePerCut(0.88, P));
     const s = footingStream(deps().streams, 'g1', 3, 22);
     for (let i = 0; i < 50; i++) expect(slipOnCut(s, 1, P)).toBe(false);

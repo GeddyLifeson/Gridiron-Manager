@@ -1592,6 +1592,464 @@
    "unit": "cents"
   },
   {
+   "key": "fa.rfa_prior_salary_pct",
+   "type": "number",
+   "meaning": "Restricted tender as percent of prior-year salary",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "fa.ufa_tender_prior_salary_pct",
+   "type": "number",
+   "meaning": "Unrestricted-player tender as percent of prior salary",
+   "ownerLeaf": "C8.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "fa.offer_sheet_match_days",
+   "type": "number",
+   "meaning": "Days to match an offer sheet",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "fa.match_cutoff_days_before_draft",
+   "type": "number",
+   "meaning": "Latest day to match, days before the draft",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "fa.comp_next_draft_within_days",
+   "type": "number",
+   "meaning": "Offer sheet this close to the draft moves compensation to next year",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "fa.unsigned_rights_end_after_week",
+   "type": "number",
+   "meaning": "Week after which a tendered, unsigned player sits out",
+   "ownerLeaf": "C8.2.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "fa.offer_sheet_ltbe_max_pct",
+   "type": "number",
+   "meaning": "Likely-to-be-earned club-performance incentives limit, percent of salary",
+   "ownerLeaf": "C8.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "percent"
+  },
+  {
+   "key": "fa.matched_trade_back_block_years",
+   "type": "number",
+   "meaning": "Years a matched player cannot be traded to the offering club",
+   "ownerLeaf": "C8.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "years"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.veteran",
+   "type": "number",
+   "meaning": "Fine per day of unexcused training-camp absence, veteran class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.ufa_signee",
+   "type": "number",
+   "meaning": "Fine per day of unexcused training-camp absence, ufa_signee class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.rookie",
+   "type": "number",
+   "meaning": "Fine per day of unexcused training-camp absence, rookie class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.camp_absence_fine_usd.option_year",
+   "type": "number",
+   "meaning": "Fine per day of unexcused training-camp absence, option_year class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.camp_absence_fine_waivable.veteran",
+   "type": "boolean",
+   "meaning": "Whether the club may reduce or waive the veteran camp fine (false = mandatory)",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "discipline.camp_absence_fine_waivable.ufa_signee",
+   "type": "boolean",
+   "meaning": "Whether the club may reduce or waive the ufa_signee camp fine (false = mandatory)",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "discipline.camp_absence_week_salary_per_preseason_game.ufa_signee",
+   "type": "boolean",
+   "meaning": "One week of salary per preseason game missed, ufa_signee class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "discipline.camp_absence_week_salary_per_preseason_game.option_year",
+   "type": "boolean",
+   "meaning": "One week of salary per preseason game missed, option_year class",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day1",
+   "type": "number",
+   "meaning": "Maximum fine for unexcused minicamp absence, day1",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day2",
+   "type": "number",
+   "meaning": "Maximum fine for unexcused minicamp absence, day2",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "discipline.minicamp_absence_fine_max_usd.day3",
+   "type": "number",
+   "meaning": "Maximum fine for unexcused minicamp absence, day3",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "forfeit.camp_free_days",
+   "type": "number",
+   "meaning": "Camp days that may be missed with no forfeiture",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "days"
+  },
+  {
+   "key": "forfeit.camp_initial_share",
+   "type": "number",
+   "meaning": "Share forfeited at the first forfeitable camp day",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "forfeit.camp_daily_share",
+   "type": "number",
+   "meaning": "Further share per camp day",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "forfeit.camp_max_share",
+   "type": "number",
+   "meaning": "Cap on the camp forfeiture share",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "forfeit.first_game_share",
+   "type": "number",
+   "meaning": "Share of the remainder forfeited on missing the first game",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "ratio"
+  },
+  {
+   "key": "forfeit.weekly_after_weeks",
+   "type": "number",
+   "meaning": "Missed weeks before weekly forfeiture starts",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "weeks"
+  },
+  {
+   "key": "forfeit.weekly_divisor",
+   "type": "number",
+   "meaning": "Weekly forfeiture is the allocation divided by this",
+   "ownerLeaf": "L7.2.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "service.no_accrued_if_not_reported",
+   "type": "boolean",
+   "meaning": "No accrued season for a player who does not report",
+   "ownerLeaf": "C5.1.2",
+   "readBy": [
+    "league (G-10 data)"
+   ]
+  },
+  {
+   "key": "league_rules.draft.revoke_window_hours",
+   "type": "number",
+   "meaning": "Hours after the declaration deadline in which an underclassman may revoke",
+   "ownerLeaf": "C7.1.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "hours"
+  },
+  {
+   "key": "club_discipline.club_suspension_roster_status",
+   "type": "option",
+   "meaning": "Roster treatment of a club-suspended player",
+   "ownerLeaf": "L3.2.4",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "options": [
+    "counts_inactive",
+    "reserve_suspended"
+   ]
+  },
+  {
+   "key": "compliance.feigned_injury.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_assistant_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine assistant first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.feigned_injury.fine_player_first_cents",
+   "type": "number",
+   "meaning": "Feigned-injury penalty: fine player first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.injury_report_shading.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Injury-report penalty: club fine first cents",
+   "ownerLeaf": "C11.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.injury_report_shading.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Injury-report penalty: fine head coach first cents",
+   "ownerLeaf": "C11.3.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.signal_recording.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "Signal-recording penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.signal_recording.club_fine_first_cents",
+   "type": "number",
+   "meaning": "Signal-recording penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.crowd_noise.club_fine_first_cents",
+   "type": "number",
+   "meaning": "crowd noise penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.crowd_noise.pick_round_first",
+   "type": "number",
+   "meaning": "crowd noise penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.club_fine_first_cents",
+   "type": "number",
+   "meaning": "ball tampering penalty: club fine first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.ball_tampering.pick_round_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
+   "key": "compliance.ball_tampering.suspension_games_first",
+   "type": "number",
+   "meaning": "ball tampering penalty: suspension games first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "count"
+  },
+  {
+   "key": "compliance.sideline_interference.fine_head_coach_first_cents",
+   "type": "number",
+   "meaning": "sideline interference penalty: fine head coach first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.concussion_protocol.club_fine_first_cents",
+   "type": "number",
+   "meaning": "concussion protocol penalty: club fine first cents",
+   "ownerLeaf": "D11.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.fine_executive_first_cents",
+   "type": "number",
+   "meaning": "tampering players penalty: fine executive first cents",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "cents"
+  },
+  {
+   "key": "compliance.tampering_players.pick_round_first",
+   "type": "number",
+   "meaning": "tampering players penalty: pick round first",
+   "ownerLeaf": "I11.8.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "round"
+  },
+  {
    "key": "cap.min_cash_spend_pct",
    "type": "number",
    "meaning": "Minimum cash spending as percent of cap",
@@ -2236,6 +2694,36 @@
    "type": "number",
    "meaning": "Signing bonus of the 2026 first overall pick",
    "ownerLeaf": "C6.4.2",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2023_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2023",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2025_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2025",
+   "ownerLeaf": "C7.4.1",
+   "readBy": [
+    "league (G-10 data)"
+   ],
+   "unit": "USD"
+  },
+  {
+   "key": "rookie.undrafted_pool_2026_usd",
+   "type": "number",
+   "meaning": "Undrafted signing-bonus pool in 2026",
+   "ownerLeaf": "C7.4.1",
    "readBy": [
     "league (G-10 data)"
    ],

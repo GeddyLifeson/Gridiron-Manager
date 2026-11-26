@@ -1,8 +1,8 @@
 // Generating a coach by level and role (K2.2.1) and profiles for imported real coaches (K2.2.2).
 import { clamp, correlatedNormal, pickKey, pickWeighted, type Draws } from './draws.ts';
-import { BEHAVIOR_KEYS, CALLER_FIELDS, DEFENSE_RATE_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, ROLE_USES, TENDENCY_KEYS, type BehaviorKey } from './keys.ts';
+import { BEHAVIOR_KEYS, CALLER_FIELDS, DEFENSE_RATE_KEYS, EMPHASIS_KEYS, OFFENSE_RATE_KEYS, PERSONNEL_KEYS, ROLE_USES, TENDENCY_KEYS, type BehaviorKey } from './keys.ts';
 import { blendMentorSystems, inheritTendencies, mentorWeights, type MentorInput } from './lineage.ts';
-import { FIELD_PATHS, getPopulation, type CoachPopulation, type FieldSpec, type Template } from './population.ts';
+import { FIELD_PATHS, LATE_FIELD_PATHS, getPopulation, type CoachPopulation, type FieldSpec, type Template } from './population.ts';
 import { ASSUMPTIONS } from './sources.ts';
 import type { BehaviorBlock, CoachLevel, CoachProfile, CoachRole, DefenseRates, OffenseRates, PersonnelKey, SideOfBall, SystemBlock, TendencyBlock } from './types.ts';
 
@@ -162,13 +162,17 @@ export function generateTraced(input: CoachGenInput, d: Draws, pop: CoachPopulat
   };
 
   let system = assembleSystem(values, personnel, families, side);
-  let tendencies = assembleTendencies(values);
   const behavior = assembleBehavior(values);
   const mentors = input.mentors ?? [];
-  if (mentors.length > 0) {
-    system = blendMentorSystems(mentors, system, pop, d);
-    tendencies = inheritTendencies(mentors, tendencies, pop);
+  if (mentors.length > 0) system = blendMentorSystems(mentors, system, pop, d);
+  // K2.1.3 rule 4 fields are the last draws, so every value that existed before them is unchanged.
+  for (const path of LATE_FIELD_PATHS) {
+    const spec = pop.fields[path];
+    if (!spec) throw new Error(`${pop.key} has no field ${path}`);
+    values.set(path, drawField(d, spec, path, template, m));
   }
+  let tendencies = assembleTendencies(values);
+  if (mentors.length > 0) tendencies = inheritTendencies(mentors, tendencies, pop);
   const profile: CoachProfile = {
     personId: input.personId,
     league: input.level,
@@ -228,6 +232,8 @@ export function assembleSystem(values: ReadonlyMap<string, number>, personnel: R
 function assembleTendencies(values: ReadonlyMap<string, number>): TendencyBlock {
   const t = {} as TendencyBlock;
   for (const k of TENDENCY_KEYS) t[k] = get(values, `tendencies.${k}`);
+  t.emphasis = { takeaway: 0, tackleAttack: 0, rushLanes: 0, cornerJump: 0 };
+  for (const k of EMPHASIS_KEYS) t.emphasis[k] = get(values, `tendencies.emphasis.${k}`);
   return t;
 }
 
@@ -255,10 +261,11 @@ export interface ImportEstimates {
  */
 export function profileFromImport(personId: string, level: CoachLevel, role: CoachRole, side: SideOfBall, est: ImportEstimates, pop: CoachPopulation = getPopulation(level, role)): CoachProfile {
   const values = new Map<string, number>();
-  for (const path of FIELD_PATHS) values.set(path, pop.fields[path]!.mean);
+  for (const path of [...FIELD_PATHS, ...LATE_FIELD_PATHS]) values.set(path, pop.fields[path]!.mean);
   for (const [k, v] of Object.entries(est.offenseRates ?? {})) if (typeof v === 'number') values.set(`offenseRates.${k}`, v);
   for (const [k, v] of Object.entries(est.defenseRates ?? {})) if (typeof v === 'number') values.set(`defenseRates.${k}`, v);
   for (const [k, v] of Object.entries(est.tendencies ?? {})) if (typeof v === 'number') values.set(`tendencies.${k}`, v);
+  for (const [k, v] of Object.entries(est.tendencies?.emphasis ?? {})) if (typeof v === 'number') values.set(`tendencies.emphasis.${k}`, v);
   if (est.behaviorSource) for (const [k, v] of Object.entries(est.behavior ?? {})) if (typeof v === 'number') values.set(`behavior.${k}`, v);
   const firstKey = (w: Readonly<Record<string, number>>) => Object.keys(w).sort()[0]!;
   const families = {
