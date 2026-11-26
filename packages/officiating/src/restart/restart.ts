@@ -112,7 +112,7 @@ function carried(state: GameState, to: 'try' | 'kickoff', side: Side, x: number,
   if (!p || p.to !== to || p.yards <= 0) return 0;
   const againstUs = p.against === side;
   const toOffenderGoal = againstUs ? yardsFromOwnGoal(g, x, dir) : yardsToGoal(g, x, dir);
-  const limit = toOffenderGoal / src.rules.num(KEY.halfDistanceDivisor);
+  const limit = toOffenderGoal * src.rules.num(KEY.halfDistanceFraction);
   const yards = p.yards > limit ? limit : p.yards;
   return againstUs ? -yards : yards;
 }

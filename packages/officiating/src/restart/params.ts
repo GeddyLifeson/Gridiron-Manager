@@ -8,7 +8,7 @@ const opt = (key: string, options: string[], meaning: string, ownerLeaf: string)
 
 export const KEY = {
   format: 'kickoff.format',
-  kickYardline: 'kickoff.kick_yardline',
+  kickYardline: 'kickoff.spot_yardline',
   safetyKickYardline: 'kickoff.safety_kick_yardline',
   kickingTeamLine: 'kickoff.kicking_team_line_yardline',
   receivingLine: 'kickoff.receiving_line_yardline',
@@ -24,7 +24,7 @@ export const KEY = {
   deferAllowed: 'toss.defer_allowed',
   overtimeDeferAllowed: 'overtime.toss_defer_allowed',
   overtimeFormat: 'overtime.format',
-  halfDistanceDivisor: 'enforce.half_distance_divisor',
+  halfDistanceFraction: 'enforce.half_distance.fraction',
 } as const;
 
 export const FORMAT_DYNAMIC = 'dynamic';
@@ -50,7 +50,7 @@ export const RULE_KEYS: RuleKeyManifest = [
   flag(KEY.deferAllowed, 'The winner of the opening toss may defer its choice to the second half', 'B1.1.2'),
   flag(KEY.overtimeDeferAllowed, 'The winner of the overtime toss may defer', 'B10.1.1'),
   opt(KEY.overtimeFormat, [OT_TIMED, OT_ALTERNATING], 'Overtime format (see officiating/overtime); it decides whether the toss privilege is to receive or kick, or to play offense or defense', 'B10.1.1'),
-  num(KEY.halfDistanceDivisor, 'ratio', 'A distance penalty may not exceed the distance from the enforcement spot to the offender goal line divided by this. Shared with the foul module, which owns it', 'B8.5.3'),
+  num(KEY.halfDistanceFraction, 'ratio', 'A distance penalty may not exceed the distance from the enforcement spot to the offender goal line multiplied by this. Shared with the foul module, which owns it', 'B8.5.3'),
 ];
 
 /** The restart rules apply rules as written and have no tuning constant. */

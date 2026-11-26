@@ -30,7 +30,7 @@ describe('reference resolver: fouls', () => {
     const by = count(plays(passCalls, rules));
     expect(by.get('illegal_contact')).toBeUndefined();
     expect(by.get('false_start')).toBeUndefined();
-    expect(by.get('off_holding') ?? 0).toBeGreaterThan(0);
+    expect(by.get('offensive_holding') ?? 0).toBeGreaterThan(0);
   });
 
   it('commits each type near its per-game row scaled to committed acts', () => {
@@ -41,7 +41,7 @@ describe('reference resolver: fouls', () => {
     const byRun = count(run);
     const perPlay = (perGame: number) => (perGame * P('foul.committedPerAccepted')) / P('volume.playsPerGame');
     // Types open on every scrimmage play: the same chance on a run and on a pass.
-    for (const id of ['false_start', 'off_holding', 'delay_of_game', 'def_offside', 'unnecessary_roughness']) {
+    for (const id of ['false_start', 'offensive_holding', 'delay_of_game', 'offside', 'unnecessary_roughness']) {
       const row = FOUL_ROWS.find((f) => f.id === id)!;
       const p = perPlay(row.perGame);
       const se = Math.sqrt(p / N);
@@ -49,7 +49,7 @@ describe('reference resolver: fouls', () => {
       expect(Math.abs((byRun.get(id) ?? 0) / N - p), `${id} on runs`).toBeLessThan(5 * se);
     }
     // Pass-only types never happen on a run.
-    for (const id of ['dpi', 'opi', 'def_holding', 'illegal_contact', 'roughing_the_passer', 'ineligible_downfield', 'grounding']) {
+    for (const id of ['dpi', 'opi', 'def_holding', 'illegal_contact', 'roughing_passer', 'ineligible_downfield_pass', 'intentional_grounding']) {
       expect(byRun.get(id), id).toBeUndefined();
       expect(byPass.get(id) ?? 0, id).toBeGreaterThan(0);
     }
@@ -102,9 +102,9 @@ describe('reference resolver: fouls', () => {
       const reason = deadBallOf(r.truth).reason;
       expect(reason).not.toBe('pre_snap_foul');
       for (const f of eventsOf(r.truth, 'foul_committed')) {
-        expect(['illegal_block_above_waist', 'unnecessary_roughness', 'unsportsmanlike', 'taunting']).toContain(f.foulId);
+        expect(['illegal_block_in_back', 'unnecessary_roughness', 'unsportsmanlike', 'taunting']).toContain(f.foulId);
         expect(f.phase).toBe('free_kick');
-        if (f.foulId === 'illegal_block_above_waist') { blocks++; expect(reason === 'ball_dead_in_end_zone' && r.truth.endZoneImpetus === 0 && eventsOf(r.truth, 'possession').length === 0).toBe(false); }
+        if (f.foulId === 'illegal_block_in_back') { blocks++; expect(reason === 'ball_dead_in_end_zone' && r.truth.endZoneImpetus === 0 && eventsOf(r.truth, 'possession').length === 0).toBe(false); }
       }
     }
     expect(blocks).toBeGreaterThan(100);

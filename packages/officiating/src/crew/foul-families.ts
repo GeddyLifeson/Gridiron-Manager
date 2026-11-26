@@ -17,10 +17,10 @@ export const FOUL_DETECTION_BY_ID: Readonly<Record<FoulId, DetectionClass>> = {
   def_holding: { family: 'defensive_coverage', objective: false },
   illegal_contact: { family: 'defensive_coverage', objective: false },
   opi: { family: 'other', objective: false },
-  ineligible_downfield: { family: 'other', objective: false },
-  grounding: { family: 'other', objective: false },
+  ineligible_downfield_pass: { family: 'other', objective: false },
+  intentional_grounding: { family: 'other', objective: false },
   targeting: { family: 'roughing_and_safety', objective: false },
-  low_block: { family: 'roughing_and_safety', objective: false },
+  block_below_waist: { family: 'roughing_and_safety', objective: false },
 };
 
 /**

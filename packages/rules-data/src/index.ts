@@ -1,6 +1,7 @@
 // Rule-set files by level and season (B12.1.1, P4.7.1, P1.3.3). Files are data; this module loads,
 // validates and resolves them. The engine asks for values by key and never tests the level or year.
 import { RuleKeyDef, RuleSetFile, type RuleSet } from '@gm/schema';
+import keyMapJson from '../data/key-map.json' with { type: 'json' };
 import keysJson from '../data/keys.json' with { type: 'json' };
 import pro2026 from '../data/pro_2026.json' with { type: 'json' };
 import college2026 from '../data/college_2026.json' with { type: 'json' };
@@ -82,3 +83,13 @@ export const LEAGUE_RULES_IDS = ['pro_league_2026', 'college_league_2026'] as co
 
 // Foul catalogue loader (WP-01, D-06): FOUL_IDS, checkFoulCatalogue, foulRow, foulCatalogue.
 export * from './catalogue/index.ts';
+
+/** Name map (data/key-map.json): old module names for dictionary keys, and the stat-source labels for fouls. */
+export interface FoulStatLabel { readonly ids: readonly string[]; readonly role?: 'offense' | 'defense' }
+export const KEY_MAP: {
+  readonly keys: readonly { readonly from: string; readonly to: string | null; readonly usedBy: readonly string[]; readonly note?: string }[];
+  readonly foulIds: readonly { readonly from: string; readonly to: readonly string[]; readonly usedBy: readonly string[]; readonly note?: string }[];
+  readonly statLabels: Readonly<Record<string, FoulStatLabel>>;
+} = keyMapJson as never;
+/** Catalogue foul ids (and the fouling role, when the label fixes one) behind a stat-source foul label. An unknown label is taken as a catalogue id. */
+export function foulStatLabel(label: string): FoulStatLabel { return KEY_MAP.statLabels[label] ?? { ids: [label] }; }

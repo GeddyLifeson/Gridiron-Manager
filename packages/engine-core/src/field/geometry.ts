@@ -14,7 +14,7 @@ export function fieldGeometry(rules: RuleSet): FieldGeometry {
   const widthYd = rules.num('field.width_ft') / FT_PER_YD;
   const hashYd = rules.num('field.hash_from_sideline_ft') / FT_PER_YD;
   const centreY = widthYd * HALF;
-  const halfPostYd = (rules.num('field.goal_post_width_ft') / FT_PER_YD) * HALF;
+  const halfPostYd = (rules.num('field.goal_width_ft') / FT_PER_YD) * HALF;
   return {
     lengthYd: goalToGoalYd + endZoneYd + endZoneYd,
     widthYd,

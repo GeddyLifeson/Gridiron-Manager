@@ -17,7 +17,7 @@ type Values = Record<string, number | boolean | string>;
 
 export const FIXTURE_VALUES: Values = {
   'field.goal_to_goal_yd': 100, 'field.end_zone_depth_ft': 30, 'field.width_ft': 160,
-  'field.hash_from_sideline_ft': 70.75, 'field.goal_post_width_ft': 18.5, 'field.crossbar_height_ft': 10,
+  'field.hash_from_sideline_ft': 70.75, 'field.goal_width_ft': 18.5, 'field.crossbar_height_ft': 10,
   'substitution.max_players': 11, 'substitution.match_window': true, 'comm.c2p_cutoff_seconds': 15,
   'formation.line_min': 7, 'formation.backfield_max': 0, 'formation.numbered_linemen_min': 0,
   'formation.neither_behind_snapper_max': 1, 'formation.t_quarterback_depth_yd': 1,

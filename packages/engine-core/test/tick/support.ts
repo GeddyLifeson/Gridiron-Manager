@@ -14,7 +14,7 @@ import { createTickWorld, paramTableFromFiles } from '../../src/tick/index.ts';
 export function fixtureRules(hashFt = 70.75, extra: Record<string, number> = {}): RuleSet {
   const values: Record<string, number> = {
     'field.goal_to_goal_yd': 100, 'field.end_zone_depth_ft': 30, 'field.width_ft': 160,
-    'field.hash_from_sideline_ft': hashFt, 'field.goal_post_width_ft': 18.5, 'field.crossbar_height_ft': 10, ...extra,
+    'field.hash_from_sideline_ft': hashFt, 'field.goal_width_ft': 18.5, 'field.crossbar_height_ft': 10, ...extra,
   };
   return {
     id: 'fixture_0000', level: 'pro', seasonYear: 0,

@@ -14,7 +14,12 @@ export const GROUPS = ['regular', 'postseason'] as const;
 export type Group = (typeof GROUPS)[number];
 export const BY_GAME = ['period_length_s', 'max_periods', 'timeouts', 'periods_per_half', 'new_toss_after_periods', 'loser_chooses_at_period'] as const;
 export type ByGame = (typeof BY_GAME)[number];
-export function gameKey(group: Group, name: ByGame): string { return `overtime.${group}.${name}`; }
+/** The dictionary (WP-01) already names the two period lengths; the other by-game keys take the grouped form. */
+const DICTIONARY_NAMES: Readonly<Record<string, string>> = {
+  'overtime.regular.period_length_s': 'overtime.period_length_s',
+  'overtime.postseason.period_length_s': 'overtime.postseason_period_length_s',
+};
+export function gameKey(group: Group, name: ByGame): string { const k = `overtime.${group}.${name}`; return DICTIONARY_NAMES[k] ?? k; }
 
 export const KEY = {
   format: 'overtime.format',
@@ -23,7 +28,7 @@ export const KEY = {
   twoMinuteWarning: 'overtime.two_minute_warning',
   seriesStart: 'overtime.series_start_yardline',
   twoPointRequiredFrom: 'overtime.two_point_required_from_period',
-  tryOnlyFrom: 'overtime.try_only_from_period',
+  tryOnlyFrom: 'overtime.two_point_plays_from_period',
   playClockStoppage: 'clock.play_clock_after_stoppage_s',
 } as const;
 

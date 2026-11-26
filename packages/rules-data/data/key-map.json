@@ -1,0 +1,361 @@
+{
+ "$comment": "One table for every name a module or a stat source uses for a rule key or foul that the key dictionary (keys.json) holds under another name. The dictionary name wins because its rows carry the sourced facts (Q6). Integrator-owned. 'keys' and 'foulIds' are renames already applied in the code (kept as a record and for threads still using the old names). 'statLabels' is live data: calibration measure foul.typePerGame reads it. A key that is in neither this table nor the dictionary is NEW and listed by scripts/rule-key-gaps.ts. The pairings are the integrator's reading of the key meanings and rule citations, not separately sourced facts.",
+ "keys": [
+  {
+   "from": "kickoff.kick_yardline",
+   "to": "kickoff.spot_yardline",
+   "usedBy": [
+    "officiating.restart"
+   ]
+  },
+  {
+   "from": "kickoff.touchback_landing_zone_yardline",
+   "to": "kickoff.touchback_after_landing_yardline",
+   "usedBy": [
+    "officiating.kick"
+   ]
+  },
+  {
+   "from": "kickoff.out_of_bounds_yd_from_kick",
+   "to": "kickoff.out_of_bounds_spot_yards",
+   "usedBy": [
+    "officiating.kick"
+   ]
+  },
+  {
+   "from": "field.goal_post_width_ft",
+   "to": "field.goal_width_ft",
+   "usedBy": [
+    "engine-core.field"
+   ]
+  },
+  {
+   "from": "overtime.regular.period_length_s",
+   "to": "overtime.period_length_s",
+   "usedBy": [
+    "officiating.overtime"
+   ]
+  },
+  {
+   "from": "overtime.postseason.period_length_s",
+   "to": "overtime.postseason_period_length_s",
+   "usedBy": [
+    "officiating.overtime"
+   ]
+  },
+  {
+   "from": "overtime.try_only_from_period",
+   "to": "overtime.two_point_plays_from_period",
+   "usedBy": [
+    "officiating.overtime"
+   ]
+  },
+  {
+   "from": "enforce.interference.max_yards",
+   "to": "foul.dpi.max_yards",
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "enforce.interference.capped",
+   "to": null,
+   "usedBy": [
+    "officiating.fouls"
+   ],
+   "note": "Dropped. The cap applies when foul.dpi.max_yards is above 0 (the dictionary meaning)."
+  },
+  {
+   "from": "enforce.half_distance_divisor",
+   "to": "enforce.half_distance.fraction",
+   "usedBy": [
+    "officiating.restart"
+   ],
+   "note": "Two module names for one rule. The foul module's name is kept (still NEW in the dictionary); restart now multiplies by the fraction."
+  }
+ ],
+ "foulIds": [
+  {
+   "from": "too_many_men",
+   "to": [
+    "too_many_on_field"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "too_many_men_formation",
+   "to": [
+    "too_many_in_formation"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "illegal_forward_pass_beyond_line",
+   "to": [
+    "illegal_forward_pass"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "illegal_touching_ineligible",
+   "to": [
+    "illegal_touching_pass"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "grounding",
+   "to": [
+    "intentional_grounding"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "ineligible_downfield",
+   "to": [
+    "ineligible_downfield_pass"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "backward_pass_oob",
+   "to": [
+    "backward_pass_out_of_bounds"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "illegal_handoff_forward",
+   "to": [
+    "handing_forward"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "holding_offense",
+   "to": [
+    "offensive_holding"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "illegal_hands_offense",
+   "to": [
+    "illegal_use_of_hands_offense"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "block_in_back",
+   "to": [
+    "illegal_block_in_back"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "assist_runner",
+   "to": [
+    "assisting_runner"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "illegal_hands_defense",
+   "to": [
+    "illegal_use_of_hands_defense"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "low_block",
+   "to": [
+    "block_below_waist"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "wedge",
+   "to": [
+    "illegal_wedge"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "contact_with_fair_catcher",
+   "to": [
+    "fair_catcher_contact"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "ineligible_downfield_kick",
+   "to": [
+    "kick_ineligible_downfield"
+   ],
+   "usedBy": [
+    "officiating.fouls"
+   ]
+  },
+  {
+   "from": "off_holding",
+   "to": [
+    "offensive_holding"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "def_offside",
+   "to": [
+    "offside"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "roughing_the_passer",
+   "to": [
+    "roughing_passer"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "ineligible_downfield",
+   "to": [
+    "ineligible_downfield_pass"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "grounding",
+   "to": [
+    "intentional_grounding"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "def_too_many_men",
+   "to": [
+    "too_many_on_field"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "illegal_block_above_waist",
+   "to": [
+    "illegal_block_in_back"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ]
+  },
+  {
+   "from": "illegal_use_of_hands",
+   "to": [
+    "illegal_use_of_hands_offense",
+    "illegal_use_of_hands_defense"
+   ],
+   "usedBy": [
+    "resolver-reference.resolver"
+   ],
+   "note": "The catalogue splits this by side. The resolver keeps one rate row and emits the id of the side that fouled."
+  }
+ ],
+ "statLabels": {
+  "defense_too_many_men": {
+   "ids": [
+    "too_many_on_field"
+   ],
+   "role": "defense"
+  },
+  "defensive_holding": {
+   "ids": [
+    "def_holding"
+   ]
+  },
+  "defensive_offside": {
+   "ids": [
+    "offside"
+   ],
+   "role": "defense"
+  },
+  "defensive_pass_interference": {
+   "ids": [
+    "dpi"
+   ]
+  },
+  "illegal_block_above_the_waist": {
+   "ids": [
+    "illegal_block_in_back"
+   ]
+  },
+  "illegal_use_of_hands": {
+   "ids": [
+    "illegal_use_of_hands_offense",
+    "illegal_use_of_hands_defense"
+   ]
+  },
+  "ineligible_downfield": {
+   "ids": [
+    "ineligible_downfield_pass"
+   ]
+  },
+  "offensive_pass_interference": {
+   "ids": [
+    "opi"
+   ]
+  },
+  "roughing_the_passer": {
+   "ids": [
+    "roughing_passer"
+   ]
+  },
+  "unsportsmanlike_conduct": {
+   "ids": [
+    "unsportsmanlike"
+   ]
+  }
+ }
+}

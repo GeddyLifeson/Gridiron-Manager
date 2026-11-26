@@ -98,7 +98,7 @@ export function bench(spec: WorldSpec = {}, order?: readonly number[]): Bench {
 export function foulRules(cap: number): RuleSet {
   const nums: Record<string, number> = {
     'field.goal_to_goal_yd': 100, 'field.end_zone_depth_ft': 30, 'field.width_ft': 160, 'field.hash_from_sideline_ft': 70.75,
-    'field.goal_post_width_ft': 18.5, 'field.crossbar_height_ft': 10,
+    'field.goal_width_ft': 18.5, 'field.crossbar_height_ft': 10,
     'foul.dpi.yards': 0, 'foul.dpi.max_yards': cap, 'foul.offensive_holding.yards': 10, 'score.touchdown': 6,
   };
   const bools: Record<string, boolean> = { 'foul.dpi.exists': true, 'foul.dpi.spot_foul': true, 'foul.dpi.afd': true, 'foul.offensive_holding.exists': true };

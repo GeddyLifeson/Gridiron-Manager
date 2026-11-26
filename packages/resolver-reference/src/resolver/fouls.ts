@@ -5,6 +5,7 @@
 import { roundSimS, type FoulId, type RuleSet, type Side } from '@gm/schema';
 import type { Ctx, Team } from './context.ts';
 import type { FoulChance } from './config.ts';
+import { foulRowIds } from './params.ts';
 
 /** Seconds before the snap at which a dead-ball foul before the snap is recorded. Placement only. */
 const PRE_SNAP_T = -0.5;
@@ -36,7 +37,7 @@ function draw(c: Ctx, list: readonly FoulChance[]): FoulChance | null {
   let acc = 0;
   for (const f of list) {
     acc += f.p;
-    if (u < acc) return foulExists(c.input.rules, f.row.id) ? f : null;
+    if (u < acc) return foulRowIds(f.row).every((id) => foulExists(c.input.rules, id)) ? f : null;
   }
   return null;
 }
@@ -45,7 +46,7 @@ function emit(c: Ctx, f: FoulChance, t: number, px: number, py: number, timing: 
   const team: Team = f.row.by === 'either' ? (c.rng.chance(0.5) ? 'snapping' : 'opposing') : f.row.by;
   const side: Side = c.side(team);
   c.push({
-    type: 'foul_committed', t: roundSimS(t), foulId: f.row.id, side, playerId: c.pickId(team), spot: c.spot(px, py),
+    type: 'foul_committed', t: roundSimS(t), foulId: f.row.bySide ? f.row.bySide[team] : f.row.id, side, playerId: c.pickId(team), spot: c.spot(px, py),
     timing, phase: c.facts.phase, severity: c.rng.uniform(), visibility: 'open',
     atPointOfAttack: c.rng.chance(c.cfg.foulPointOfAttack), flagrant: false, borderline: false, ordered: false,
   });
