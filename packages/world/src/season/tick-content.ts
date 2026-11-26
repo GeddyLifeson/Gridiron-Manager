@@ -549,13 +549,14 @@ export function createStarterContentPort(): StarterContentPort {
       const qbSlot = qb === null ? -1 : qb.qbSlot;
       const tempo = s.unit === 'offense' ? s.tempo : 'huddle';
       const slots: PlaySetup['slots'] = Array.from({ length: SLOT_COUNT }, (_, w) => ({ conceptId: (w < SLOTS_PER_TEAM ? O[w]! : D[w - SLOTS_PER_TEAM]!).conceptId }));
-      // Eyes (J3.4.1): a zone defender plays with his on the ball. Receivers turn to look when the ball is thrown
+      // Eyes (J3.4.1): a zone defender plays with his on the ball, a man defender with his on his man (his first key):
+      // with his eyes on his hips he lost the man the moment he turned to run with him. Receivers turn to look when the ball is thrown
       // (the quarterback plug does that), not before: looking back all route long costs them speed.
       const perception: PlaySetup['perception'] = Array.from({ length: SLOT_COUNT }, (_, w) => {
         if (s.unit !== 'offense') return {};
         if (w < SLOTS_PER_TEAM) return {};
         const a = D[w - SLOTS_PER_TEAM]!;
-        return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : {}) };
+        return { readsKeys: true, boxDefender: w < SLOTS_PER_TEAM + 7, keys: defenderKeys(a, O, qbSlot), ...(ZONE_EYES.has(a.behavior.type) ? { gaze: 'ball' as const } : a.behavior.type === 'manCover' ? { gaze: 'key' as const } : {}) };
       });
       return {
         presnap: {

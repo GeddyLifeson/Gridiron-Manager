@@ -62,7 +62,13 @@ describe('starter content port', () => {
   it('starts zone defenders with their eyes on the ball, and nobody else: receivers look when it is thrown', () => {
     const s = port.setup(inputOf(offenseCalls('dropback_pass', null)))!;
     s.presnap.offense.assignments.forEach((a, i) => expect(s.perception[i]!.gaze, a.role).toBeUndefined());
-    s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : undefined));
+    s.presnap.defense.assignments.forEach((a, i) => expect(s.perception[SLOTS_PER_TEAM + i]!.gaze, a.role).toBe(a.behavior.type === 'zoneDrop' || a.behavior.type === 'deepZone' ? 'ball' : a.behavior.type === 'manCover' ? 'key' : undefined));
+  });
+  it('starts man defenders with their eyes on their man, so turning to run with him does not lose him', () => {
+    const s = port.setup(inputOf(offenseCalls('dropback_pass', null, 'cover1')))!;
+    const men = s.presnap.defense.assignments.map((a, i) => ({ a, p: s.perception[SLOTS_PER_TEAM + i]! })).filter((x) => x.a.behavior.type === 'manCover');
+    expect(men.length).toBeGreaterThan(0);
+    for (const m of men) { expect(m.p.gaze, m.a.role).toBe('key'); expect(m.p.keys!.length, m.a.role).toBeGreaterThan(0); }
   });
   it('binds roles to slots, so a man or a key named by role resolves to a player', () => {
     for (const kind of ['run', 'dropback_pass', 'quick_pass', 'play_action', 'screen']) {

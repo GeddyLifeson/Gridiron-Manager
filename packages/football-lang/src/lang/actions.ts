@@ -34,7 +34,12 @@ function followPath(c: Ctx): boolean {
     const w = path[c.pathIndex]!;
     const d = dist(w.px, w.py, c.self.px, c.self.py);
     if (w.kind === 'settle') { if (d <= k.arriveRadius) { c.atTarget = true; c.stemDone = true; } break; }
-    if (d > k.passRadius) break;
+    if (d > k.passRadius) {
+      // A point he has run past counts as reached. A crosser carried a yard wide of a point by traffic used to circle
+      // back to touch it, and stood in the middle of the field while the ball went where his route was drawn.
+      const fromX = c.pathIndex > 0 ? path[c.pathIndex - 1]!.px : c.startPx, fromY = c.pathIndex > 0 ? path[c.pathIndex - 1]!.py : c.startPy;
+      if ((c.self.px - w.px) * (w.px - fromX) + (c.self.py - w.py) * (w.py - fromY) <= 0) break;
+    }
     if (w.kind === 'cut') c.stemDone = true;
     c.pathIndex++;
   }
@@ -87,6 +92,27 @@ function rushAt(c: Ctx, e: PerceivedEntity | null, track: string): void {
   face(c, e.px, e.py);
 }
 
+/**
+ * A defender running with his man (J4.1.3). On top of him he stays on top: he turns and runs a step ahead of where the
+ * man will be before the cushion is gone, and never runs up to a man who is still coming. When the man stops or breaks
+ * off under him he drives down to his cushion. (Aiming at his own spot with the ball still to come kept him running
+ * deep at full speed after a curl.) Once the man is even or past, he chases the spot a step behind where the man is
+ * going, not where the man is: aiming at the man himself from beside him turned the defender across the field while
+ * the man ran away.
+ */
+function coverMan(c: Ctx, e: PerceivedEntity): void {
+  const k = c.k;
+  c.intent.arrival = 'through'; c.intent.moveMode = 'sprint';
+  if (c.self.px > e.px + k.trailOffset) {
+    const px = e.px + e.velPx * k.offLeadS + k.offCushion, py = e.py + e.velPy * k.offLeadS;
+    if (px > c.self.px) aim(c, px, py);
+    else if (e.velPx > k.blockSpeed || c.view.tSinceSnapS < k.releaseDecideS) { aim(c, c.self.px, py); c.intent.arrival = 'arrive'; }
+    else { aim(c, e.px + k.offCushion, py); c.intent.arrival = 'breakdown'; }
+    return;
+  }
+  aim(c, e.px - k.trailOffset + e.velPx * k.pursueLeadS, e.py + e.velPy * k.pursueLeadS);
+}
+
 function toBall(c: Ctx): void {
   c.intent.moveMode = 'sprint'; c.intent.arrival = 'through';
   const lp = c.view.landingPoint?.();
@@ -94,6 +120,18 @@ function toBall(c: Ctx): void {
   const b = c.view.ball();
   if (b === null) { hold(c); return; }
   const inAir = c.view.ballKind() === 'passInFlight' || c.view.ballKind() === 'kickInFlight';
+  if (inAir && !c.offense && c.view.ballKind() === 'passInFlight') {
+    // A defender who has not picked the ball up yet has no landing point. He does not run at the ball itself, which early
+    // in a deep throw is back toward the passer: a man defender stays with his man, and anyone else breaks toward the
+    // line of the throw without giving up his depth.
+    const m = c.man === null ? null : c.man(c);
+    if (m !== null) { coverMan(c, m); face(c, b.px, b.py); return; }
+    if (b.velPx > 0 && b.px < c.self.px) {
+      const t = (c.self.px - b.px) / b.velPx;
+      aim(c, c.self.px, b.py + b.velPy * t); face(c, b.px, b.py);
+      return;
+    }
+  }
   const lead = inAir ? c.k.pursueLeadS : 0;
   aim(c, b.px + b.velPx * lead, b.py + b.velPy * lead);
   face(c, b.px, b.py);
@@ -216,15 +254,8 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
     return (c) => {
       const e = target(c);
       if (e === null) { hold(c); return false; }
-      // A defender who starts off his man (on top of him) stays on top: he gives ground as the man comes, a step ahead
-      // of where the man will be, and never runs up to him. Running to the trail spot from seven yards off turned him
-      // around under a man at full speed and left him yards behind. Once the man is even or past, he trails.
-      if (!c.offense && c.self.px > e.px + c.k.trailOffset) {
-        const k = c.k, px = e.px + e.velPx * k.offLeadS + k.offCushion;
-        aim(c, px > c.self.px ? px : c.self.px, e.py + e.velPy * k.offLeadS); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
-        return false;
-      }
-      aim(c, e.px - (c.offense ? -1 : 1) * c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
+      if (!c.offense) { coverMan(c, e); face(c, e.px, e.py); return false; }
+      aim(c, e.px + c.k.trailOffset, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; face(c, e.px, e.py);
       return false;
     };
   },
@@ -498,7 +529,9 @@ export const ACTIONS: Readonly<Record<string, (a: Args, env: CompileEnv) => ActF
     if (first) c.technique['ballPlay'] = 'playHands';
     const e = c.man === null ? null : c.man(c);
     if (e === null) { toBall(c); return false; }
-    aim(c, e.px, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; faceBall(c);
+    if (c.offense) { aim(c, e.px, e.py); c.intent.arrival = 'through'; c.intent.moveMode = 'sprint'; }
+    else coverMan(c, e);
+    faceBall(c);
     return false;
   },
   strip: () => (c, first) => {

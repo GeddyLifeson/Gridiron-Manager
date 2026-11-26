@@ -349,7 +349,10 @@ export function judgeTarget(view: PerceivedView, target: QbTarget, ctx: JudgeCon
     const radius = ctx.catchPoint.catchRadiusYd(0, false) + p['judge.reachAdjustYd'], sd = ctx.accuracySdYd(air);
     const catchable = insideRadiusShare(radius, sd, ctx.math), placement = expectedPlacementError(radius, sd);
     let pHat: number, iHat: number;
-    if (nearest >= 0 && ctx.catchPoint.isContested(sepEst)) {
+    // A defender can play any ball that comes down inside his reach (the catch-point stage gives him the same radius),
+    // so that is the separation at which the throw stops being open. Judging it open down to one yard had him throw
+    // deep balls he read as uncovered into two defenders in five.
+    if (nearest >= 0 && sepEst <= radius) {
       const probs = ctx.catchPoint.contestedProbabilities({
         zContestedCatch: target.zContestedCatch ?? 0, zBallSkills: 0, position, ballLocated: position !== 'trail', placementError: placement, hitAtCatch: false, wet: ctx.wet,
       });

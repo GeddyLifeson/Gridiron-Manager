@@ -57,7 +57,8 @@ export interface PerceptionConfig {
   dComplexityS?: number;
   dKnowledgeS?: number;
   /** J3.4.1 where his eyes start the play: with his hips (the default) or on the ball (a zone defender's eyes). */
-  gaze?: 'hips' | 'ball';
+  /** 'key' is his first key: a man defender's eyes stay on his man (J3.4.1). With no key it is the hips. */
+  gaze?: 'hips' | 'ball' | 'key';
   /** True for a defender who reads a run-pass key (J3.2.2). */
   readsKeys?: boolean;
   /** Starting evidence from the situation prior (J3.3.1): positive leans run. */
@@ -468,7 +469,11 @@ export function createPerception(options: PerceptionOptions = {}): Perception {
       if (c.prior !== undefined) prior[slot] = c.prior;
       if (c.aggression !== undefined) aggression[slot] = c.aggression;
       if (c.boxDefender !== undefined) boxDefender[slot] = c.boxDefender ? 1 : 0;
-      if (c.gaze !== undefined) setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      if (c.gaze !== undefined) {
+        const key = keys[slot]!.length > 0 ? keys[slot]![0]! : -1;
+        if (c.gaze === 'key' && key >= 0 && key < SLOT_COUNT) setGaze(slot, G_SLOT, key, 0, 0);
+        else setGaze(slot, c.gaze === 'ball' ? G_BALL : G_HEADING, 0, 0, 0);
+      }
     },
     gazeAtSlot: (slot, target) => setGaze(slot, G_SLOT, target, 0, 0),
     gazeAtBall: (slot) => setGaze(slot, G_BALL, 0, 0, 0),

@@ -239,8 +239,8 @@ describe('run blocking (J6.3)', () => {
     expect(runBlock.displacementYps(0.5)).toBe(0.75);
     expect(runBlock.displacementYps(1)).toBe(1.5);
     expect(runBlock.displacementYps(-0.5)).toBe(0);
-    expect(runBlock.controlsGap(true, 0.29)).toBe(true);
-    expect(runBlock.controlsGap(true, 0.3)).toBe(false);
+    expect(runBlock.controlsGap(true, 0.44)).toBe(true);
+    expect(runBlock.controlsGap(true, 0.45)).toBe(false);
     expect(runBlock.controlsGap(false, -0.9)).toBe(false);
     expect(runBlock.shed('oneGap', -1, 1)).toEqual({ side: -1, delayS: 0 });
     expect(runBlock.shed('twoGap', -1, 1).side).toBe(1);

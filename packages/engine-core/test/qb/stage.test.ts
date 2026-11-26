@@ -99,9 +99,10 @@ describe('J7.3 judging open and deciding', () => {
       const v = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0).see(11, 10 - gap, 10.5, 7, 0);
       return { ...qb.judgeTarget(v, t1, ctx(), 0, false, qb.newEstimate()) };
     };
-    expect(e(0.5).pHat).toBeLessThan(e(4).pHat);
-    expect(e(0.5).iHat).toBeGreaterThan(e(4).iHat);
-    expect(e(0.5).v).toBeLessThan(e(4).v);
+    // He rates a defender as fast as his receiver, so a man four yards behind is still in the play: eight is out of it.
+    expect(e(0.5).pHat).toBeLessThan(e(8).pHat);
+    expect(e(0.5).iHat).toBeGreaterThan(e(8).iHat);
+    expect(e(0.5).v).toBeLessThan(e(8).v);
   });
   it('Q1.4.1: a defender he is not watching is not in the estimate (he can be baited)', () => {
     const open = new FakeView(QB).at(-7, 0).see(1, 10, 10, 7, 0);
@@ -212,8 +213,9 @@ describe('J7.3 judging open and deciding', () => {
       seed, attrs: { decision_risk: g }, play: qb.basePlay(QB, 'gun3', [read(target(1, out, 1), 0.3), read(target(2, R2, 1, true), 0.6)]), maxTicks: 60,
       scripts: { 1: alongRoute(out, 7.5), 2: alongRoute(R2, 6, true), 12: alongRoute([{ px: 0.5, py: -12 }, { px: 10.5, py: -12 }], 6, true), 11: still(10.5, 9) },
     });
-    const first = (g: number): number => share(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th !== null && th.readIndex === 0; });
-    expect(first(80)).toBeGreaterThan(first(20));
+    // The careful one waits for a clean look or pulls it down; the risk-taker lets it go with a defender in the picture.
+    const covered = (g: number): number => share(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th !== null && th.kind === 'pass' && th.iHat > 0.05; });
+    expect(covered(80)).toBeGreaterThan(covered(20));
     const risk = (g: number): number => mean(N, (seed) => { const th = scene(seed, g).record.throwRecord; return th && th.kind === 'pass' ? th.iHat : 0; });
     expect(risk(80)).toBeGreaterThan(risk(20));
   });
@@ -290,7 +292,7 @@ describe('J7.4 pressure', () => {
   });
   it('J7.4.1 acceptance: an unseen blindside rusher forces fumbles on a larger share of his sacks than one in his face', () => {
     let bs = 0, bf = 0, fs = 0, ff = 0;
-    for (let seed = 1; seed <= 3 * N; seed++) {
+    for (let seed = 1; seed <= 4 * N; seed++) {
       const blind = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [-12, 3, 7, 0.8] }, hidden: [14], attrs: { pocket_movement: 20 }, ...covered() });
       if (blind.record.sack) { bs++; if (blind.record.sack.fumble) bf++; }
       const front = runScene({ seed, play: qb.basePlay(QB, 'gun3', threeReads()), maxTicks: 60, chasers: { 14: [1, 0.5, 7, 0.8] }, attrs: { pocket_movement: 20 }, ...covered() });
@@ -344,6 +346,8 @@ describe('J7.5 leaving the pocket', () => {
       expect(offered).toBe(1);
       expect(r.record.ran.why).toBe('scramble');
       expect(r.events.filter((e) => e.type === 'detail' && e.code === 'qb.scramble').length).toBe(1);
+      // The shared stat code the box score counts scrambles by (contract D-16).
+      expect(r.events.filter((e) => e.type === 'detail' && e.code === 'scramble').length).toBe(1);
       expect(r.quarterback.phase()).toBe('run');
       return;
     }

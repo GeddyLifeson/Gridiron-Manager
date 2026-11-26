@@ -25,6 +25,20 @@ describe('actions: movement', () => {
     expect(target(on)).toEqual([10 + K.extend, 0]);
   });
 
+  it('runPath: a point he has run past counts as reached, so traffic that carries him wide does not send him back for it', () => {
+    const cross = { behavior: { type: 'route', params: {}, path: [pt(3, -7), pt(3, 0), pt(3.5, 9)] } };
+    const w = world({ self: [3, -7] });
+    const c = compiled(assignment({ ...cross, rules: [when(ALWAYS, [A('runPath')])] }));
+    const v = viewOf(w, O);
+    expect(target(c.decide(O, v))).toEqual([3, 0]);
+    // Wide of a point he has not reached yet, he still runs to it.
+    w.self = [4.5, -1];
+    expect(target(c.decide(O, v))).toEqual([3, 0]);
+    // A yard and a half wide of the middle point and already past it: on to the next one, not back.
+    w.self = [4.5, 0.4];
+    expect(target(c.decide(O, v))).toEqual([3.5, 9]);
+  });
+
   it('runPath for a deep zone: stays on top of the deepest receiver coming into his zone while the ball is held', () => {
     const zone = { behavior: { type: 'deepZone', params: {}, path: [pt(14, 0)] } };
     const go = world({ self: [12, 0], seen: { 7: [10, 4, 7, 0], 8: [3, -30, 7, 0], 9: [11, 6, 7, 0] }, rn: { 7: 2, 8: 1 } });
@@ -103,6 +117,18 @@ describe('actions: movement', () => {
     const off = world({ self: [9, 8], seen: { 1: [2, 8, 6, 0] } });
     expect(target(runAction(act('trail', { target: 'slot:1' }), off))).toEqual([Math.max(2 + 6 * K.offLeadS + K.offCushion, 9), 8]);
     expect(target(runAction(act('trail', { target: 'slot:1' }), world({ self: [9, 8], seen: { 1: [2, 8, 0, 0] } })))).toEqual([9, 8]);
+    // A man still coming who has not reached the lead point yet: he holds his ground and does not run on.
+    const coming = runAction(act('trail', { target: 'slot:1' }), world({ t: 1, self: [14, 8], seen: { 1: [2, 8, 6, 0] } }));
+    expect(target(coming)).toEqual([14, 8]);
+    expect(coming.intent.arrival).toBe('arrive');
+    // The man has stopped under him after his release (a curl): he drives down to his cushion.
+    const curl = runAction(act('trail', { target: 'slot:1' }), world({ t: 2, self: [18, 8], seen: { 1: [12, 8, 0, 0] } }));
+    expect(target(curl)).toEqual([12 + K.offCushion, 8]);
+    expect(curl.intent.arrival).toBe('breakdown');
+    // Even with his man or behind him, he chases where the man is going, a step behind, not where the man is.
+    const beside = runAction(act('trail', { target: 'slot:1' }), world({ t: 2, self: [15, 6], seen: { 1: [15, 8, 8, 0] } }));
+    expect(target(beside)).toEqual([15 - K.trailOffset + 8 * K.pursueLeadS, 8]);
+    expect(beside.intent.arrival).toBe('through');
   });
 
   it('pursue: takes the named angle to the carrier', () => {
@@ -328,6 +354,14 @@ describe('actions: the ball', () => {
     // A passer still holding the ball behind the line is not a ball to run at: the defender covers the nearest receiver from on top.
     const held = world({ self: [6, 2], kind: 'held', carrier: 5, seen: { 5: [-6, 0], 7: [9, 5], 8: [14, -12] }, rn: { 7: 1, 8: 1 } });
     expect(target(runAction(act('breakOnBall'), held))).toEqual([9 + K.trailOffset, 5]);
+    // A pass in the air he has not picked up yet: a man defender stays with his man, and a zone defender breaks to the
+    // line of the throw at his own depth. Neither runs at the ball itself, which is back toward the passer.
+    const man = { behavior: { type: 'manCover', params: { man: 'slot:1' }, path: [] } };
+    const air = { kind: 'passInFlight' as const, ball: [-4, 0, 16, 4] as [number, number, number, number] };
+    expect(target(runAction(act('breakOnBall'), world({ self: [20, 6], seen: { 1: [22, 8, 8, 0] }, ...air }), D, man))).toEqual([22 - K.trailOffset + 8 * K.pursueLeadS, 8]);
+    expect(target(runAction(act('breakOnBall'), world({ self: [20, 0], ...air }), D))).toEqual([20, 6]);
+    // Once he has the landing point he goes to it.
+    expect(target(runAction(act('breakOnBall'), world({ self: [20, 0], landing: [30, 9], ...air }), D))).toEqual([30, 9]);
     // A runner past the line is a ball to get to, and so is the ball for the offense.
     expect(target(runAction(act('breakOnBall'), world({ self: [6, 2], kind: 'held', carrier: 6, ball: [3, 1], seen: { 6: [3, 1], 7: [9, 5] }, rn: { 7: 1 } })))).toEqual([3, 1]);
   });
@@ -335,7 +369,10 @@ describe('actions: the ball', () => {
   it('playHands, strip, secure and getDown set the ball technique', () => {
     const cover = { behavior: { type: 'manCover', params: { man: 'slot:1' }, path: [] } };
     const hands = runAction(A('playHands'), world({ self: [12, 5], seen: { 1: [13, 6] }, ball: [0, 0] }), D, cover);
-    expect(target(hands)).toEqual([13, 6]);
+    expect(target(hands)).toEqual([13 - K.trailOffset, 6]);
+    // He plays the hands running with his man, led the same way as before the throw.
+    const running = runAction(A('playHands'), world({ self: [12, 5], seen: { 1: [13, 6, 8, 0] }, ball: [0, 0] }), D, cover);
+    expect(target(running)).toEqual([13 - K.trailOffset + 8 * K.pursueLeadS, 6]);
     expect(hands.technique['ballPlay']).toBe('playHands');
     expect(hands.behaviorState).toBe(3);
     const strip = runAction(A('strip'), world({ self: [5, 1], carrier: 5, seen: { 5: [4, 2] } }));

@@ -476,6 +476,8 @@ export function createQuarterback(options: QuarterbackOptions): Quarterback {
     ran = { tick: w.tick, why };
     carrierOwns = options.onRun ? options.onRun(w, cur!.qbSlot, why) : false;
     detail(w, `qb.${why}`);
+    // The stat line reads the shared code (contract decision D-16): without it no scramble was ever counted.
+    if (why === 'scramble') detail(w, 'scramble');
     note(w, why);
   }
 
