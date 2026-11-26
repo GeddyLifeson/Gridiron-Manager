@@ -20,6 +20,11 @@ export interface Expectation {
   readonly winsLow: number;
   readonly winsHigh: number;
   readonly postseasonTarget: PostseasonTarget;
+  /**
+   * The ratchet carried into next season's baseline (X9.2.1 rule 2): the running sum of half of each
+   * overshoot and a quarter of each undershoot. Kept so that three good seasons keep raising the bar.
+   */
+  readonly ratchet: number;
 }
 
 /** A postseason goal id. The level's own goals come from league-rules content (C2, T3); these two are level-free. */
@@ -117,7 +122,7 @@ export function generateCulture(g: GenerateInput): Culture {
     patience,
     resources: g.resources,
     needWeightOverrides: {},
-    expectation: { year: g.firstYear, rateLow: 0.5 - half, rateHigh: 0.5 + half, winsLow: Math.round((0.5 - half) * g.games), winsHigh: Math.round((0.5 + half) * g.games), postseasonTarget: POSTSEASON_NONE },
+    expectation: { year: g.firstYear, rateLow: 0.5 - half, rateHigh: 0.5 + half, winsLow: Math.round((0.5 - half) * g.games), winsHigh: Math.round((0.5 + half) * g.games), postseasonTarget: POSTSEASON_NONE, ratchet: 0 },
     traditionStrength: 0,
   };
 }

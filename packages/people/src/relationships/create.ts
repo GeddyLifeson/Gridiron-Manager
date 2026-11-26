@@ -2,7 +2,7 @@
 // Every tie made here names the event that formed it; a later shared event of the same kind grows the
 // tie instead of making a second one (X7.2.2 rule 1).
 import type { WorldDate } from '@gm/schema';
-import { applyEvent, createTie, tieKey, type DecayLoyalty, type EdgeKind, type Tie } from './edges.ts';
+import { applyEvent, createTie, dayNumber, settleTie, tieKey, type DecayLoyalty, type EdgeKind, type Tie } from './edges.ts';
 import { rp } from './params.ts';
 
 /** All ties of a world or a team, keyed by `tieKey`. Iteration order is insertion order (deterministic). */
@@ -37,6 +37,11 @@ export interface FormingEvent {
   readonly date: WorldDate;
   /** Memory strength of the event for its parties (X6.1.1), used when the tie already exists. */
   readonly memoryStrength: number;
+  /**
+   * First day the parties were together for this event (a season's first day). Being on one staff or
+   * roster is contact all season (X7.2.2 rule 3), so decay is counted only up to this date.
+   */
+  readonly togetherFrom?: WorldDate;
 }
 
 /** Form a tie, or grow the existing one of the same kind and orientation as a positive first-hand contact. */
@@ -44,6 +49,12 @@ export function formOrGrow(store: TieStore, ctx: PairContext, kind: EdgeKind, a:
   const existing = store.find(kind, a, b);
   const loyalty: DecayLoyalty = { a: ctx.loyaltyOf(a), b: ctx.loyaltyOf(b) };
   if (existing) {
+    if (ev.togetherFrom) {
+      // Decay runs only through the gap before they came together; from then to the event they were in touch.
+      settleTie(existing, ev.togetherFrom, loyalty);
+      if (dayNumber(ev.date) > dayNumber(existing.lastContact)) existing.lastContact = ev.date;
+      for (const s of [existing.ab, existing.ba]) if (s && dayNumber(ev.date) > dayNumber(s.decayedThrough)) s.decayedThrough = ev.date;
+    }
     applyEvent(existing, { eventId: ev.eventId, date: ev.date, sign: 1, memoryStrength: ev.memoryStrength, firstHand: true, contact: true }, ctx.fitOf(a, b), null, loyalty);
     return existing;
   }

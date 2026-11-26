@@ -67,14 +67,15 @@ function postseasonTarget(goals: { cut: string; top: string }, centre: number, c
 }
 
 /**
- * Next season's expectation (X9.2.1): centre = baseline plus the ratchet, as a win-rate band of width
+ * Next season's expectation (X9.2.1): centre = baseline plus the carried ratchet, as a win-rate band of width
  * 0.125 rounded to whole wins for display; a postseason target from where the centre sits. A team coming
  * off a title gets "win it again" with the band capped at the band containing the title season's rate.
  */
 export function nextExpectation(i: ExpectationInput): Expectation {
   const last = i.history[i.history.length - 1];
   const half = cp('expect.bandWidth') / 2;
-  let centre = clamp(baseline(i.history, i.projection) + ratchet(i.previous, last), half, 1 - half);
+  const carried = clamp((i.previous?.ratchet ?? 0) + ratchet(i.previous, last), -1, 1);
+  let centre = clamp(baseline(i.history, i.projection) + carried, half, 1 - half);
   let target = postseasonTarget(i.goals, centre, i.postseasonCutRate, i.topFifthRate);
   if (last?.wonTitle) {
     target = POSTSEASON_REPEAT;
@@ -82,7 +83,7 @@ export function nextExpectation(i: ExpectationInput): Expectation {
   }
   const rateLow = centre - half;
   const rateHigh = centre + half;
-  return { year: i.year, rateLow, rateHigh, winsLow: Math.round(rateLow * i.games), winsHigh: Math.round(rateHigh * i.games), postseasonTarget: target };
+  return { year: i.year, rateLow, rateHigh, winsLow: Math.round(rateLow * i.games), winsHigh: Math.round(rateHigh * i.games), postseasonTarget: target, ratchet: carried };
 }
 
 /** Set the culture's expectation for next season and return it (event `expectation_set` is the caller's to log). */
